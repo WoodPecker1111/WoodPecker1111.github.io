@@ -178,7 +178,8 @@
 <li>cut_all 参数来控制是否采用全模式</li>
 <li>HMM参数用来控制是否使用 HMM 模型</li>
 </ul>
-<p>‘adv’</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># encoding=utf-8</span><br><span class="line">import jieba</span><br><span class="line"></span><br><span class="line">seg_list = jieba.cut(&quot;我在学习自然语言处理&quot;, cut_all=True)</span><br><span class="line">print seg_list</span><br><span class="line">print(&quot;Full Mode: &quot; + &quot;/ &quot;.join(seg_list))  # 全模式</span><br><span class="line"></span><br><span class="line">seg_list = jieba.cut(&quot;我在学习自然语言处理&quot;, cut_all=False)</span><br><span class="line">print(&quot;Default Mode: &quot; + &quot;/ &quot;.join(seg_list))  # 精确模式</span><br><span class="line"></span><br><span class="line">seg_list = jieba.cut(&quot;他毕业于上海交通大学，在百度深度学习研究院进行研究&quot;)  # 默认是精确模式</span><br><span class="line">print(&quot;, &quot;.join(seg_list))</span><br><span class="line"></span><br><span class="line">seg_list = jieba.cut_for_search(&quot;小明硕士毕业于中国科学院计算所，后在哈佛大学深造&quot;)  # 搜索引擎模式</span><br><span class="line">print(&quot;, &quot;.join(seg_list))</span><br></pre></td></tr></table></figure>
+
 <p>2.jieba.cut_for_search()<br>接收两个输入参数：</p>
 <ul>
 <li>需要分词的字符串</li>
