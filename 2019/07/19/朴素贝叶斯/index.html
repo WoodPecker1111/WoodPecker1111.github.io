@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>朴素贝叶斯 | 啄木鸟的个人博客</title>
+  <title>朴素贝叶斯（词袋模型） | 啄木鸟的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="$$贝叶斯公式 + 条件独立假设 = 朴素贝叶斯方法$$ 一.贝叶斯公式$$P(Y|X)=P(X|Y)P(Y)／P(X)$$ $$由它推导：P(Y,X)=P(Y|X)P(X)=P(X|Y)P(Y)$$ 其中P(Y)P(Y)叫做先验概率，P(Y|X)P(Y|X)叫做后验概率，P(Y,X)P(Y,X)叫做联合概率。 在机器学习的视角下，我们把XX理解成“具有某特征”，把YY理解成“类别标签”(一般机器">
+  <meta name="description" content="贝叶斯公式 + 条件独立假设 = 朴素贝叶斯方法  一.贝叶斯公式 P(Y|X)=P(X|Y)P(Y)／P(X)   由它推导：P(Y,X)=P(Y|X)P(X)=P(X|Y)P(Y)  其中P(Y)P(Y)叫做先验概率，P(Y|X)P(Y|X)叫做后验概率，P(Y,X)P(Y,X)叫做联合概率。 在机器学习的视角下，我们把XX理解成“具有某特征”，把YY理解成“类别标签”(一般机器学习为题中都">
 <meta property="og:type" content="article">
-<meta property="og:title" content="朴素贝叶斯">
+<meta property="og:title" content="朴素贝叶斯（词袋模型）">
 <meta property="og:url" content="http://yoursite.com/2019/07/19/朴素贝叶斯/index.html">
 <meta property="og:site_name" content="啄木鸟的个人博客">
-<meta property="og:description" content="$$贝叶斯公式 + 条件独立假设 = 朴素贝叶斯方法$$ 一.贝叶斯公式$$P(Y|X)=P(X|Y)P(Y)／P(X)$$ $$由它推导：P(Y,X)=P(Y|X)P(X)=P(X|Y)P(Y)$$ 其中P(Y)P(Y)叫做先验概率，P(Y|X)P(Y|X)叫做后验概率，P(Y,X)P(Y,X)叫做联合概率。 在机器学习的视角下，我们把XX理解成“具有某特征”，把YY理解成“类别标签”(一般机器">
+<meta property="og:description" content="贝叶斯公式 + 条件独立假设 = 朴素贝叶斯方法  一.贝叶斯公式 P(Y|X)=P(X|Y)P(Y)／P(X)   由它推导：P(Y,X)=P(Y|X)P(X)=P(X|Y)P(Y)  其中P(Y)P(Y)叫做先验概率，P(Y|X)P(Y|X)叫做后验概率，P(Y,X)P(Y,X)叫做联合概率。 在机器学习的视角下，我们把XX理解成“具有某特征”，把YY理解成“类别标签”(一般机器学习为题中都">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-19T07:50:41.403Z">
+<meta property="og:updated_time" content="2019-07-19T10:18:33.595Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="朴素贝叶斯">
-<meta name="twitter:description" content="$$贝叶斯公式 + 条件独立假设 = 朴素贝叶斯方法$$ 一.贝叶斯公式$$P(Y|X)=P(X|Y)P(Y)／P(X)$$ $$由它推导：P(Y,X)=P(Y|X)P(X)=P(X|Y)P(Y)$$ 其中P(Y)P(Y)叫做先验概率，P(Y|X)P(Y|X)叫做后验概率，P(Y,X)P(Y,X)叫做联合概率。 在机器学习的视角下，我们把XX理解成“具有某特征”，把YY理解成“类别标签”(一般机器">
+<meta name="twitter:title" content="朴素贝叶斯（词袋模型）">
+<meta name="twitter:description" content="贝叶斯公式 + 条件独立假设 = 朴素贝叶斯方法  一.贝叶斯公式 P(Y|X)=P(X|Y)P(Y)／P(X)   由它推导：P(Y,X)=P(Y|X)P(X)=P(X|Y)P(Y)  其中P(Y)P(Y)叫做先验概率，P(Y|X)P(Y|X)叫做后验概率，P(Y,X)P(Y,X)叫做联合概率。 在机器学习的视角下，我们把XX理解成“具有某特征”，把YY理解成“类别标签”(一般机器学习为题中都">
   
     <link rel="alternative" href="/atom.xml" title="啄木鸟的个人博客" type="application/atom+xml">
   
@@ -161,7 +161,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      朴素贝叶斯
+      朴素贝叶斯（词袋模型）
     </h1>
   
 
@@ -174,12 +174,57 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>$$<br>贝叶斯公式 + 条件独立假设 = 朴素贝叶斯方法<br>$$</p>
-<h3 id="一-贝叶斯公式"><a href="#一-贝叶斯公式" class="headerlink" title="一.贝叶斯公式"></a>一.贝叶斯公式</h3><p>$$<br>P(Y|X)=P(X|Y)P(Y)／P(X)<br>$$</p>
-<p>$$<br>由它推导：P(Y,X)=P(Y|X)P(X)=P(X|Y)P(Y)<br>$$</p>
+        <blockquote>
+<p>贝叶斯公式 + 条件独立假设 = 朴素贝叶斯方法</p>
+</blockquote>
+<h3 id="一-贝叶斯公式"><a href="#一-贝叶斯公式" class="headerlink" title="一.贝叶斯公式"></a>一.贝叶斯公式</h3><blockquote>
+<p>P(Y|X)=P(X|Y)P(Y)／P(X)</p>
+</blockquote>
+<blockquote>
+<p>由它推导：P(Y,X)=P(Y|X)P(X)=P(X|Y)P(Y)</p>
+</blockquote>
 <p>其中P(Y)P(Y)叫做先验概率，P(Y|X)P(Y|X)叫做后验概率，P(Y,X)P(Y,X)叫做联合概率。</p>
-<p>在机器学习的视角下，我们把XX理解成<strong>“具有某特征”</strong>，把YY理解成<strong>“类别标签”</strong>(一般机器学习为题中都是<code>X=&gt;特征</code>, <code>Y=&gt;结果</code>对吧)。在最简单的二分类问题(<code>是</code>与<code>否</code>判定)下，我们将YY理解成<strong>“属于某类</strong>”的标签。于是贝叶斯公式就变形成了下面的样子:<br>$$<br>P(“属于某类”|“具有某特征”)=P(“具有某特征”|“属于某类”)P(“属于某类”)／P(“具有某特征”)<br>$$</p>
-<p>$$<br>P(“属于某类”|“具有某特征”)= 在已知某样本“具有某特征”的条件下，该样本“属于某类”的概率。所以叫做『后验概率』。<br>P(“具有某特征”|“属于某类”)=在已知某样本“属于某类”的条件下，该样本“具有某特征”的概率。<br>P(“属于某类”)=（在未知某样本具有该“具有某特征”的条件下，）该样本“属于某类”的概率。所以叫做『先验概率』。<br>P(“具有某特征”)=(在未知某样本“属于某类”的条件下，)该样本“具有某特征”的概率。<br>$$</p>
+<p>在机器学习的视角下，我们把XX理解成<strong>“具有某特征”</strong>，把YY理解成<strong>“类别标签”</strong>(一般机器学习为题中都是<code>X=&gt;特征</code>, <code>Y=&gt;结果</code>对吧)。在最简单的二分类问题(<code>是</code>与<code>否</code>判定)下，我们将YY理解成<strong>“属于某类</strong>”的标签。于是贝叶斯公式就变形成了下面的样子:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">P(“属于某类”|“具有某特征”)=P(“具有某特征”|“属于某类”)P(“属于某类”)／P(“具有某特征”)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">P(“属于某类”|“具有某特征”)= 在已知某样本“具有某特征”的条件下，该样本“属于某类”的概率。所以叫做『后验概率』。</span><br><span class="line">P(“具有某特征”|“属于某类”)=在已知某样本“属于某类”的条件下，该样本“具有某特征”的概率。 </span><br><span class="line">P(“属于某类”)=（在未知某样本具有该“具有某特征”的条件下，）该样本“属于某类”的概率。所以叫做『先验概率』。</span><br><span class="line">P(“具有某特征”)=(在未知某样本“属于某类”的条件下，)该样本“具有某特征”的概率。</span><br></pre></td></tr></table></figure>
+
+<p><strong>贝叶斯方法的思维方式</strong></p>
+<ul>
+<li><p>逆概率问题</p>
+<blockquote>
+<p>P(Y|X)=P(X|Y)P(Y) / P(X)</p>
+</blockquote>
+<p>先不考虑先验概率P(Y)与P(X)P(Y)与P(X)，观察两个后验概率P(Y|X)与P(X|Y)P(Y|X)与P(X|Y)，,能够揭示<strong>两个相反方向的条件概率之间的转换关系</strong>。</p>
+<p>可以通过贝叶斯公式<strong>从间接地观测对象去推断不可直接观测的对象的情况</strong>。</p>
+</li>
+<li><p>多分类问题</p>
+<p>将正常邮件细分为私人邮件、工作邮件。现在有这3类邮件各1万封作为样本。需要训练出一个贝叶斯分类器。这里依次用Y1,Y2,Y3Y1,Y2,Y3表示这三类邮件，用XX表示被判断的邮件。套用贝叶斯公式有：</p>
+<blockquote>
+<p>P(Y1|X)=P(X|Y1)P(Y1) / P(X)</p>
+<p>P(Y2|X)=P(X|Y2)P(Y2) / P(X)</p>
+<p>P(Y3|X)=P(X|Y3)P(Y3) / P(X)</p>
+</blockquote>
+<p>通过比较3个概率值的大小即可得到XX所属的分类。发现三个式子的分母P(X)P(X) 一样，比较大小时可以忽略不计，于是就可以用下面这一个式子表达上面3式：</p>
+<blockquote>
+<p>P(Yi|X)∝P(X|Yi)P(Yi)；i=1,2,3</p>
+</blockquote>
+<p>其中 ∝ 表示“正比于”。而P(X|Yi) 则有个特别高逼格的名字叫做“<strong>似然函数</strong>”,直接理解成<strong>“P(Yi|X)的逆反条件概率”</strong>  </p>
+</li>
+<li><p>先验概率问题</p>
+</li>
+</ul>
+<h3 id="二-条件独立假设"><a href="#二-条件独立假设" class="headerlink" title="二.条件独立假设"></a>二.条件独立假设</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">P(（“我”,“司”,“可”,“办理”,“正规发票”,“保真”,“增值税”,“发票”,“点数”,“优惠”)|S） </span><br><span class="line">=P(“我”|S）×P(“司”|S）×P(“可”|S）×P(“办理”|S）×P(“正规发票”|S） ×P(“保真”|S）×P(“增值税”|S）×P(“发票”|S）×P(“点数”|S）×P(“优惠”|S)</span><br><span class="line"></span><br><span class="line">P(“发票”|S）=垃圾邮件中所有“发票”的次数 / 垃圾邮件中所有词语的次数</span><br></pre></td></tr></table></figure>
+
+<p>S代表垃圾邮件</p>
+<h3 id="add-平滑技术"><a href="#add-平滑技术" class="headerlink" title="add:平滑技术"></a>add:平滑技术</h3><p>若P(“正规发票”|S）=0P(“正规发票”|S）=0，整个概率都变成0，朴素贝叶斯方法面对一堆0，很凄惨地失效了…更残酷的是<strong>这种情况其实很常见</strong>，因为哪怕训练集再大，也可能有覆盖不到的词语。本质上还是<strong>样本数量太少，不满足大数定律，计算出来的概率失真</strong>。</p>
+<p>把概率为零默认赋值为一个很小的数</p>
+<p>对于伯努利模型，P(“正规发票”|S）的一种平滑算法是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">P(“正规发票”|S）=(出现“正规发票”的垃圾邮件的封数+1) / 每封垃圾邮件中所有词出现次数（出现了只计算一次）的总和+2</span><br></pre></td></tr></table></figure>
+
+<p>对于多项式模型，P(“正规发票”| S）的一种平滑算法是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">P(“发票”|S）=(每封垃圾邮件中出现“发票”的次数的总和+1 )/ (每封垃圾邮件中所有词出现次数（计算重复次数）的总和+被统计的词表的词语数量)</span><br></pre></td></tr></table></figure>
+
 
       
 
