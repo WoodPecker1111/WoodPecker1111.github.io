@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019 | 啄木鸟的个人博客</title>
+  <title>N-gram语言模型 | 啄木鸟的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="啄木鸟的个人博客">
-<meta property="og:url" content="http://yoursite.com/archives/2019/index.html">
+  <meta name="description" content="N-gram语言模型如果我们考虑一个词语对上一个词语的依赖关系，我们把它叫做二元语法（bigram，2-gram）:  P(x1,x2,x3,x4,x5,x6,x7,x8,x9,x10)=P(x1)P(x2|x1)P(x3|x2)P(x4|x3)..P(x10|x9)=P(“我”)P(“司”|“我”)P(“可”|“司”)P(“办理”|“可”)…P(“优惠”|“点数”)  如果把依赖词长度再拉长一点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="N-gram语言模型">
+<meta property="og:url" content="http://yoursite.com/2019/07/19/n-gram/index.html">
 <meta property="og:site_name" content="啄木鸟的个人博客">
+<meta property="og:description" content="N-gram语言模型如果我们考虑一个词语对上一个词语的依赖关系，我们把它叫做二元语法（bigram，2-gram）:  P(x1,x2,x3,x4,x5,x6,x7,x8,x9,x10)=P(x1)P(x2|x1)P(x3|x2)P(x4|x3)..P(x10|x9)=P(“我”)P(“司”|“我”)P(“可”|“司”)P(“办理”|“可”)…P(“优惠”|“点数”)  如果把依赖词长度再拉长一点">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-19T11:48:02.597Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="啄木鸟的个人博客">
+<meta name="twitter:title" content="N-gram语言模型">
+<meta name="twitter:description" content="N-gram语言模型如果我们考虑一个词语对上一个词语的依赖关系，我们把它叫做二元语法（bigram，2-gram）:  P(x1,x2,x3,x4,x5,x6,x7,x8,x9,x10)=P(x1)P(x2|x1)P(x3|x2)P(x4|x3)..P(x10|x9)=P(“我”)P(“司”|“我”)P(“可”|“司”)P(“办理”|“可”)…P(“优惠”|“点数”)  如果把依赖词长度再拉长一点">
   
     <link rel="alternative" href="/atom.xml" title="啄木鸟的个人博客" type="application/atom+xml">
   
@@ -150,103 +154,178 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-n-gram" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      N-gram语言模型
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/19/n-gram/" class="archive-article-date">
+
+        
+        <a href="/2019/07/19/n-gram/" class="archive-article-date">
   	<time datetime="2019-07-19T02:13:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-19</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/19/n-gram/">N-gram语言模型</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="N-gram语言模型"><a href="#N-gram语言模型" class="headerlink" title="N-gram语言模型"></a>N-gram语言模型</h3><p>如果我们考虑一个词语对上一个词语的依赖关系，我们把它叫做二元语法（bigram，2-gram）:</p>
+<blockquote>
+<p>P(x1,x2,x3,x4,x5,x6,x7,x8,x9,x10)=P(x1)P(x2|x1)P(x3|x2)P(x4|x3)..P(x10|x9)=P(“我”)P(“司”|“我”)P(“可”|“司”)P(“办理”|“可”)…P(“优惠”|“点数”)</p>
+</blockquote>
+<p>如果把依赖词长度再拉长一点，考虑一个词对前两个词的依赖关系，就叫做三元语法（trigram，3-gram），公式如下:</p>
+<blockquote>
+<p>P(x1,x2,x3,x4,x5,x6,x7,x8,x9,x10)=P(x1)P(x2|x1)P(x3|x1,x2)P(x4|x2,x3)×…×P(x10|x8,x9) =P(“我”)P(“司”|“我”)P(“可”|“我”,“司”)P(“办理”|“司”,“可”)…P(“优惠”|“发票”,“点数”)</p>
+</blockquote>
+<p>如果我们再考虑长一点，考虑n个词语之间的关系，这就是n-gram</p>
+<p>以上几个简化后的公式，就是著名的<strong>马尔科夫假设（Markov Assumption）：下一个词的出现仅依赖于它前面的一个或几个词</strong></p>
+<h3 id="N-gram实际应用"><a href="#N-gram实际应用" class="headerlink" title="N-gram实际应用"></a>N-gram实际应用</h3><p>N-gram方法在实际应用中有一些tricks需要注意：</p>
+<p>句子开头的词，比如本例中的“我”，<strong>因为要考虑其本身作为开头的特征，可以考虑在其前面再添加一个句子起始符号如”《S》”，这样我们就不必单独计算P(“我”|Yi)P(“我”|Yi)，而是替换为计算P(“我”|”《S》”,Yi)P(“我”|”《S》”,Yi)。形式上与2-gram统一。</strong> 这样统计和预测起来都比较方便。</p>
+<p>一般地，<strong>如果采用N-gram模型，可以在文本开头加入n-1个虚拟的开始符号</strong>，这样在所有情况下预测下一个词的可依赖词数都是一致的。</p>
+<p>与朴素贝叶斯方法一样，<strong>N-gram模型也会发生零概率问题，也需要平滑技术。</strong></p>
+<h5 id="1-词性标注（利用前一个词，可用于一词多词性问题）"><a href="#1-词性标注（利用前一个词，可用于一词多词性问题）" class="headerlink" title="1.词性标注（利用前一个词，可用于一词多词性问题）"></a>1.词性标注（利用前一个词，可用于一词多词性问题）</h5><h5 id="2-垃圾邮件识别（考虑到了上文，效果更好）"><a href="#2-垃圾邮件识别（考虑到了上文，效果更好）" class="headerlink" title="2.垃圾邮件识别（考虑到了上文，效果更好）"></a>2.垃圾邮件识别（考虑到了上文，效果更好）</h5><h5 id="3-中文分词（在可能出现的结果中，根据概率择优选择更好的分词方案）"><a href="#3-中文分词（在可能出现的结果中，根据概率择优选择更好的分词方案）" class="headerlink" title="3.中文分词（在可能出现的结果中，根据概率择优选择更好的分词方案）"></a>3.中文分词（在可能出现的结果中，根据概率择优选择更好的分词方案）</h5><h5 id="4-机器翻译与语音识别（在可能出现的结果中，根据概率择优选择更好的翻译方案）"><a href="#4-机器翻译与语音识别（在可能出现的结果中，根据概率择优选择更好的翻译方案）" class="headerlink" title="4.机器翻译与语音识别（在可能出现的结果中，根据概率择优选择更好的翻译方案）"></a>4.机器翻译与语音识别（在可能出现的结果中，根据概率择优选择更好的翻译方案）</h5><h3 id="PS：平滑技术"><a href="#PS：平滑技术" class="headerlink" title="PS：平滑技术"></a>PS：平滑技术</h3><p>为了解决零概率问题，需要给 <strong>“未出现的n-gram条件概率分布一个非零估计值，相应的需要降低已出现n-gram条件概率分布，且经数据平滑后一定保证概率和为1”</strong>。</p>
+<ul>
+<li><p>拉普拉斯平滑</p>
+</li>
+<li><p>古德图灵平滑</p>
+</li>
+<li><p>组合估计平滑</p>
+</li>
+</ul>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/19/n-gram/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/19/结巴分词/" class="archive-article-date">
-  	<time datetime="2019-07-19T02:13:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-19</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/07/19/结巴分词/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">jieba中文处理的几个函数</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/19/结巴分词/">jieba中文处理的几个函数</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/19/朴素贝叶斯/" class="archive-article-date">
-  	<time datetime="2019-07-18T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/19/朴素贝叶斯/">朴素贝叶斯（词袋模型）</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -269,8 +348,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
