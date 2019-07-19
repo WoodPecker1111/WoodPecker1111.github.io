@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019/7 | 啄木鸟的个人博客</title>
+  <title>jieba中文处理的几个函数 | 啄木鸟的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="啄木鸟的个人博客">
-<meta property="og:url" content="http://yoursite.com/archives/2019/07/index.html">
+  <meta name="description" content="一.基本分词函数jieba.cut() 接收三个输入参数：  需要分词的字符串 cut_all 参数来控制是否采用全模式 HMM参数用来控制是否使用 HMM 模型  12345seg_list = jieba.cut(&amp;quot;我在学习自然语言处理&amp;quot;, cut_all=True)print seg_listprint(&amp;quot;Full Mode: &amp;quot; + &amp;quot;/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jieba中文处理的几个函数">
+<meta property="og:url" content="http://yoursite.com/2019/07/19/结巴分词/index.html">
 <meta property="og:site_name" content="啄木鸟的个人博客">
+<meta property="og:description" content="一.基本分词函数jieba.cut() 接收三个输入参数：  需要分词的字符串 cut_all 参数来控制是否采用全模式 HMM参数用来控制是否使用 HMM 模型  12345seg_list = jieba.cut(&amp;quot;我在学习自然语言处理&amp;quot;, cut_all=True)print seg_listprint(&amp;quot;Full Mode: &amp;quot; + &amp;quot;/">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-19T07:27:15.914Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="啄木鸟的个人博客">
+<meta name="twitter:title" content="jieba中文处理的几个函数">
+<meta name="twitter:description" content="一.基本分词函数jieba.cut() 接收三个输入参数：  需要分词的字符串 cut_all 参数来控制是否采用全模式 HMM参数用来控制是否使用 HMM 模型  12345seg_list = jieba.cut(&amp;quot;我在学习自然语言处理&amp;quot;, cut_all=True)print seg_listprint(&amp;quot;Full Mode: &amp;quot; + &amp;quot;/">
   
     <link rel="alternative" href="/atom.xml" title="啄木鸟的个人博客" type="application/atom+xml">
   
@@ -150,76 +154,211 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-结巴分词" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      jieba中文处理的几个函数
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/19/结巴分词/" class="archive-article-date">
+
+        
+        <a href="/2019/07/19/结巴分词/" class="archive-article-date">
   	<time datetime="2019-07-19T02:13:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-19</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/19/结巴分词/">jieba中文处理的几个函数</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-基本分词函数"><a href="#一-基本分词函数" class="headerlink" title="一.基本分词函数"></a>一.基本分词函数</h3><p>jieba.cut()</p>
+<p>接收三个输入参数：</p>
+<ul>
+<li>需要分词的字符串</li>
+<li>cut_all 参数来控制是否采用全模式</li>
+<li>HMM参数用来控制是否使用 HMM 模型</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">seg_list = jieba.cut(&quot;我在学习自然语言处理&quot;, cut_all=True)</span><br><span class="line">print seg_list</span><br><span class="line">print(&quot;Full Mode: &quot; + &quot;/ &quot;.join(seg_list))  # 全模式</span><br><span class="line">seg_list = jieba.cut(&quot;我在学习自然语言处理&quot;, cut_all=False)</span><br><span class="line">print(&quot;Default Mode: &quot; + &quot;/ &quot;.join(seg_list))  # 精确模式</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
+<p>jieba.cut_for_search()</p>
+<p>接收两个输入参数：</p>
+<ul>
+<li>需要分词的字符串</li>
+<li>是否使用 HMM 模型</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">seg_list = jieba.cut_for_search(&quot;小明硕士毕业于中国科学院计算所，后在哈佛大学深造&quot;)  # 搜索引擎模式</span><br><span class="line">print(&quot;, &quot;.join(seg_list))</span><br></pre></td></tr></table></figure>
 
+<p>jieba.lcut()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">result_lcut = jieba.lcut(&quot;小明硕士毕业于中国科学院计算所，后在哈佛大学深造&quot;)</span><br><span class="line">print result_lcut</span><br><span class="line">print &quot; &quot;.join(result_lcut)</span><br></pre></td></tr></table></figure>
+
+<p>jieba.lcut_for_search()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print &quot; &quot;.join(jieba.lcut_for_search(&quot;小明硕士毕业于中国科学院计算所，后在哈佛大学深造&quot;))</span><br></pre></td></tr></table></figure>
+
+<p>jieba.load_userdict(file_name)</p>
+<p>加载用户字典</p>
+<p>suggest_freq(segment, tune=True) </p>
+<p>调节单个词语的词频，使其能（不能）被分出来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jieba.suggest_freq((&apos;中&apos;, &apos;将&apos;), True)</span><br></pre></td></tr></table></figure>
+
+<p>jieba.tokenize()</p>
+<p>返回词语在原文起止位置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">result = jieba.tokenize(u&apos;自然语言处理非常有用&apos;)</span><br><span class="line">for tk in result:</span><br><span class="line">    print(&quot;%s\t\t start: %d \t\t end:%d&quot; % (tk[0],tk[1],tk[2]))</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">自然语言		 start: 0 		 end:4</span><br><span class="line">处理		 start: 4 		 end:6</span><br><span class="line">非常		 start: 6 		 end:8</span><br><span class="line">有用		 start: 8 		 end:10</span><br></pre></td></tr></table></figure>
+
+<h3 id="二-关键词提取"><a href="#二-关键词提取" class="headerlink" title="二.关键词提取"></a>二.关键词提取</h3><h5 id="基于TD-IDF算法"><a href="#基于TD-IDF算法" class="headerlink" title="基于TD-IDF算法"></a>基于TD-IDF算法</h5><p>jieba.analyse.extract_tags(sentence, topK=20, withWeight=False, allowPOS=())</p>
+<ul>
+<li>sentence 为待提取的文本</li>
+<li>topK 为返回几个 TF/IDF 权重最大的关键词，默认值为 20</li>
+<li>withWeight 为是否一并返回关键词权重值，默认值为 False</li>
+<li>allowPOS 仅包括指定词性的词，默认值为空，即不筛选</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import jieba.analyse as analyse</span><br><span class="line">lines = open(&apos;文件&apos;).read()</span><br><span class="line">print (&quot;  &quot;.join(analyse.extract_tags(lines, topK=20, withWeight=False, allowPOS=())))</span><br></pre></td></tr></table></figure>
+
+<p> jieba.analyse.set_idf_path(file_name)</p>
+<p>关键词提取所使用的逆向文件频率（IDF）可自定义</p>
+<p>jieba.analyse.set_stop_words(file_name)</p>
+<p>关键词提取使用停止词可自定义</p>
+<h5 id="基于TextRank"><a href="#基于TextRank" class="headerlink" title="基于TextRank"></a>基于TextRank</h5><p>jieba.analyse.textrank(sentence, topK=20, withWeight=False, allowPOS=(‘ns’, ‘n’, ‘vn’, ‘v’))</p>
+<p>jieba.analyse.TextRank() 新建自定义 TextRank 实例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import jieba.analyse as analyse</span><br><span class="line">lines = open(&apos;NBA.txt&apos;).read()</span><br><span class="line">print(&quot;  &quot;.join(analyse.textrank(lines, topK=20, withWeight=False, allowPOS=(&apos;ns&apos;, &apos;n&apos;, &apos;vn&apos;, &apos;v&apos;))))</span><br></pre></td></tr></table></figure>
+
+<h3 id="三-词性标注"><a href="#三-词性标注" class="headerlink" title="三.词性标注"></a>三.词性标注</h3><p>jieba.posseg.POSTokenizer(tokenizer=None) 新建自定义分词器</p>
+<p>tokenizer 参数可指定内部使用的 jieba.Tokenizer 分词器。jieba.posseg.dt 为默认词性标注分词器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import jieba.posseg as pseg</span><br><span class="line">words = pseg.cut(&quot;我爱自然语言处理&quot;)</span><br><span class="line">for word, flag in words:</span><br><span class="line">    print(&apos;%s %s&apos; % (word, flag))</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/19/结巴分词/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/19/朴素贝叶斯/" class="archive-article-date">
-  	<time datetime="2019-07-18T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-19</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/07/19/朴素贝叶斯/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">朴素贝叶斯</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/19/朴素贝叶斯/">朴素贝叶斯</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -242,8 +381,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

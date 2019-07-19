@@ -152,19 +152,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-“我的第一篇博客文章”" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-结巴分词" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/19/“我的第一篇博客文章”/">jieba中文处理的几个函数</a>
+      <a class="article-title" href="/2019/07/19/结巴分词/">jieba中文处理的几个函数</a>
     </h1>
   
 
         
-        <a href="/2019/07/19/“我的第一篇博客文章”/" class="archive-article-date">
+        <a href="/2019/07/19/结巴分词/" class="archive-article-date">
   	<time datetime="2019-07-19T02:13:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-19</time>
 </a>
         
@@ -240,7 +240,75 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/19/“我的第一篇博客文章”/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/07/19/结巴分词/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-朴素贝叶斯" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/19/朴素贝叶斯/">朴素贝叶斯</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/19/朴素贝叶斯/" class="archive-article-date">
+  	<time datetime="2019-07-18T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>$$<br>贝叶斯公式 + 条件独立假设 = 朴素贝叶斯方法<br>$$</p>
+<h3 id="一-贝叶斯公式"><a href="#一-贝叶斯公式" class="headerlink" title="一.贝叶斯公式"></a>一.贝叶斯公式</h3><p>$$<br>P(Y|X)=P(X|Y)P(Y)／P(X)<br>$$</p>
+<p>$$<br>由它推导：P(Y,X)=P(Y|X)P(X)=P(X|Y)P(Y)<br>$$</p>
+<p>其中P(Y)P(Y)叫做先验概率，P(Y|X)P(Y|X)叫做后验概率，P(Y,X)P(Y,X)叫做联合概率。</p>
+<p>在机器学习的视角下，我们把XX理解成<strong>“具有某特征”</strong>，把YY理解成<strong>“类别标签”</strong>(一般机器学习为题中都是<code>X=&gt;特征</code>, <code>Y=&gt;结果</code>对吧)。在最简单的二分类问题(<code>是</code>与<code>否</code>判定)下，我们将YY理解成<strong>“属于某类</strong>”的标签。于是贝叶斯公式就变形成了下面的样子:<br>$$<br>P(“属于某类”|“具有某特征”)=P(“具有某特征”|“属于某类”)P(“属于某类”)／P(“具有某特征”)<br>$$</p>
+<p>$$<br>P(“属于某类”|“具有某特征”)= 在已知某样本“具有某特征”的条件下，该样本“属于某类”的概率。所以叫做『后验概率』。<br>P(“具有某特征”|“属于某类”)=在已知某样本“属于某类”的条件下，该样本“具有某特征”的概率。<br>P(“属于某类”)=（在未知某样本具有该“具有某特征”的条件下，）该样本“属于某类”的概率。所以叫做『先验概率』。<br>P(“具有某特征”)=(在未知某样本“属于某类”的条件下，)该样本“具有某特征”的概率。<br>$$</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/19/朴素贝叶斯/">展开全文 >></a>
         </p>
       
 
