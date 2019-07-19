@@ -172,7 +172,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="一-基本分词函数与用法"><a href="#一-基本分词函数与用法" class="headerlink" title="一.基本分词函数与用法"></a>一.基本分词函数与用法</h3><h6 id="jieba-cut"><a href="#jieba-cut" class="headerlink" title="jieba.cut()"></a>jieba.cut()</h6><p>接收三个输入参数：</p>
+        <h3 id="一-基本分词函数与用法"><a href="#一-基本分词函数与用法" class="headerlink" title="一.基本分词函数与用法"></a>一.基本分词函数与用法</h3><p>jieba.cut()</p>
+<p>接收三个输入参数：</p>
 <ul>
 <li>需要分词的字符串</li>
 <li>cut_all 参数来控制是否采用全模式</li>
@@ -180,22 +181,28 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">seg_list = jieba.cut(&quot;我在学习自然语言处理&quot;, cut_all=True)</span><br><span class="line">print seg_list</span><br><span class="line">print(&quot;Full Mode: &quot; + &quot;/ &quot;.join(seg_list))  # 全模式</span><br><span class="line">seg_list = jieba.cut(&quot;我在学习自然语言处理&quot;, cut_all=False)</span><br><span class="line">print(&quot;Default Mode: &quot; + &quot;/ &quot;.join(seg_list))  # 精确模式</span><br></pre></td></tr></table></figure>
 
-<h6 id="jieba-cut-for-search"><a href="#jieba-cut-for-search" class="headerlink" title="jieba.cut_for_search()"></a>jieba.cut_for_search()</h6><p>接收两个输入参数：</p>
+<p>jieba.cut_for_search()</p>
+<p>接收两个输入参数：</p>
 <ul>
 <li>需要分词的字符串</li>
 <li>是否使用 HMM 模型</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">seg_list = jieba.cut_for_search(&quot;小明硕士毕业于中国科学院计算所，后在哈佛大学深造&quot;)  # 搜索引擎模式</span><br><span class="line">print(&quot;, &quot;.join(seg_list))</span><br></pre></td></tr></table></figure>
 
-<h6 id="jieba-lcut"><a href="#jieba-lcut" class="headerlink" title="jieba.lcut()"></a>jieba.lcut()</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">result_lcut = jieba.lcut(&quot;小明硕士毕业于中国科学院计算所，后在哈佛大学深造&quot;)</span><br><span class="line">print result_lcut</span><br><span class="line">print &quot; &quot;.join(result_lcut)</span><br></pre></td></tr></table></figure>
+<p>jieba.lcut()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">result_lcut = jieba.lcut(&quot;小明硕士毕业于中国科学院计算所，后在哈佛大学深造&quot;)</span><br><span class="line">print result_lcut</span><br><span class="line">print &quot; &quot;.join(result_lcut)</span><br></pre></td></tr></table></figure>
 
-<h6 id="jieba-lcut-for-search"><a href="#jieba-lcut-for-search" class="headerlink" title="jieba.lcut_for_search()"></a>jieba.lcut_for_search()</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print &quot; &quot;.join(jieba.lcut_for_search(&quot;小明硕士毕业于中国科学院计算所，后在哈佛大学深造&quot;))</span><br></pre></td></tr></table></figure>
+<p>jieba.lcut_for_search()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print &quot; &quot;.join(jieba.lcut_for_search(&quot;小明硕士毕业于中国科学院计算所，后在哈佛大学深造&quot;))</span><br></pre></td></tr></table></figure>
 
-<h6 id="jieba-load-userdict-file-name"><a href="#jieba-load-userdict-file-name" class="headerlink" title="jieba.load_userdict(file_name)"></a>jieba.load_userdict(file_name)</h6><p>加载用户字典</p>
-<h6 id="suggest-freq-segment-tune-True"><a href="#suggest-freq-segment-tune-True" class="headerlink" title="suggest_freq(segment, tune=True)"></a>suggest_freq(segment, tune=True)</h6><p>调节单个词语的词频，使其能（不能）被分出来</p>
+<p>jieba.load_userdict(file_name)</p>
+<p>加载用户字典</p>
+<p>suggest_freq(segment, tune=True) </p>
+<p>调节单个词语的词频，使其能（不能）被分出来</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jieba.suggest_freq((&apos;中&apos;, &apos;将&apos;), True)</span><br></pre></td></tr></table></figure>
 
-<h3 id="二-关键词提取"><a href="#二-关键词提取" class="headerlink" title="二.关键词提取"></a>二.关键词提取</h3><h5 id="基于TD-IDF算法"><a href="#基于TD-IDF算法" class="headerlink" title="基于TD-IDF算法"></a>基于TD-IDF算法</h5><h6 id="jieba-analyse-extract-tags-sentence-topK-20-withWeight-False-allowPOS"><a href="#jieba-analyse-extract-tags-sentence-topK-20-withWeight-False-allowPOS" class="headerlink" title="jieba.analyse.extract_tags(sentence, topK=20, withWeight=False, allowPOS=())"></a>jieba.analyse.extract_tags(sentence, topK=20, withWeight=False, allowPOS=())</h6><ul>
+<h3 id="二-关键词提取"><a href="#二-关键词提取" class="headerlink" title="二.关键词提取"></a>二.关键词提取</h3><h5 id="基于TD-IDF算法"><a href="#基于TD-IDF算法" class="headerlink" title="基于TD-IDF算法"></a>基于TD-IDF算法</h5><p>jieba.analyse.extract_tags(sentence, topK=20, withWeight=False, allowPOS=())</p>
+<ul>
 <li>sentence 为待提取的文本</li>
 <li>topK 为返回几个 TF/IDF 权重最大的关键词，默认值为 20</li>
 <li>withWeight 为是否一并返回关键词权重值，默认值为 False</li>
@@ -203,11 +210,16 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import jieba.analyse as analyse</span><br><span class="line">lines = open(&apos;文件&apos;).read()</span><br><span class="line">print (&quot;  &quot;.join(analyse.extract_tags(lines, topK=20, withWeight=False, allowPOS=())))</span><br></pre></td></tr></table></figure>
 
-<h6 id="jieba-analyse-set-idf-path-file-name"><a href="#jieba-analyse-set-idf-path-file-name" class="headerlink" title="jieba.analyse.set_idf_path(file_name)"></a>jieba.analyse.set_idf_path(file_name)</h6><p>关键词提取所使用的逆向文件频率（IDF）可自定义</p>
-<h6 id="jieba-analyse-set-stop-words-file-name"><a href="#jieba-analyse-set-stop-words-file-name" class="headerlink" title="jieba.analyse.set_stop_words(file_name)"></a>jieba.analyse.set_stop_words(file_name)</h6><p>关键词提取使用停止词可自定义</p>
-<h5 id="基于TextRank"><a href="#基于TextRank" class="headerlink" title="基于TextRank"></a>基于TextRank</h5><h6 id="jieba-analyse-textrank-sentence-topK-20-withWeight-False-allowPOS-‘ns’-‘n’-‘vn’-‘v’"><a href="#jieba-analyse-textrank-sentence-topK-20-withWeight-False-allowPOS-‘ns’-‘n’-‘vn’-‘v’" class="headerlink" title="jieba.analyse.textrank(sentence, topK=20, withWeight=False, allowPOS=(‘ns’, ‘n’, ‘vn’, ‘v’))"></a>jieba.analyse.textrank(sentence, topK=20, withWeight=False, allowPOS=(‘ns’, ‘n’, ‘vn’, ‘v’))</h6><h6 id="jieba-analyse-TextRank-新建自定义-TextRank-实例"><a href="#jieba-analyse-TextRank-新建自定义-TextRank-实例" class="headerlink" title="jieba.analyse.TextRank() 新建自定义 TextRank 实例"></a>jieba.analyse.TextRank() 新建自定义 TextRank 实例</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import jieba.analyse as analyse</span><br><span class="line">lines = open(&apos;NBA.txt&apos;).read()</span><br><span class="line">print(&quot;  &quot;.join(analyse.textrank(lines, topK=20, withWeight=False, allowPOS=(&apos;ns&apos;, &apos;n&apos;, &apos;vn&apos;, &apos;v&apos;))))</span><br></pre></td></tr></table></figure>
+<p> jieba.analyse.set_idf_path(file_name)</p>
+<p>关键词提取所使用的逆向文件频率（IDF）可自定义</p>
+<p>jieba.analyse.set_stop_words(file_name)</p>
+<p>关键词提取使用停止词可自定义</p>
+<h5 id="基于TextRank"><a href="#基于TextRank" class="headerlink" title="基于TextRank"></a>基于TextRank</h5><p>jieba.analyse.textrank(sentence, topK=20, withWeight=False, allowPOS=(‘ns’, ‘n’, ‘vn’, ‘v’))</p>
+<p>jieba.analyse.TextRank() 新建自定义 TextRank 实例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import jieba.analyse as analyse</span><br><span class="line">lines = open(&apos;NBA.txt&apos;).read()</span><br><span class="line">print(&quot;  &quot;.join(analyse.textrank(lines, topK=20, withWeight=False, allowPOS=(&apos;ns&apos;, &apos;n&apos;, &apos;vn&apos;, &apos;v&apos;))))</span><br></pre></td></tr></table></figure>
 
-<h3 id="三-词性标注"><a href="#三-词性标注" class="headerlink" title="三.词性标注"></a>三.词性标注</h3><h6 id="jieba-posseg-POSTokenizer-tokenizer-None"><a href="#jieba-posseg-POSTokenizer-tokenizer-None" class="headerlink" title="jieba.posseg.POSTokenizer(tokenizer=None)"></a>jieba.posseg.POSTokenizer(tokenizer=None)</h6>
+<h3 id="三-词性标注"><a href="#三-词性标注" class="headerlink" title="三.词性标注"></a>三.词性标注</h3><p>jieba.posseg.POSTokenizer(tokenizer=None) </p>
+
       
 
       
