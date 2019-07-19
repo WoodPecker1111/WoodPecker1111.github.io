@@ -178,6 +178,11 @@
 <li>cut_all 参数来控制是否采用全模式</li>
 <li>HMM参数用来控制是否使用 HMM 模型</li>
 </ul>
+<p>‘’’<br>import jieba</p>
+<p>seg_list = jieba.cut(“我在学习自然语言处理”, cut_all=True)<br>print seg_list<br>print(“Full Mode: “ + “/ “.join(seg_list))  # 全模式</p>
+<p>seg_list = jieba.cut(“我在学习自然语言处理”, cut_all=False)<br>print(“Default Mode: “ + “/ “.join(seg_list))  # 精确模式</p>
+<p>seg_list = jieba.cut(“他毕业于上海交通大学，在百度深度学习研究院进行研究”)  # 默认是精确模式<br>print(“, “.join(seg_list))</p>
+<p>seg_list = jieba.cut_for_search(“小明硕士毕业于中国科学院计算所，后在哈佛大学深造”)  # 搜索引擎模式<br>print(“, “.join(seg_list))<br>‘’’</p>
 <p>2.jieba.cut_for_search()<br>接收两个输入参数：</p>
 <ul>
 <li>需要分词的字符串</li>
