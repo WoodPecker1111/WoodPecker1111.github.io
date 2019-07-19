@@ -15,12 +15,10 @@
 <meta property="og:site_name" content="啄木鸟的个人博客">
 <meta property="og:description" content="贝叶斯公式 + 条件独立假设 = 朴素贝叶斯方法  一.贝叶斯公式 P(Y|X)=P(X|Y)P(Y)／P(X)   由它推导：P(Y,X)=P(Y|X)P(X)=P(X|Y)P(Y)  其中P(Y)P(Y)叫做先验概率，P(Y|X)P(Y|X)叫做后验概率，P(Y,X)P(Y,X)叫做联合概率。 在机器学习的视角下，把XX理解成“具有某特征”，把YY理解成“类别标签”(一般机器学习为题中都是X">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="c:%5CUsers%5Chp%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1563534506377.png">
-<meta property="og:updated_time" content="2019-07-19T11:08:34.085Z">
+<meta property="og:updated_time" content="2019-07-19T11:13:34.107Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="朴素贝叶斯（词袋模型）">
 <meta name="twitter:description" content="贝叶斯公式 + 条件独立假设 = 朴素贝叶斯方法  一.贝叶斯公式 P(Y|X)=P(X|Y)P(Y)／P(X)   由它推导：P(Y,X)=P(Y|X)P(X)=P(X|Y)P(Y)  其中P(Y)P(Y)叫做先验概率，P(Y|X)P(Y|X)叫做后验概率，P(Y,X)P(Y,X)叫做联合概率。 在机器学习的视角下，把XX理解成“具有某特征”，把YY理解成“类别标签”(一般机器学习为题中都是X">
-<meta name="twitter:image" content="c:%5CUsers%5Chp%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1563534506377.png">
   
     <link rel="alternative" href="/atom.xml" title="啄木鸟的个人博客" type="application/atom+xml">
   
@@ -288,14 +286,6 @@
 </ul>
 <blockquote>
 <p>P(错误词|候选词i)=候选词被拼写成该“错误词”的次数 / 候选词出现的次数</p>
-</blockquote>
-<p>由于自然语言的特点，有一些tricks需要注意：</p>
-<ul>
-<li>据统计，80%的拼写错误编辑距离为1，几乎所有的拼写错误编辑距离小于等于2。我们<strong>只选择编辑距离为1或2的词作为候选词，这样就可以减少大量不必要的计算</strong>。</li>
-<li>由于我们只选择编辑距离为1或2的词，其差别只是一两个字母级别差别。因此计算似然函数的时候，<strong>可以只统计字母层面的编辑错误，这样搜集的样本更多，更满足大数定律，也更简单</strong>。对于编辑距离为1的似然函数计算公式可以进化为：</li>
-</ul>
-<blockquote>
-<p><img src="C:%5CUsers%5Chp%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1563534506377.png" alt="1563534506377"></p>
 </blockquote>
 
       
