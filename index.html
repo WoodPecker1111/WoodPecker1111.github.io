@@ -195,7 +195,19 @@
 <h6 id="suggest-freq-segment-tune-True"><a href="#suggest-freq-segment-tune-True" class="headerlink" title="suggest_freq(segment, tune=True)"></a>suggest_freq(segment, tune=True)</h6><p>调节单个词语的词频，使其能（不能）被分出来</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jieba.suggest_freq((&apos;中&apos;, &apos;将&apos;), True)</span><br></pre></td></tr></table></figure>
 
-<h3 id="二-关键词提取"><a href="#二-关键词提取" class="headerlink" title="二.关键词提取"></a>二.关键词提取</h3>
+<h3 id="二-关键词提取"><a href="#二-关键词提取" class="headerlink" title="二.关键词提取"></a>二.关键词提取</h3><h5 id="基于TD-IDF算法"><a href="#基于TD-IDF算法" class="headerlink" title="基于TD-IDF算法"></a>基于TD-IDF算法</h5><h6 id="jieba-analyse-extract-tags-sentence-topK-20-withWeight-False-allowPOS"><a href="#jieba-analyse-extract-tags-sentence-topK-20-withWeight-False-allowPOS" class="headerlink" title="jieba.analyse.extract_tags(sentence, topK=20, withWeight=False, allowPOS=())"></a>jieba.analyse.extract_tags(sentence, topK=20, withWeight=False, allowPOS=())</h6><ul>
+<li>sentence 为待提取的文本</li>
+<li>topK 为返回几个 TF/IDF 权重最大的关键词，默认值为 20</li>
+<li>withWeight 为是否一并返回关键词权重值，默认值为 False</li>
+<li>allowPOS 仅包括指定词性的词，默认值为空，即不筛选</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import jieba.analyse as analyse</span><br><span class="line">lines = open(&apos;文件&apos;).read()</span><br><span class="line">print (&quot;  &quot;.join(analyse.extract_tags(lines, topK=20, withWeight=False, allowPOS=())))</span><br></pre></td></tr></table></figure>
+
+<h6 id="jieba-analyse-set-idf-path-file-name"><a href="#jieba-analyse-set-idf-path-file-name" class="headerlink" title="jieba.analyse.set_idf_path(file_name)"></a>jieba.analyse.set_idf_path(file_name)</h6><p>关键词提取所使用的逆向文件频率（IDF）可自定义</p>
+<h6 id="jieba-analyse-set-stop-words-file-name"><a href="#jieba-analyse-set-stop-words-file-name" class="headerlink" title="jieba.analyse.set_stop_words(file_name)"></a>jieba.analyse.set_stop_words(file_name)</h6><p>关键词提取使用停止词可自定义</p>
+<h5 id="基于TextRank"><a href="#基于TextRank" class="headerlink" title="基于TextRank"></a>基于TextRank</h5><h6 id="jieba-analyse-textrank-sentence-topK-20-withWeight-False-allowPOS-‘ns’-‘n’-‘vn’-‘v’"><a href="#jieba-analyse-textrank-sentence-topK-20-withWeight-False-allowPOS-‘ns’-‘n’-‘vn’-‘v’" class="headerlink" title="jieba.analyse.textrank(sentence, topK=20, withWeight=False, allowPOS=(‘ns’, ‘n’, ‘vn’, ‘v’))"></a>jieba.analyse.textrank(sentence, topK=20, withWeight=False, allowPOS=(‘ns’, ‘n’, ‘vn’, ‘v’))</h6><h6 id="jieba-analyse-TextRank-新建自定义-TextRank-实例"><a href="#jieba-analyse-TextRank-新建自定义-TextRank-实例" class="headerlink" title="jieba.analyse.TextRank() 新建自定义 TextRank 实例"></a>jieba.analyse.TextRank() 新建自定义 TextRank 实例</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import jieba.analyse as analyse</span><br><span class="line">lines = open(&apos;NBA.txt&apos;).read()</span><br><span class="line">print(&quot;  &quot;.join(analyse.textrank(lines, topK=20, withWeight=False, allowPOS=(&apos;ns&apos;, &apos;n&apos;, &apos;vn&apos;, &apos;v&apos;))))</span><br></pre></td></tr></table></figure>
+
+<h3 id="三-词性标注"><a href="#三-词性标注" class="headerlink" title="三.词性标注"></a>三.词性标注</h3><h6 id="jieba-posseg-POSTokenizer-tokenizer-None"><a href="#jieba-posseg-POSTokenizer-tokenizer-None" class="headerlink" title="jieba.posseg.POSTokenizer(tokenizer=None)"></a>jieba.posseg.POSTokenizer(tokenizer=None)</h6>
       
 
       
