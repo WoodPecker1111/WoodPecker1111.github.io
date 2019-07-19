@@ -159,7 +159,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/19/“我的第一篇博客文章”/">“jieba中文处理”</a>
+      <a class="article-title" href="/2019/07/19/“我的第一篇博客文章”/">jieba中文处理的几个函数</a>
     </h1>
   
 
@@ -172,20 +172,45 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="一-基本分词函数与用法"><a href="#一-基本分词函数与用法" class="headerlink" title="一.基本分词函数与用法"></a>一.基本分词函数与用法</h3><p>1.jieba.cut()<br>接收三个输入参数：</p>
+        <h3 id="一-基本分词函数与用法"><a href="#一-基本分词函数与用法" class="headerlink" title="一.基本分词函数与用法"></a>一.基本分词函数与用法</h3><ol>
+<li>jieba.cut()<br>接收三个输入参数：</li>
+</ol>
 <ul>
-<li>需要分词的字符串</li>
-<li>cut_all 参数来控制是否采用全模式</li>
-<li>HMM参数用来控制是否使用 HMM 模型</li>
+<li><p>需要分词的字符串</p>
+</li>
+<li><p>cut_all 参数来控制是否采用全模式</p>
+</li>
+<li><p>HMM参数用来控制是否使用 HMM 模型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">seg_list = jieba.cut(&quot;我在学习自然语言处理&quot;, cut_all=True)</span><br><span class="line">print seg_list</span><br><span class="line">print(&quot;Full Mode: &quot; + &quot;/ &quot;.join(seg_list))  # 全模式</span><br><span class="line">seg_list = jieba.cut(&quot;我在学习自然语言处理&quot;, cut_all=False)</span><br><span class="line">print(&quot;Default Mode: &quot; + &quot;/ &quot;.join(seg_list))  # 精确模式</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># encoding=utf-8</span><br><span class="line">import jieba</span><br><span class="line"></span><br><span class="line">seg_list = jieba.cut(&quot;我在学习自然语言处理&quot;, cut_all=True)</span><br><span class="line">print seg_list</span><br><span class="line">print(&quot;Full Mode: &quot; + &quot;/ &quot;.join(seg_list))  # 全模式</span><br><span class="line"></span><br><span class="line">seg_list = jieba.cut(&quot;我在学习自然语言处理&quot;, cut_all=False)</span><br><span class="line">print(&quot;Default Mode: &quot; + &quot;/ &quot;.join(seg_list))  # 精确模式</span><br><span class="line"></span><br><span class="line">seg_list = jieba.cut(&quot;他毕业于上海交通大学，在百度深度学习研究院进行研究&quot;)  # 默认是精确模式</span><br><span class="line">print(&quot;, &quot;.join(seg_list))</span><br><span class="line"></span><br><span class="line">seg_list = jieba.cut_for_search(&quot;小明硕士毕业于中国科学院计算所，后在哈佛大学深造&quot;)  # 搜索引擎模式</span><br><span class="line">print(&quot;, &quot;.join(seg_list))</span><br></pre></td></tr></table></figure>
-
-<p>2.jieba.cut_for_search()<br>接收两个输入参数：</p>
+<ol start="2">
+<li>jieba.cut_for_search()<br>接收两个输入参数：</li>
+</ol>
 <ul>
-<li>需要分词的字符串</li>
-<li>是否使用 HMM 模型</li>
+<li><p>需要分词的字符串</p>
+</li>
+<li><p>是否使用 HMM 模型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">seg_list = jieba.cut_for_search(&quot;小明硕士毕业于中国科学院计算所，后在哈佛大学深造&quot;)  # 搜索引擎模式</span><br><span class="line">print(&quot;, &quot;.join(seg_list))</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
+<ol start="3">
+<li><p>jieba.lcut()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">result_lcut = jieba.lcut(&quot;小明硕士毕业于中国科学院计算所，后在哈佛大学深造&quot;)</span><br><span class="line">print result_lcut</span><br><span class="line">print &quot; &quot;.join(result_lcut)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>jieba.lcut_for_search()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print &quot; &quot;.join(jieba.lcut_for_search(&quot;小明硕士毕业于中国科学院计算所，后在哈佛大学深造&quot;))</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>jieba.load_userdict(file_name)</p>
+<p>加载用户字典</p>
+</li>
+<li><p>suggest_freq(segment, tune=True) </p>
+<p>调节单个词语的词频，使其能（不能）被分出来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jieba.suggest_freq((&apos;中&apos;, &apos;将&apos;), True)</span><br></pre></td></tr></table></figure>
 
+</li>
+</ol>
+<h3 id="二-关键词提取"><a href="#二-关键词提取" class="headerlink" title="二.关键词提取"></a>二.关键词提取</h3>
       
 
       
