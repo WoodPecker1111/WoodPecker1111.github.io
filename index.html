@@ -152,6 +152,82 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-LDA" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/20/LDA/">LDA主题模型</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/20/LDA/" class="archive-article-date">
+  	<time datetime="2019-07-20T11:52:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-LDA主题模型"><a href="#一-LDA主题模型" class="headerlink" title="一.LDA主题模型"></a>一.LDA主题模型</h3><p><strong>文档生成模型</strong>，包含词、主题和文档三层结构，根据给定的一篇文档，反推其主题分布</p>
+<p><strong>无监督的贝叶斯模型</strong>，可以用来识别大规模文档集（document collection）或语料库（corpus）中潜藏的主题信息</p>
+<p><strong>词袋模型</strong>，一篇文档是由一组词构成，词与词之间没有先后顺序的关系</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">公式：	P(w|d)=P(w|t)P(t|d)</span><br></pre></td></tr></table></figure>
+
+<p>d:  文档          t:  主题       w:  单词</p>
+<p>以Topic作为中间层，可以通过当前的θd和φt给出了文档d中出现单词w的概率。其中p(t|d)利⽤θd计算得到，p(w|t)利⽤φt计算得到。</p>
+<p>利用当前的θd和φt，我们可以为⼀个⽂档中的⼀个单词计算它对应任意⼀个Topic时的p(w|d)，然后根据这些结果来更新这个词应该对应的topic。然后，如果这个更新改变了这个单词所对应的Topic，就会反过来影响θd和φt</p>
+<h3 id="二-LDA学习过程"><a href="#二-LDA学习过程" class="headerlink" title="二.LDA学习过程"></a>二.LDA学习过程</h3><p>LDA算法开始时，先随机地给θd和φt赋值（对所有的d和t）。然后： </p>
+<p>1.针对⼀个特定的⽂档ds中的第i单词wi，如果令该单词对应的topic为tj，可以把 上述公式改写为：</p>
+<p><strong>P</strong>j<strong>(w</strong>i <strong>| d</strong>s<strong>)=P(w</strong>i <strong>| t</strong>j<strong>)*P(t</strong>j | <strong>d</strong> <strong>s</strong>)</p>
+<p>2.现在我们可以枚举T中的topic，得到所有的pj(wi | ds)。然后可以根据这些概率值结果为ds中的第i个单词wi选择⼀个topic。最简单的想法是取令pj(wi | ds)最⼤ 的tj（注意，这个式⼦⾥只有j是变量） </p>
+<p>3.然后，如果ds中的第i个单词wi在这里选择了⼀个与原先不同的topic（也就是说，这个时候i在遍历ds中所有的单词，而tj理当不变），就会对θd和φt有影响 了。它们的影响⼜会反过来影响对上⾯提到的p(w | d)的计算。对D中所有的d中 的所有w进行⼀次p(w | d)的计算并重新选择topic看作⼀次迭代。这样进行n次循 环迭代之后，就收敛到LDA所需要的结果了。</p>
+<h3 id="三-LDA的应用"><a href="#三-LDA的应用" class="headerlink" title="三.LDA的应用"></a>三.LDA的应用</h3><p>主题分类</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/20/LDA/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-post-name" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
