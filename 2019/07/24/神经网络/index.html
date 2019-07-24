@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>机器学习——有监督 | 啄木鸟的个人博客</title>
+  <title>神经网络 | 啄木鸟的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="k-临近算法（KNN）一.原理k-近邻算法采用*测量不同特征值之间的距离**方法进行分类 存在一个样本数据集合，也称作训练样本集，并且样本集中每个数据都存在标签，即我们知道样本集中每一数据与所属分类的对应关系。输入没有标签的新数据后，将新数据的每个特征与样本集中数据对应的特征进行比较，然后算法提取样本集中特征最相似数据（最近邻）的分类标签。我们只选择样本数据集中前k个最相似的数据，这就是k-近邻算">
+  <meta name="description" content="前馈神经网络以上⼀层的输出作为下⼀层的输⼊ 递归神经网络有回路的——信息向前传播，并且反向回馈； 这种模型的设计思想，是具有休眠前会在⼀段有限的时间内保持激活状态的神经元。这种激活状态可以刺激其它神经元，使其随后被激活并同样保持⼀段有限的时间。这样会导致更多的神经元被激活，随着时间的推移，我们得到⼀个级联的神经元激活系统。因为⼀个神经元的输出只在⼀段时间后⽽不是即刻影响它的输⼊，在这个模型中回路并">
 <meta property="og:type" content="article">
-<meta property="og:title" content="机器学习——有监督">
-<meta property="og:url" content="http://yoursite.com/2019/07/23/机器学习/index.html">
+<meta property="og:title" content="神经网络">
+<meta property="og:url" content="http://yoursite.com/2019/07/24/神经网络/index.html">
 <meta property="og:site_name" content="啄木鸟的个人博客">
-<meta property="og:description" content="k-临近算法（KNN）一.原理k-近邻算法采用*测量不同特征值之间的距离**方法进行分类 存在一个样本数据集合，也称作训练样本集，并且样本集中每个数据都存在标签，即我们知道样本集中每一数据与所属分类的对应关系。输入没有标签的新数据后，将新数据的每个特征与样本集中数据对应的特征进行比较，然后算法提取样本集中特征最相似数据（最近邻）的分类标签。我们只选择样本数据集中前k个最相似的数据，这就是k-近邻算">
+<meta property="og:description" content="前馈神经网络以上⼀层的输出作为下⼀层的输⼊ 递归神经网络有回路的——信息向前传播，并且反向回馈； 这种模型的设计思想，是具有休眠前会在⼀段有限的时间内保持激活状态的神经元。这种激活状态可以刺激其它神经元，使其随后被激活并同样保持⼀段有限的时间。这样会导致更多的神经元被激活，随着时间的推移，我们得到⼀个级联的神经元激活系统。因为⼀个神经元的输出只在⼀段时间后⽽不是即刻影响它的输⼊，在这个模型中回路并">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-23T13:26:01.669Z">
+<meta property="og:updated_time" content="2019-07-24T08:17:28.980Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="机器学习——有监督">
-<meta name="twitter:description" content="k-临近算法（KNN）一.原理k-近邻算法采用*测量不同特征值之间的距离**方法进行分类 存在一个样本数据集合，也称作训练样本集，并且样本集中每个数据都存在标签，即我们知道样本集中每一数据与所属分类的对应关系。输入没有标签的新数据后，将新数据的每个特征与样本集中数据对应的特征进行比较，然后算法提取样本集中特征最相似数据（最近邻）的分类标签。我们只选择样本数据集中前k个最相似的数据，这就是k-近邻算">
+<meta name="twitter:title" content="神经网络">
+<meta name="twitter:description" content="前馈神经网络以上⼀层的输出作为下⼀层的输⼊ 递归神经网络有回路的——信息向前传播，并且反向回馈； 这种模型的设计思想，是具有休眠前会在⼀段有限的时间内保持激活状态的神经元。这种激活状态可以刺激其它神经元，使其随后被激活并同样保持⼀段有限的时间。这样会导致更多的神经元被激活，随着时间的推移，我们得到⼀个级联的神经元激活系统。因为⼀个神经元的输出只在⼀段时间后⽽不是即刻影响它的输⼊，在这个模型中回路并">
   
     <link rel="alternative" href="/atom.xml" title="啄木鸟的个人博客" type="application/atom+xml">
   
@@ -154,42 +154,29 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-机器学习" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-神经网络" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      机器学习——有监督
+      神经网络
     </h1>
   
 
         
-        <a href="/2019/07/23/机器学习/" class="archive-article-date">
-  	<time datetime="2019-07-23T02:53:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-23</time>
+        <a href="/2019/07/24/神经网络/" class="archive-article-date">
+  	<time datetime="2019-07-24T08:14:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="k-临近算法（KNN）"><a href="#k-临近算法（KNN）" class="headerlink" title="k-临近算法（KNN）"></a>k-临近算法（KNN）</h2><h3 id="一-原理"><a href="#一-原理" class="headerlink" title="一.原理"></a>一.原理</h3><p>k<em>-近邻算法采用*</em>测量不同特征值之间的距离**方法进行分类</p>
-<p>存在一个样本数据集合，也称作训练样本集，并且样本集中每个数据都存在标签，即我们知道样本集中每一数据与所属分类的对应关系。输入没有标签的新数据后，将新数据的每个特征与样本集中数据对应的特征进行比较，然后算法提取样本集中特征最相似数据（最近邻）的分类标签。我们只选择样本数据集中前<em>k</em>个<strong>最相似的数据</strong>，这就是<em>k</em>-近邻算法中<em>k</em>的出处，通常<em>k</em>是不大于20的整数。 最后，选择<em>k</em>个最相似数据中出现次数最多的分类，作为新数据的分类。</p>
-<p>简单地说，<em>k</em>-近邻算法采用测量不同特征值之间的距离方法进行分类。 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">优点：精度高、对异常值不敏感、无数据输入假定。 </span><br><span class="line"></span><br><span class="line">缺点：计算复杂度高、空间复杂度高。 </span><br><span class="line"></span><br><span class="line">适用数据范围：数值型和标称型。</span><br></pre></td></tr></table></figure>
-
-<h3 id="二-代码实现"><a href="#二-代码实现" class="headerlink" title="二.代码实现"></a>二.代码实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">def classify0(inX, dataSet, labels, k):</span><br><span class="line">    dataSetSize = dataSet.shape[0]		</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    矩阵（的shape属性可以获取矩阵的形状（例如二维数组的行列），得到一个元组</span><br><span class="line">    shape  行和列（4，3）</span><br><span class="line">    shape[0] 只输出行数</span><br><span class="line">    shape[1] 只输出列数</span><br><span class="line">    下面inX展开成dataSet大小矩阵</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    diffMat = tile(inX, (dataSetSize,1)) - dataSet</span><br><span class="line">    sqDiffMat = diffMat**2</span><br><span class="line">    sqDistances = sqDiffMat.sum(axis=1)</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    sum函数</span><br><span class="line">    无参数，所有相加</span><br><span class="line">    axis=0，按列相加</span><br><span class="line">    axis=1，按行相加</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    distances = sqDistances**0.5</span><br><span class="line">    sortedDistIndicies = distances.argsort()   </span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    argsort（）将x中的元素从小到大排列，提取其对应的index(索引)，</span><br><span class="line">    然后输出到y。这里获得距离从小到大排列votelabel 获得距离最小到i的索引，然后得到标签。</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    classCount=&#123;&#125;          </span><br><span class="line">    for i in range(k):</span><br><span class="line">        voteIlabel = labels[sortedDistIndicies[i]]</span><br><span class="line">        classCount[voteIlabel] = classCount.get(voteIlabel,0) + 1</span><br><span class="line">    sortedClassCount = sorted(classCount.iteritems(), key=operator.itemgetter(1), reverse=True)</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">        Python 字典(Dictionary) get() 函数返回指定键的值，如果值不在字典中返回默认值0。这里出现一次		就加一b=operator.itemgetter(1)定义函数b，获取对象的第2个域的值.</span><br><span class="line">    要注意，operator.itemgetter函数获取的不是值，而是定义了一个函数，通过该函数作用到对象上才能获取值		reverse默认为false（升序排列），定义为True时将按降序排列。</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    return sortedClassCount[0][0]</span><br></pre></td></tr></table></figure>
-
-<h2 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h2><h3 id="一-原理-1"><a href="#一-原理-1" class="headerlink" title="一.原理"></a>一.原理</h3><p>你是否玩过二十个问题的游戏，游戏的规则很简单：参与游戏的一方在脑海里想某个事物，其他参与者向他提问题，只允许提20个问题，问题的答案也只能用对或错回答。问问题的人通过推断分解，逐步缩小待猜测事物的范围。决策树的工作原理与20个问题类似，用户输入一系列数据，然后给出游戏的答案。</p>
-<p>经常使用决策树处理分类问题，决策树的一个重要任务是为了数据中所蕴含的知识信息，因此决策树可以使用不熟悉的数据集合，并从中提取出一系列规则，在这些机器根据数据集创建规则时，就是机器学习的过程。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">优点：计算复杂度不高，输出结果易于理解，对中间值的缺失不敏感，可以处理不相关特</span><br><span class="line">征数据。</span><br><span class="line">缺点：可能会产生过度匹配问题。</span><br><span class="line">适用数据类型：数值型和标称型。</span><br></pre></td></tr></table></figure>
-
-<h3 id="二-代码实现-1"><a href="#二-代码实现-1" class="headerlink" title="二.代码实现"></a>二.代码实现</h3><p>在划分数据集之前之后信息发生的变化称为信息增益</p>
-<p>获得信息增益最高的特征就是最好的选择</p>
-<p>熵越高，则混合的数据也越多</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">def calcShannonEnt(dataSet):        #计算香农熵</span><br><span class="line">    numEntries = len(dataSet)</span><br><span class="line">    labelCounts = &#123;&#125;</span><br><span class="line">    for featVec in dataSet: #the the number of unique elements and their occurance</span><br><span class="line">        currentLabel = featVec[-1]</span><br><span class="line">        if currentLabel not in labelCounts.keys(): labelCounts[currentLabel] = 0</span><br><span class="line">        labelCounts[currentLabel] += 1</span><br><span class="line">    shannonEnt = 0.0</span><br><span class="line">    for key in labelCounts:</span><br><span class="line">        prob = float(labelCounts[key])/numEntries</span><br><span class="line">        shannonEnt -= prob * log(prob,2) #log base 2</span><br><span class="line">    return shannonEnt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def splitDataSet(dataSet, axis, value):			#划分数据集</span><br><span class="line">    retDataSet = []</span><br><span class="line">    for featVec in dataSet:</span><br><span class="line">        if featVec[axis] == value:</span><br><span class="line">            reducedFeatVec = featVec[:axis]     #chop out axis used for splitting</span><br><span class="line">            reducedFeatVec.extend(featVec[axis+1:])</span><br><span class="line">            retDataSet.append(reducedFeatVec)</span><br><span class="line">    return retDataSet</span><br><span class="line">    </span><br><span class="line">def chooseBestFeatureToSplit(dataSet):			#选择最好的数据集划分方式</span><br><span class="line">    numFeatures = len(dataSet[0]) - 1      #the last column is used for the labels</span><br><span class="line">    baseEntropy = calcShannonEnt(dataSet)</span><br><span class="line">    bestInfoGain = 0.0; bestFeature = -1</span><br><span class="line">    for i in range(numFeatures):        #iterate over all the features</span><br><span class="line">        featList = [example[i] for example in dataSet]</span><br><span class="line">        #create a list of all the examples of this feature</span><br><span class="line">        uniqueVals = set(featList)       #get a set of unique values</span><br><span class="line">        newEntropy = 0.0</span><br><span class="line">        for value in uniqueVals:</span><br><span class="line">            subDataSet = splitDataSet(dataSet, i, value)</span><br><span class="line">            prob = len(subDataSet)/float(len(dataSet))</span><br><span class="line">            newEntropy += prob * calcShannonEnt(subDataSet)     </span><br><span class="line">        infoGain = baseEntropy - newEntropy     </span><br><span class="line">        #calculate the info gain; ie reduction in entropy</span><br><span class="line">        if (infoGain &gt; bestInfoGain):       #compare this to the best gain so far</span><br><span class="line">            bestInfoGain = infoGain         #if better than current best, set to best</span><br><span class="line">            bestFeature = i</span><br><span class="line">    return bestFeature                      #returns an integer</span><br></pre></td></tr></table></figure>
-
+        <h3 id="前馈神经网络"><a href="#前馈神经网络" class="headerlink" title="前馈神经网络"></a>前馈神经网络</h3><p>以上⼀层的输出作为下⼀层的输⼊</p>
+<h3 id="递归神经网络"><a href="#递归神经网络" class="headerlink" title="递归神经网络"></a>递归神经网络</h3><p>有回路的——信息向前传播，并且反向回馈；</p>
+<p>这种模型的设计思想，是具有休眠前会在⼀段有限的时间内保持激活状态的神经元。这种激活状态可以刺激其它神经元，使其随后被激活并同样保持⼀段有限的时间。这样会导致更多的神经元被激活，随着时间的推移，我们得到⼀个级联的神经元激活系统。因为⼀个神经元的输出只在⼀段时间后⽽不是即刻影响它的输⼊，在这个模型中回路并不会引起问题</p>
 
       
 
@@ -269,7 +256,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/23/机器学习/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/24/神经网络/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -283,18 +270,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/07/24/神经网络/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          神经网络
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/07/20/LDA/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">LDA主题模型</div>
+    <a href="/2019/07/23/机器学习/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">机器学习——有监督</div>
       <i class="icon-circle-right"></i>
     </a>
   
