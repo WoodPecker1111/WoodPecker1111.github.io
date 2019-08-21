@@ -556,6 +556,7 @@
         <h4 id="回归"><a href="#回归" class="headerlink" title="回归"></a>回归</h4><p>指研究一组随机变量(Y1 ，Y2 ，…，Yi)和另一组(X1，X2，…，Xk)变量之间关系的统计分析方法</p>
 <h4 id="分类任务与回归任务"><a href="#分类任务与回归任务" class="headerlink" title="分类任务与回归任务"></a>分类任务与回归任务</h4><p>分类问题：输出变量为有限个离散变量的预测问题</p>
 <p>回归问题：输入变量与输出变量均为连续变量的预测问题</p>
+<h4 id="准确率-accuracy-召回率-recall-精确率-precision"><a href="#准确率-accuracy-召回率-recall-精确率-precision" class="headerlink" title="准确率(accuracy)召回率(recall)精确率(precision)"></a>准确率(accuracy)召回率(recall)精确率(precision)<img src="/.com//C:%5CUsers%5Chp%5Cblog%5Csource_posts%5Cpost-name%5CHMM.jpg" alt="HMM"></h4><p><a href="https://www.cnblogs.com/sddai/p/5696870.html" target="_blank" rel="noopener">https://www.cnblogs.com/sddai/p/5696870.html</a></p>
 <h2 id="k-临近算法（KNN）"><a href="#k-临近算法（KNN）" class="headerlink" title="k-临近算法（KNN）"></a>k-临近算法（KNN）</h2><h3 id="一-原理"><a href="#一-原理" class="headerlink" title="一.原理"></a>一.原理</h3><p>k<em>-近邻算法采用*</em>测量不同特征值之间的距离**方法进行分类</p>
 <p>存在一个样本数据集合，也称作训练样本集，并且样本集中每个数据都存在标签，即我们知道样本集中每一数据与所属分类的对应关系。输入没有标签的新数据后，将新数据的每个特征与样本集中数据对应的特征进行比较，然后算法提取样本集中特征最相似数据（最近邻）的分类标签。我们只选择样本数据集中前<em>k</em>个<strong>最相似的数据</strong>，这就是<em>k</em>-近邻算法中<em>k</em>的出处，通常<em>k</em>是不大于20的整数。 最后，选择<em>k</em>个最相似数据中出现次数最多的分类，作为新数据的分类。</p>
 <p>简单地说，<em>k</em>-近邻算法采用测量不同特征值之间的距离方法进行分类。 </p>
@@ -786,6 +787,91 @@
 
 
   
+    <article id="post-n-gram" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/19/n-gram/">N-gram语言模型</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/19/n-gram/" class="archive-article-date">
+  	<time datetime="2019-07-19T02:13:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="N-gram语言模型"><a href="#N-gram语言模型" class="headerlink" title="N-gram语言模型"></a>N-gram语言模型</h3><p>如果我们考虑一个词语对上一个词语的依赖关系，我们把它叫做二元语法（bigram，2-gram）:</p>
+<blockquote>
+<p>P(x1,x2,x3,x4,x5,x6,x7,x8,x9,x10)=P(x1)P(x2|x1)P(x3|x2)P(x4|x3)..P(x10|x9)=P(“我”)P(“司”|“我”)P(“可”|“司”)P(“办理”|“可”)…P(“优惠”|“点数”)</p>
+</blockquote>
+<p>如果把依赖词长度再拉长一点，考虑一个词对前两个词的依赖关系，就叫做三元语法（trigram，3-gram），公式如下:</p>
+<blockquote>
+<p>P(x1,x2,x3,x4,x5,x6,x7,x8,x9,x10)=P(x1)P(x2|x1)P(x3|x1,x2)P(x4|x2,x3)×…×P(x10|x8,x9) =P(“我”)P(“司”|“我”)P(“可”|“我”,“司”)P(“办理”|“司”,“可”)…P(“优惠”|“发票”,“点数”)</p>
+</blockquote>
+<p>如果我们再考虑长一点，考虑n个词语之间的关系，这就是n-gram</p>
+<p>以上几个简化后的公式，就是著名的<strong>马尔科夫假设（Markov Assumption）：下一个词的出现仅依赖于它前面的一个或几个词</strong></p>
+<h3 id="N-gram实际应用"><a href="#N-gram实际应用" class="headerlink" title="N-gram实际应用"></a>N-gram实际应用</h3><p>N-gram方法在实际应用中有一些tricks需要注意：</p>
+<p>句子开头的词，比如本例中的“我”，<strong>因为要考虑其本身作为开头的特征，可以考虑在其前面再添加一个句子起始符号如”《S》”，这样我们就不必单独计算P(“我”|Yi)，而是替换为计算P(“我”|”《S》”,Yi)。形式上与2-gram统一。</strong> 这样统计和预测起来都比较方便。</p>
+<p>一般地，<strong>如果采用N-gram模型，可以在文本开头加入n-1个虚拟的开始符号</strong>，这样在所有情况下预测下一个词的可依赖词数都是一致的。</p>
+<p>与朴素贝叶斯方法一样，<strong>N-gram模型也会发生零概率问题，也需要平滑技术。</strong></p>
+<h5 id="1-词性标注（利用前一个词，可用于一词多词性问题）"><a href="#1-词性标注（利用前一个词，可用于一词多词性问题）" class="headerlink" title="1.词性标注（利用前一个词，可用于一词多词性问题）"></a>1.词性标注（利用前一个词，可用于一词多词性问题）</h5><h5 id="2-垃圾邮件识别（考虑到了上文，效果更好）"><a href="#2-垃圾邮件识别（考虑到了上文，效果更好）" class="headerlink" title="2.垃圾邮件识别（考虑到了上文，效果更好）"></a>2.垃圾邮件识别（考虑到了上文，效果更好）</h5><h5 id="3-中文分词（在可能出现的结果中，根据概率择优选择更好的分词方案）"><a href="#3-中文分词（在可能出现的结果中，根据概率择优选择更好的分词方案）" class="headerlink" title="3.中文分词（在可能出现的结果中，根据概率择优选择更好的分词方案）"></a>3.中文分词（在可能出现的结果中，根据概率择优选择更好的分词方案）</h5><h5 id="4-机器翻译与语音识别（在可能出现的结果中，根据概率择优选择更好的翻译方案）"><a href="#4-机器翻译与语音识别（在可能出现的结果中，根据概率择优选择更好的翻译方案）" class="headerlink" title="4.机器翻译与语音识别（在可能出现的结果中，根据概率择优选择更好的翻译方案）"></a>4.机器翻译与语音识别（在可能出现的结果中，根据概率择优选择更好的翻译方案）</h5><h3 id="PS：平滑技术"><a href="#PS：平滑技术" class="headerlink" title="PS：平滑技术"></a>PS：平滑技术</h3><p>为了解决零概率问题，需要给 <strong>“未出现的n-gram条件概率分布一个非零估计值，相应的需要降低已出现n-gram条件概率分布，且经数据平滑后一定保证概率和为1”</strong>。</p>
+<ul>
+<li><p>拉普拉斯平滑</p>
+</li>
+<li><p>古德图灵平滑</p>
+</li>
+<li><p>组合估计平滑</p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/19/n-gram/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-结巴分词" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -875,91 +961,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/07/19/结巴分词/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-n-gram" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/19/n-gram/">N-gram语言模型</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/19/n-gram/" class="archive-article-date">
-  	<time datetime="2019-07-19T02:13:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="N-gram语言模型"><a href="#N-gram语言模型" class="headerlink" title="N-gram语言模型"></a>N-gram语言模型</h3><p>如果我们考虑一个词语对上一个词语的依赖关系，我们把它叫做二元语法（bigram，2-gram）:</p>
-<blockquote>
-<p>P(x1,x2,x3,x4,x5,x6,x7,x8,x9,x10)=P(x1)P(x2|x1)P(x3|x2)P(x4|x3)..P(x10|x9)=P(“我”)P(“司”|“我”)P(“可”|“司”)P(“办理”|“可”)…P(“优惠”|“点数”)</p>
-</blockquote>
-<p>如果把依赖词长度再拉长一点，考虑一个词对前两个词的依赖关系，就叫做三元语法（trigram，3-gram），公式如下:</p>
-<blockquote>
-<p>P(x1,x2,x3,x4,x5,x6,x7,x8,x9,x10)=P(x1)P(x2|x1)P(x3|x1,x2)P(x4|x2,x3)×…×P(x10|x8,x9) =P(“我”)P(“司”|“我”)P(“可”|“我”,“司”)P(“办理”|“司”,“可”)…P(“优惠”|“发票”,“点数”)</p>
-</blockquote>
-<p>如果我们再考虑长一点，考虑n个词语之间的关系，这就是n-gram</p>
-<p>以上几个简化后的公式，就是著名的<strong>马尔科夫假设（Markov Assumption）：下一个词的出现仅依赖于它前面的一个或几个词</strong></p>
-<h3 id="N-gram实际应用"><a href="#N-gram实际应用" class="headerlink" title="N-gram实际应用"></a>N-gram实际应用</h3><p>N-gram方法在实际应用中有一些tricks需要注意：</p>
-<p>句子开头的词，比如本例中的“我”，<strong>因为要考虑其本身作为开头的特征，可以考虑在其前面再添加一个句子起始符号如”《S》”，这样我们就不必单独计算P(“我”|Yi)，而是替换为计算P(“我”|”《S》”,Yi)。形式上与2-gram统一。</strong> 这样统计和预测起来都比较方便。</p>
-<p>一般地，<strong>如果采用N-gram模型，可以在文本开头加入n-1个虚拟的开始符号</strong>，这样在所有情况下预测下一个词的可依赖词数都是一致的。</p>
-<p>与朴素贝叶斯方法一样，<strong>N-gram模型也会发生零概率问题，也需要平滑技术。</strong></p>
-<h5 id="1-词性标注（利用前一个词，可用于一词多词性问题）"><a href="#1-词性标注（利用前一个词，可用于一词多词性问题）" class="headerlink" title="1.词性标注（利用前一个词，可用于一词多词性问题）"></a>1.词性标注（利用前一个词，可用于一词多词性问题）</h5><h5 id="2-垃圾邮件识别（考虑到了上文，效果更好）"><a href="#2-垃圾邮件识别（考虑到了上文，效果更好）" class="headerlink" title="2.垃圾邮件识别（考虑到了上文，效果更好）"></a>2.垃圾邮件识别（考虑到了上文，效果更好）</h5><h5 id="3-中文分词（在可能出现的结果中，根据概率择优选择更好的分词方案）"><a href="#3-中文分词（在可能出现的结果中，根据概率择优选择更好的分词方案）" class="headerlink" title="3.中文分词（在可能出现的结果中，根据概率择优选择更好的分词方案）"></a>3.中文分词（在可能出现的结果中，根据概率择优选择更好的分词方案）</h5><h5 id="4-机器翻译与语音识别（在可能出现的结果中，根据概率择优选择更好的翻译方案）"><a href="#4-机器翻译与语音识别（在可能出现的结果中，根据概率择优选择更好的翻译方案）" class="headerlink" title="4.机器翻译与语音识别（在可能出现的结果中，根据概率择优选择更好的翻译方案）"></a>4.机器翻译与语音识别（在可能出现的结果中，根据概率择优选择更好的翻译方案）</h5><h3 id="PS：平滑技术"><a href="#PS：平滑技术" class="headerlink" title="PS：平滑技术"></a>PS：平滑技术</h3><p>为了解决零概率问题，需要给 <strong>“未出现的n-gram条件概率分布一个非零估计值，相应的需要降低已出现n-gram条件概率分布，且经数据平滑后一定保证概率和为1”</strong>。</p>
-<ul>
-<li><p>拉普拉斯平滑</p>
-</li>
-<li><p>古德图灵平滑</p>
-</li>
-<li><p>组合估计平滑</p>
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/19/n-gram/">展开全文 >></a>
         </p>
       
 
