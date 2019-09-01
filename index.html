@@ -152,6 +152,154 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-统计自然语言处理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/30/统计自然语言处理/">统计自然语言处理相关名词</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/30/统计自然语言处理/" class="archive-article-date">
+  	<time datetime="2019-08-30T11:25:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="NLP四大类任务"><a href="#NLP四大类任务" class="headerlink" title="NLP四大类任务"></a>NLP四大类任务</h3><p>绝大部分NLP问题可以归入<strong>四类任务</strong>中：</p>
+<p><strong>序列标注</strong>，这是最典型的NLP任务，比如中文分词，词性标注，命名实体识别，语义角色标注等都可以归入这一类问题，它的特点是句子中每个单词要求模型根据上下文都要给出一个分类类别。</p>
+<p><strong>分类任务</strong>，比如我们常见的文本分类，情感计算等都可以归入这一类。它的特点是不管文章有多长，总体给出一个分类类别即可。</p>
+<p><strong>句子关系判断</strong>，比如Entailment，QA，语义改写，自然语言推理等任务都是这个模式，它的特点是给定两个句子，模型判断出两个句子是否具备某种语义关系；</p>
+<p><strong>生成式任务</strong>，比如机器翻译，文本摘要，写诗造句，看图说话等都属于这一类。它的特点是输入文本内容后，需要自主生成另外一段文字。</p>
+<h4 id="信息论基本概念"><a href="#信息论基本概念" class="headerlink" title="信息论基本概念"></a>信息论基本概念</h4><p><strong>熵</strong>：又称自信息，可以视为描述一个随机变量的不确定性的数量。一个随机变量的熵越大，它的不确定性就越大，，那么正确估计其值的可能性就越小，越不确定的随机变量越需要大的信息量用以确定其值。</p>
+<p>熵的连锁规则<br>$$<br>H(X1,X2,X3,,,Xn)=H(X1)+H(X2|X1)+H(X3|X1,X2)+,,+H(Xn|X1,X2,X3,,Xn)<br>$$<br><strong>互信息</strong>：<br>$$<br>H(X)-H(X|Y)=H(Y)-H(Y|X)<br>$$<br>记作I(X;Y)，或者定义为：如果(X,Y)~p(x,y)，则X，Y之间的互信息I(X;Y)=H(X)-H(X|Y)</p>
+<p>互信息I(X;Y)反映的是在知道了Y之后，X的不确定性的减少量。</p>
+<p><strong>相对熵</strong>：</p>
+<p>简称KL距离，是衡量两个概率分布相对差距的测度，两个概率分布p(x)和q(x)的相对熵定义为<br>$$<br>D(p||q)=Ep(log(p(x)/q(x))<br>$$<br>当两个随机变量分布完全相同时，p=q，相对熵为0，当两个随机分布的差别增大时，其相对熵期望值也越大。</p>
+<p><strong>交叉熵</strong>：</p>
+<p>用来衡量估计模型与真实概率分布之间差异情况</p>
+<p>如果一个随机变量X~p(x)，q(x)为用于近似p(x)的概率分布，那么随机变量X和模型q之间的交叉熵定义为：<br>$$<br>H(X,q)=H(x)+D(p||q)=-∑p(x)logq(x)<br>$$<br>交叉熵越小，模型表现越好。</p>
+<p><strong>困惑度</strong>：</p>
+<p>常用困惑度来代替交叉熵衡量语言模型的好坏。</p>
+<p><strong>支持向量机（SVM）</strong>：</p>
+<p>努力最小化结构风险的算法</p>
+<p><a href="https://blog.csdn.net/DP323/article/details/80535863" target="_blank" rel="noopener">https://blog.csdn.net/DP323/article/details/80535863</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/30/统计自然语言处理/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-会议" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/30/会议/">自然语言处理及相关领域的国际会议</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/30/会议/" class="archive-article-date">
+  	<time datetime="2019-08-30T07:47:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>自然语言处理三大顶级国际会议：</p>
+<p>ACL，COLING，EMNLP</p>
+<p>网络信息处理，信息检索领域顶级学术会议（与自然语言处理密切相关）</p>
+<p>SIGIR，CIKM，WWW</p>
+<p>人工智能领域顶级国际会议</p>
+<p>IJCAI，AAAI</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/30/会议/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Keras" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -491,6 +639,17 @@
 <p>这意味着数据集将分为40个Batch，每个Batch有5个样本。每批五个样品后，模型权重将更新。</p>
 <p>这也意味着一个epoch将涉及40个Batch或40个模型更新。</p>
 <p>有1000个Epoch，模型将暴露或传递整个数据集1,000次。在整个培训过程中，总共有40,000Batch。</p>
+<h4 id="预训练"><a href="#预训练" class="headerlink" title="预训练"></a><strong>预训练</strong></h4><p> 就是指预先训练的一个模型或者指预先训练模型的过程；</p>
+<p>你需要搭建一个网络模型来完成一个特定的图像分类的任务。首先，你需要随机初始化参数，然后开始训练网络，不断调整直到网络的损失越来越小。在训练的过程中，一开始初始化的参数会不断变化。当你觉得结果很满意的时候，你就可以将训练模型的参数保存下来，以便训练好的模型可以在下次执行类似任务时获得较好的结果。这个过程就是 pre-training</p>
+<h4 id="微调"><a href="#微调" class="headerlink" title="微调"></a><strong>微调</strong></h4><p>就是指将预训练过的模型作用于自己的数据集，并使参数适应自己数据集的过程</p>
+<p>我们知道，CNN 在图像识别这一领域取得了巨大的进步。如果想将 CNN 应用到我们自己的数据集上，这时通常就会面临一个问题：通常我们的 dataset 都不会特别大，一般不会超过 1 万张，甚至更少，每一类图片只有几十或者十几张。这时候，直接应用这些数据训练一个网络的想法就不可行了，因为深度学习成功的一个关键性因素就是大量带标签数据组成的训练集。如果只利用手头上这点数据，即使我们利用非常好的网络结构，也达不到很高的 performance。这时候，fine-tuning 的思想就可以很好解决我们的问题：我们通过对 ImageNet 上训练出来的模型（如CaffeNet,VGGNet,ResNet) 进行微调，然后应用到我们自己的数据集上。</p>
+<h4 id="表征学习"><a href="#表征学习" class="headerlink" title="表征学习"></a>表征学习</h4><p>用学到的知识至少完成一件事情</p>
+<p>学习的本质是“存储”和“提取”。“存储”是把知识组块存储进长时工作记忆系统的能力。“提取”是把知识组块从长时工作记忆系统中提取出来的能力。这两个能力越强，学习越高效。而“表征学习法”，就特别高效能地提升这两项能力</p>
+<p>.“表征”，是指实践之后的体会。你获得知识的时候，会有一个体会。把知识拿去实践之后，又会有另一番体会。而实践之后的体会，叫“表征”。</p>
+<p>最高效到最不高效：</p>
+<p>最高标准，就是这个知识讲什么，你就原原本本的在现实生活中不打折扣地做一遍(甚至好几遍)。</p>
+<p>次级标准，有些知识可能你不方便实践，因为没资源没能力等等。比如上面的“管理要抓大放小”，我一个学生管谁呢(其实也可以用来管自己)。在这种不方便实践的情况下，启动次级标准——举几个例子。能够成功举几个例子，这知识的原理你也算走通好几遍了。</p>
+<p>最低标准，有些知识太抽象了(其实是自己视野不够宽阔)，我连例子都不好找。比如“围绕某个核心领域来学习不会使我狭隘”，这怎么举例子，我及我身边的人都没有这种体验。在这种不好举例的情况下，启动最低标准——至少用作者原话理解一遍，再用自己的大白话复述一遍吧。这也算打通知识阻塞了。</p>
 
       
 
@@ -556,7 +715,8 @@
         <h4 id="回归"><a href="#回归" class="headerlink" title="回归"></a>回归</h4><p>指研究一组随机变量(Y1 ，Y2 ，…，Yi)和另一组(X1，X2，…，Xk)变量之间关系的统计分析方法</p>
 <h4 id="分类任务与回归任务"><a href="#分类任务与回归任务" class="headerlink" title="分类任务与回归任务"></a>分类任务与回归任务</h4><p>分类问题：输出变量为有限个离散变量的预测问题</p>
 <p>回归问题：输入变量与输出变量均为连续变量的预测问题</p>
-<h4 id="准确率-accuracy-召回率-recall-精确率-precision"><a href="#准确率-accuracy-召回率-recall-精确率-precision" class="headerlink" title="准确率(accuracy)召回率(recall)精确率(precision)"></a>准确率(accuracy)召回率(recall)精确率(precision)<img src="/.com//C:%5CUsers%5Chp%5Cblog%5Csource_posts%5Cpost-name%5CHMM.jpg" alt="HMM"></h4><p><a href="https://www.cnblogs.com/sddai/p/5696870.html" target="_blank" rel="noopener">https://www.cnblogs.com/sddai/p/5696870.html</a></p>
+<h4 id="准确率-accuracy-召回率-recall-精确率-precision"><a href="#准确率-accuracy-召回率-recall-精确率-precision" class="headerlink" title="准确率(accuracy)召回率(recall)精确率(precision)"></a>准确率(accuracy)召回率(recall)精确率(precision)</h4><p>准确率就是<strong>找得对</strong>，召回率就是<strong>找得全</strong>，精确率是找出来的数据中对的数量占比</p>
+<p><a href="https://www.cnblogs.com/sddai/p/5696870.html" target="_blank" rel="noopener">https://www.cnblogs.com/sddai/p/5696870.html</a></p>
 <h2 id="k-临近算法（KNN）"><a href="#k-临近算法（KNN）" class="headerlink" title="k-临近算法（KNN）"></a>k-临近算法（KNN）</h2><h3 id="一-原理"><a href="#一-原理" class="headerlink" title="一.原理"></a>一.原理</h3><p>k<em>-近邻算法采用*</em>测量不同特征值之间的距离**方法进行分类</p>
 <p>存在一个样本数据集合，也称作训练样本集，并且样本集中每个数据都存在标签，即我们知道样本集中每一数据与所属分类的对应关系。输入没有标签的新数据后，将新数据的每个特征与样本集中数据对应的特征进行比较，然后算法提取样本集中特征最相似数据（最近邻）的分类标签。我们只选择样本数据集中前<em>k</em>个<strong>最相似的数据</strong>，这就是<em>k</em>-近邻算法中<em>k</em>的出处，通常<em>k</em>是不大于20的整数。 最后，选择<em>k</em>个最相似数据中出现次数最多的分类，作为新数据的分类。</p>
 <p>简单地说，<em>k</em>-近邻算法采用测量不同特征值之间的距离方法进行分类。 </p>
@@ -758,209 +918,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/07/19/HMM/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-n-gram" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/19/n-gram/">N-gram语言模型</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/19/n-gram/" class="archive-article-date">
-  	<time datetime="2019-07-19T02:13:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="N-gram语言模型"><a href="#N-gram语言模型" class="headerlink" title="N-gram语言模型"></a>N-gram语言模型</h3><p>如果我们考虑一个词语对上一个词语的依赖关系，我们把它叫做二元语法（bigram，2-gram）:</p>
-<blockquote>
-<p>P(x1,x2,x3,x4,x5,x6,x7,x8,x9,x10)=P(x1)P(x2|x1)P(x3|x2)P(x4|x3)..P(x10|x9)=P(“我”)P(“司”|“我”)P(“可”|“司”)P(“办理”|“可”)…P(“优惠”|“点数”)</p>
-</blockquote>
-<p>如果把依赖词长度再拉长一点，考虑一个词对前两个词的依赖关系，就叫做三元语法（trigram，3-gram），公式如下:</p>
-<blockquote>
-<p>P(x1,x2,x3,x4,x5,x6,x7,x8,x9,x10)=P(x1)P(x2|x1)P(x3|x1,x2)P(x4|x2,x3)×…×P(x10|x8,x9) =P(“我”)P(“司”|“我”)P(“可”|“我”,“司”)P(“办理”|“司”,“可”)…P(“优惠”|“发票”,“点数”)</p>
-</blockquote>
-<p>如果我们再考虑长一点，考虑n个词语之间的关系，这就是n-gram</p>
-<p>以上几个简化后的公式，就是著名的<strong>马尔科夫假设（Markov Assumption）：下一个词的出现仅依赖于它前面的一个或几个词</strong></p>
-<h3 id="N-gram实际应用"><a href="#N-gram实际应用" class="headerlink" title="N-gram实际应用"></a>N-gram实际应用</h3><p>N-gram方法在实际应用中有一些tricks需要注意：</p>
-<p>句子开头的词，比如本例中的“我”，<strong>因为要考虑其本身作为开头的特征，可以考虑在其前面再添加一个句子起始符号如”《S》”，这样我们就不必单独计算P(“我”|Yi)，而是替换为计算P(“我”|”《S》”,Yi)。形式上与2-gram统一。</strong> 这样统计和预测起来都比较方便。</p>
-<p>一般地，<strong>如果采用N-gram模型，可以在文本开头加入n-1个虚拟的开始符号</strong>，这样在所有情况下预测下一个词的可依赖词数都是一致的。</p>
-<p>与朴素贝叶斯方法一样，<strong>N-gram模型也会发生零概率问题，也需要平滑技术。</strong></p>
-<h5 id="1-词性标注（利用前一个词，可用于一词多词性问题）"><a href="#1-词性标注（利用前一个词，可用于一词多词性问题）" class="headerlink" title="1.词性标注（利用前一个词，可用于一词多词性问题）"></a>1.词性标注（利用前一个词，可用于一词多词性问题）</h5><h5 id="2-垃圾邮件识别（考虑到了上文，效果更好）"><a href="#2-垃圾邮件识别（考虑到了上文，效果更好）" class="headerlink" title="2.垃圾邮件识别（考虑到了上文，效果更好）"></a>2.垃圾邮件识别（考虑到了上文，效果更好）</h5><h5 id="3-中文分词（在可能出现的结果中，根据概率择优选择更好的分词方案）"><a href="#3-中文分词（在可能出现的结果中，根据概率择优选择更好的分词方案）" class="headerlink" title="3.中文分词（在可能出现的结果中，根据概率择优选择更好的分词方案）"></a>3.中文分词（在可能出现的结果中，根据概率择优选择更好的分词方案）</h5><h5 id="4-机器翻译与语音识别（在可能出现的结果中，根据概率择优选择更好的翻译方案）"><a href="#4-机器翻译与语音识别（在可能出现的结果中，根据概率择优选择更好的翻译方案）" class="headerlink" title="4.机器翻译与语音识别（在可能出现的结果中，根据概率择优选择更好的翻译方案）"></a>4.机器翻译与语音识别（在可能出现的结果中，根据概率择优选择更好的翻译方案）</h5><h3 id="PS：平滑技术"><a href="#PS：平滑技术" class="headerlink" title="PS：平滑技术"></a>PS：平滑技术</h3><p>为了解决零概率问题，需要给 <strong>“未出现的n-gram条件概率分布一个非零估计值，相应的需要降低已出现n-gram条件概率分布，且经数据平滑后一定保证概率和为1”</strong>。</p>
-<ul>
-<li><p>拉普拉斯平滑</p>
-</li>
-<li><p>古德图灵平滑</p>
-</li>
-<li><p>组合估计平滑</p>
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/19/n-gram/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-结巴分词" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/19/结巴分词/">jieba中文处理的几个函数</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/19/结巴分词/" class="archive-article-date">
-  	<time datetime="2019-07-19T02:13:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一-基本分词函数"><a href="#一-基本分词函数" class="headerlink" title="一.基本分词函数"></a>一.基本分词函数</h3><p>jieba.cut()</p>
-<p>接收三个输入参数：</p>
-<ul>
-<li>需要分词的字符串</li>
-<li>cut_all 参数来控制是否采用全模式</li>
-<li>HMM参数用来控制是否使用 HMM 模型</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">seg_list = jieba.cut(&quot;我在学习自然语言处理&quot;, cut_all=True)</span><br><span class="line">print seg_list</span><br><span class="line">print(&quot;Full Mode: &quot; + &quot;/ &quot;.join(seg_list))  # 全模式</span><br><span class="line">seg_list = jieba.cut(&quot;我在学习自然语言处理&quot;, cut_all=False)</span><br><span class="line">print(&quot;Default Mode: &quot; + &quot;/ &quot;.join(seg_list))  # 精确模式</span><br></pre></td></tr></table></figure>
-
-<p>jieba.cut_for_search()</p>
-<p>接收两个输入参数：</p>
-<ul>
-<li>需要分词的字符串</li>
-<li>是否使用 HMM 模型</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">seg_list = jieba.cut_for_search(&quot;小明硕士毕业于中国科学院计算所，后在哈佛大学深造&quot;)  # 搜索引擎模式</span><br><span class="line">print(&quot;, &quot;.join(seg_list))</span><br></pre></td></tr></table></figure>
-
-<p>jieba.lcut()</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">result_lcut = jieba.lcut(&quot;小明硕士毕业于中国科学院计算所，后在哈佛大学深造&quot;)</span><br><span class="line">print result_lcut</span><br><span class="line">print &quot; &quot;.join(result_lcut)</span><br></pre></td></tr></table></figure>
-
-<p>jieba.lcut_for_search()</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print &quot; &quot;.join(jieba.lcut_for_search(&quot;小明硕士毕业于中国科学院计算所，后在哈佛大学深造&quot;))</span><br></pre></td></tr></table></figure>
-
-<p>jieba.load_userdict(file_name)</p>
-<p>加载用户字典</p>
-<p>suggest_freq(segment, tune=True) </p>
-<p>调节单个词语的词频，使其能（不能）被分出来</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jieba.suggest_freq((&apos;中&apos;, &apos;将&apos;), True)</span><br></pre></td></tr></table></figure>
-
-<p>jieba.tokenize()</p>
-<p>返回词语在原文起止位置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">result = jieba.tokenize(u&apos;自然语言处理非常有用&apos;)</span><br><span class="line">for tk in result:</span><br><span class="line">    print(&quot;%s\t\t start: %d \t\t end:%d&quot; % (tk[0],tk[1],tk[2]))</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">自然语言		 start: 0 		 end:4</span><br><span class="line">处理		 start: 4 		 end:6</span><br><span class="line">非常		 start: 6 		 end:8</span><br><span class="line">有用		 start: 8 		 end:10</span><br></pre></td></tr></table></figure>
-
-<h3 id="二-关键词提取"><a href="#二-关键词提取" class="headerlink" title="二.关键词提取"></a>二.关键词提取</h3><h5 id="基于TD-IDF算法"><a href="#基于TD-IDF算法" class="headerlink" title="基于TD-IDF算法"></a>基于TD-IDF算法</h5><p>jieba.analyse.extract_tags(sentence, topK=20, withWeight=False, allowPOS=())</p>
-<ul>
-<li>sentence 为待提取的文本</li>
-<li>topK 为返回几个 TF/IDF 权重最大的关键词，默认值为 20</li>
-<li>withWeight 为是否一并返回关键词权重值，默认值为 False</li>
-<li>allowPOS 仅包括指定词性的词，默认值为空，即不筛选</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import jieba.analyse as analyse</span><br><span class="line">lines = open(&apos;文件&apos;).read()</span><br><span class="line">print (&quot;  &quot;.join(analyse.extract_tags(lines, topK=20, withWeight=False, allowPOS=())))</span><br></pre></td></tr></table></figure>
-
-<p> jieba.analyse.set_idf_path(file_name)</p>
-<p>关键词提取所使用的逆向文件频率（IDF）可自定义</p>
-<p>jieba.analyse.set_stop_words(file_name)</p>
-<p>关键词提取使用停止词可自定义</p>
-<h5 id="基于TextRank"><a href="#基于TextRank" class="headerlink" title="基于TextRank"></a>基于TextRank</h5><p>jieba.analyse.textrank(sentence, topK=20, withWeight=False, allowPOS=(‘ns’, ‘n’, ‘vn’, ‘v’))</p>
-<p>jieba.analyse.TextRank() 新建自定义 TextRank 实例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import jieba.analyse as analyse</span><br><span class="line">lines = open(&apos;NBA.txt&apos;).read()</span><br><span class="line">print(&quot;  &quot;.join(analyse.textrank(lines, topK=20, withWeight=False, allowPOS=(&apos;ns&apos;, &apos;n&apos;, &apos;vn&apos;, &apos;v&apos;))))</span><br></pre></td></tr></table></figure>
-
-<h3 id="三-词性标注"><a href="#三-词性标注" class="headerlink" title="三.词性标注"></a>三.词性标注</h3><p>jieba.posseg.POSTokenizer(tokenizer=None) 新建自定义分词器</p>
-<p>tokenizer 参数可指定内部使用的 jieba.Tokenizer 分词器。jieba.posseg.dt 为默认词性标注分词器。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import jieba.posseg as pseg</span><br><span class="line">words = pseg.cut(&quot;我爱自然语言处理&quot;)</span><br><span class="line">for word, flag in words:</span><br><span class="line">    print(&apos;%s %s&apos; % (word, flag))</span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/19/结巴分词/">展开全文 >></a>
         </p>
       
 
