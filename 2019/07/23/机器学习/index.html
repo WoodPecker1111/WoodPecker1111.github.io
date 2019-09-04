@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>机器学习——有监督 | 啄木鸟的个人博客</title>
+  <title>机器学习 | 啄木鸟的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="回归指研究一组随机变量(Y1 ，Y2 ，…，Yi)和另一组(X1，X2，…，Xk)变量之间关系的统计分析方法 分类任务与回归任务分类问题：输出变量为有限个离散变量的预测问题 回归问题：输入变量与输出变量均为连续变量的预测问题 准确率(accuracy)召回率(recall)精确率(precision)准确率就是找得对，召回率就是找得全，精确率是找出来的数据中对的数量占比 https://www.c">
+  <meta name="description" content="回归指研究一组随机变量(Y1 ，Y2 ，…，Yi)和另一组(X1，X2，…，Xk)变量之间关系的统计分析方法。 逻辑回归与线性回归线性回归：解决连续值的拟合映射，可以预测连续值，但不能解决分类问题。 逻辑回归：解决二分类问题。 所以逻辑回归就是将线性回归的(−∞,+∞)结果，通过sigmoid函数映射到(0,1)之间。 利用逻辑回归进行分类的主要思想是：根据现有数据对分类边界线建立回归公式，以此进">
 <meta property="og:type" content="article">
-<meta property="og:title" content="机器学习——有监督">
+<meta property="og:title" content="机器学习">
 <meta property="og:url" content="http://yoursite.com/2019/07/23/机器学习/index.html">
 <meta property="og:site_name" content="啄木鸟的个人博客">
-<meta property="og:description" content="回归指研究一组随机变量(Y1 ，Y2 ，…，Yi)和另一组(X1，X2，…，Xk)变量之间关系的统计分析方法 分类任务与回归任务分类问题：输出变量为有限个离散变量的预测问题 回归问题：输入变量与输出变量均为连续变量的预测问题 准确率(accuracy)召回率(recall)精确率(precision)准确率就是找得对，召回率就是找得全，精确率是找出来的数据中对的数量占比 https://www.c">
+<meta property="og:description" content="回归指研究一组随机变量(Y1 ，Y2 ，…，Yi)和另一组(X1，X2，…，Xk)变量之间关系的统计分析方法。 逻辑回归与线性回归线性回归：解决连续值的拟合映射，可以预测连续值，但不能解决分类问题。 逻辑回归：解决二分类问题。 所以逻辑回归就是将线性回归的(−∞,+∞)结果，通过sigmoid函数映射到(0,1)之间。 利用逻辑回归进行分类的主要思想是：根据现有数据对分类边界线建立回归公式，以此进">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-21T12:07:31.846Z">
+<meta property="og:updated_time" content="2019-09-04T11:04:35.098Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="机器学习——有监督">
-<meta name="twitter:description" content="回归指研究一组随机变量(Y1 ，Y2 ，…，Yi)和另一组(X1，X2，…，Xk)变量之间关系的统计分析方法 分类任务与回归任务分类问题：输出变量为有限个离散变量的预测问题 回归问题：输入变量与输出变量均为连续变量的预测问题 准确率(accuracy)召回率(recall)精确率(precision)准确率就是找得对，召回率就是找得全，精确率是找出来的数据中对的数量占比 https://www.c">
+<meta name="twitter:title" content="机器学习">
+<meta name="twitter:description" content="回归指研究一组随机变量(Y1 ，Y2 ，…，Yi)和另一组(X1，X2，…，Xk)变量之间关系的统计分析方法。 逻辑回归与线性回归线性回归：解决连续值的拟合映射，可以预测连续值，但不能解决分类问题。 逻辑回归：解决二分类问题。 所以逻辑回归就是将线性回归的(−∞,+∞)结果，通过sigmoid函数映射到(0,1)之间。 利用逻辑回归进行分类的主要思想是：根据现有数据对分类边界线建立回归公式，以此进">
   
     <link rel="alternative" href="/atom.xml" title="啄木鸟的个人博客" type="application/atom+xml">
   
@@ -161,7 +161,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      机器学习——有监督
+      机器学习
     </h1>
   
 
@@ -174,11 +174,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="回归"><a href="#回归" class="headerlink" title="回归"></a>回归</h4><p>指研究一组随机变量(Y1 ，Y2 ，…，Yi)和另一组(X1，X2，…，Xk)变量之间关系的统计分析方法</p>
+        <h4 id="回归"><a href="#回归" class="headerlink" title="回归"></a>回归</h4><p>指研究一组随机变量(Y1 ，Y2 ，…，Yi)和另一组(X1，X2，…，Xk)变量之间关系的统计分析方法。</p>
+<h4 id="逻辑回归与线性回归"><a href="#逻辑回归与线性回归" class="headerlink" title="逻辑回归与线性回归"></a>逻辑回归与线性回归</h4><p>线性回归：解决连续值的拟合映射，可以预测连续值，但不能解决分类问题。</p>
+<p>逻辑回归：解决二分类问题。</p>
+<p>所以逻辑回归就是将线性回归的(−∞,+∞)结果，通过sigmoid函数映射到(0,1)之间。</p>
+<p>利用逻辑回归进行分类的主要思想是：根据现有数据对分类边界线建立回归公式，以此进行分类。</p>
 <h4 id="分类任务与回归任务"><a href="#分类任务与回归任务" class="headerlink" title="分类任务与回归任务"></a>分类任务与回归任务</h4><p>分类问题：输出变量为有限个离散变量的预测问题</p>
 <p>回归问题：输入变量与输出变量均为连续变量的预测问题</p>
-<h4 id="准确率-accuracy-召回率-recall-精确率-precision"><a href="#准确率-accuracy-召回率-recall-精确率-precision" class="headerlink" title="准确率(accuracy)召回率(recall)精确率(precision)"></a>准确率(accuracy)召回率(recall)精确率(precision)</h4><p>准确率就是<strong>找得对</strong>，召回率就是<strong>找得全</strong>，精确率是找出来的数据中对的数量占比</p>
+<h4 id="准确率-accuracy-召回率-recall-精确率-precision"><a href="#准确率-accuracy-召回率-recall-精确率-precision" class="headerlink" title="准确率(accuracy)召回率(recall)精确率(precision)"></a>准确率(accuracy)召回率(recall)精确率(precision)</h4><p>准确率就是<strong>找得对</strong>，召回率就是<strong>找得全</strong>，准确率越大，召回率越小，召回率越大，准确率越小。</p>
+<p>精确率是找出来的数据中对的数量占比</p>
 <p><a href="https://www.cnblogs.com/sddai/p/5696870.html" target="_blank" rel="noopener">https://www.cnblogs.com/sddai/p/5696870.html</a></p>
+<h4 id="批处理"><a href="#批处理" class="headerlink" title="批处理"></a>批处理</h4><p>一次处理所有数据</p>
 <h2 id="k-临近算法（KNN）"><a href="#k-临近算法（KNN）" class="headerlink" title="k-临近算法（KNN）"></a>k-临近算法（KNN）</h2><h3 id="一-原理"><a href="#一-原理" class="headerlink" title="一.原理"></a>一.原理</h3><p>k<em>-近邻算法采用*</em>测量不同特征值之间的距离**方法进行分类</p>
 <p>存在一个样本数据集合，也称作训练样本集，并且样本集中每个数据都存在标签，即我们知道样本集中每一数据与所属分类的对应关系。输入没有标签的新数据后，将新数据的每个特征与样本集中数据对应的特征进行比较，然后算法提取样本集中特征最相似数据（最近邻）的分类标签。我们只选择样本数据集中前<em>k</em>个<strong>最相似的数据</strong>，这就是<em>k</em>-近邻算法中<em>k</em>的出处，通常<em>k</em>是不大于20的整数。 最后，选择<em>k</em>个最相似数据中出现次数最多的分类，作为新数据的分类。</p>
 <p>简单地说，<em>k</em>-近邻算法采用测量不同特征值之间的距离方法进行分类。 </p>
@@ -204,7 +210,19 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">def trainNB0(trainMatrix, trainCategory):</span><br><span class="line">    numTrainDocs = len(trainMatrix)     # 取矩阵长度，文章长度</span><br><span class="line">    numWords = len(trainMatrix[0])      # 取矩阵一行长度</span><br><span class="line">    pAbusive = sum(trainCategory)/float(numTrainDocs)   # 特征向量1的和除以文章长度</span><br><span class="line">    p0Num = zeros(numWords); p1Num = zeros(numWords)      #变为全为零矩阵</span><br><span class="line">    p0Denom = 0.0; p1Denom = 0.0                        #change to 2.0</span><br><span class="line">    for i in range(numTrainDocs):</span><br><span class="line">        if trainCategory[i] == 1:</span><br><span class="line">            p1Num += trainMatrix[i]</span><br><span class="line">            p1Denom += sum(trainMatrix[i])</span><br><span class="line">        else:</span><br><span class="line">            p0Num += trainMatrix[i]</span><br><span class="line">            p0Denom += sum(trainMatrix[i])</span><br><span class="line">    p1Vect = (p1Num/p1Denom)          #change to log()</span><br><span class="line">    p0Vect = (p0Num/p0Denom)          #change to log()</span><br><span class="line">    return p0Vect,p1Vect,pAbusive</span><br></pre></td></tr></table></figure>
 
+<h2 id="梯度上升算法"><a href="#梯度上升算法" class="headerlink" title="梯度上升算法"></a>梯度上升算法</h2><h3 id="一-原理-2"><a href="#一-原理-2" class="headerlink" title="一.原理"></a>一.原理</h3><h5 id="梯度上升"><a href="#梯度上升" class="headerlink" title="梯度上升"></a>梯度上升</h5><p>Sigmoid函数的输入记为z，由下面公式得出：z=W0X0+W1X1+…WnXn</p>
+<p>如果采用向量的写法，上述公式可以写成z = wTx，它表示将这两个数值向量对应元素相乘然后全部加起来即得到<em>z</em>值。其中的向量<strong><em>x</em></strong>是分类器的输入数据，向量<strong><em>w</em></strong>也就是我们要找到的最佳参数。</p>
+<p>梯度上升公式：w=w+α∇wf(w)</p>
+<p>沿着移动方向进行的移动量：α；梯度算子∇：总是指向函数值增长最快的方向</p>
+<p>该公式将一直被迭代执行，直至达到某个停止条件为止，比如迭代次数达到某个指定值或算法达到某个可以允许的误差范围。</p>
+<h5 id="梯度下降"><a href="#梯度下降" class="headerlink" title="梯度下降"></a>梯度下降</h5><p><strong>梯度上升算法用来求函数的最大值，而梯度下降算法用来求函数的最小值</strong></p>
+<p>w=w-α∇wf(w)</p>
+<h3 id="二-代码实现-2"><a href="#二-代码实现-2" class="headerlink" title="二.代码实现"></a>二.代码实现</h3><h4 id="梯度上升-1"><a href="#梯度上升-1" class="headerlink" title="梯度上升"></a>梯度上升</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 变量alpha是向目标移动的步长，maxCycles是迭代次数，变量h不是一个数而是一个列向量，列向量的元素个数等于样本个数</span><br><span class="line">def gradAscent(dataMatIn, classLabels):</span><br><span class="line">    dataMatrix = mat(dataMatIn)             #convert to NumPy matrix</span><br><span class="line">    labelMat = mat(classLabels).transpose() #convert to NumPy matrix</span><br><span class="line">    m,n = shape(dataMatrix)</span><br><span class="line">    alpha = 0.001</span><br><span class="line">    maxCycles = 500</span><br><span class="line">    weights = ones((n,1))</span><br><span class="line">    for k in range(maxCycles):              #heavy on matrix operations</span><br><span class="line">    	# 计算真实类别与预测类别的差值，接下来就是按照该差值的方向调整回归系数</span><br><span class="line">        h = sigmoid(dataMatrix*weights)     #matrix mult</span><br><span class="line">        error = (labelMat - h)              #vector subtraction</span><br><span class="line">        weights = weights + alpha * dataMatrix.transpose()* error #matrix mult</span><br><span class="line">    return weights</span><br></pre></td></tr></table></figure>
 
+<h4 id="随机梯度上升"><a href="#随机梯度上升" class="headerlink" title="随机梯度上升"></a>随机梯度上升</h4><p>一次仅用一个样本点来更新回归系数，随机梯度上升算法是一个在线学习算法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">def stocGradAscent1(dataMatrix, classLabels, numIter=150):</span><br><span class="line">    m,n = shape(dataMatrix)</span><br><span class="line">    weights = ones(n)   #initialize to all ones</span><br><span class="line">    for j in range(numIter):</span><br><span class="line">        dataIndex = range(m)</span><br><span class="line">        for i in range(m):</span><br><span class="line">            alpha = 4/(1.0+j+i)+0.0001    </span><br><span class="line">            #apha decreases with iteration, does not go to 0 because of the constant</span><br><span class="line">            randIndex = int(random.uniform(0,len(dataIndex)))</span><br><span class="line">            h = sigmoid(sum(dataMatrix[randIndex]*weights))</span><br><span class="line">            error = classLabels[randIndex] - h</span><br><span class="line">            weights = weights + alpha * error * dataMatrix[randIndex]</span><br><span class="line">            del(dataIndex[randIndex])</span><br><span class="line">    return weights</span><br></pre></td></tr></table></figure>
+
+<h2 id="SVM支持向量机"><a href="#SVM支持向量机" class="headerlink" title="SVM支持向量机"></a>SVM支持向量机</h2><h3 id="一-原理-3"><a href="#一-原理-3" class="headerlink" title="一.原理"></a>一.原理</h3>
       
 
       
