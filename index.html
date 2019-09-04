@@ -724,13 +724,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="回归"><a href="#回归" class="headerlink" title="回归"></a>回归</h4><p>指研究一组随机变量(Y1 ，Y2 ，…，Yi)和另一组(X1，X2，…，Xk)变量之间关系的统计分析方法。</p>
+        <h4 id="分类任务与回归任务"><a href="#分类任务与回归任务" class="headerlink" title="分类任务与回归任务"></a>分类任务与回归任务</h4><p>分类问题：输出变量为有限个离散变量的预测问题</p>
+<p>回归问题：输入变量与输出变量均为连续变量的预测问题</p>
+<h4 id="回归"><a href="#回归" class="headerlink" title="回归"></a>回归</h4><p>指研究一组随机变量(Y1 ，Y2 ，…，Yi)和另一组(X1，X2，…，Xk)变量之间关系的统计分析方法。</p>
 <h4 id="逻辑回归与线性回归"><a href="#逻辑回归与线性回归" class="headerlink" title="逻辑回归与线性回归"></a>逻辑回归与线性回归</h4><p>线性回归：解决连续值的拟合映射，可以预测连续值，但不能解决分类问题。</p>
 <p>逻辑回归：解决二分类问题。</p>
 <p>所以逻辑回归就是将线性回归的(−∞,+∞)结果，通过sigmoid函数映射到(0,1)之间。</p>
 <p>利用逻辑回归进行分类的主要思想是：根据现有数据对分类边界线建立回归公式，以此进行分类。</p>
-<h4 id="分类任务与回归任务"><a href="#分类任务与回归任务" class="headerlink" title="分类任务与回归任务"></a>分类任务与回归任务</h4><p>分类问题：输出变量为有限个离散变量的预测问题</p>
-<p>回归问题：输入变量与输出变量均为连续变量的预测问题</p>
 <h4 id="准确率-accuracy-召回率-recall-精确率-precision"><a href="#准确率-accuracy-召回率-recall-精确率-precision" class="headerlink" title="准确率(accuracy)召回率(recall)精确率(precision)"></a>准确率(accuracy)召回率(recall)精确率(precision)</h4><p>准确率就是<strong>找得对</strong>，召回率就是<strong>找得全</strong>，准确率越大，召回率越小，召回率越大，准确率越小。</p>
 <p>精确率是找出来的数据中对的数量占比</p>
 <p><a href="https://www.cnblogs.com/sddai/p/5696870.html" target="_blank" rel="noopener">https://www.cnblogs.com/sddai/p/5696870.html</a></p>
@@ -767,12 +767,43 @@
 <p>该公式将一直被迭代执行，直至达到某个停止条件为止，比如迭代次数达到某个指定值或算法达到某个可以允许的误差范围。</p>
 <h5 id="梯度下降"><a href="#梯度下降" class="headerlink" title="梯度下降"></a>梯度下降</h5><p><strong>梯度上升算法用来求函数的最大值，而梯度下降算法用来求函数的最小值</strong></p>
 <p>w=w-α∇wf(w)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">优点：计算代价不高，易于理解和实现。</span><br><span class="line">缺点：容易欠拟合，分类精度可能不高。</span><br><span class="line">适用数据类型：数值型和标称型数据。</span><br></pre></td></tr></table></figure>
+
 <h3 id="二-代码实现-2"><a href="#二-代码实现-2" class="headerlink" title="二.代码实现"></a>二.代码实现</h3><h4 id="梯度上升-1"><a href="#梯度上升-1" class="headerlink" title="梯度上升"></a>梯度上升</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 变量alpha是向目标移动的步长，maxCycles是迭代次数，变量h不是一个数而是一个列向量，列向量的元素个数等于样本个数</span><br><span class="line">def gradAscent(dataMatIn, classLabels):</span><br><span class="line">    dataMatrix = mat(dataMatIn)             #convert to NumPy matrix</span><br><span class="line">    labelMat = mat(classLabels).transpose() #convert to NumPy matrix</span><br><span class="line">    m,n = shape(dataMatrix)</span><br><span class="line">    alpha = 0.001</span><br><span class="line">    maxCycles = 500</span><br><span class="line">    weights = ones((n,1))</span><br><span class="line">    for k in range(maxCycles):              #heavy on matrix operations</span><br><span class="line">    	# 计算真实类别与预测类别的差值，接下来就是按照该差值的方向调整回归系数</span><br><span class="line">        h = sigmoid(dataMatrix*weights)     #matrix mult</span><br><span class="line">        error = (labelMat - h)              #vector subtraction</span><br><span class="line">        weights = weights + alpha * dataMatrix.transpose()* error #matrix mult</span><br><span class="line">    return weights</span><br></pre></td></tr></table></figure>
 
 <h4 id="随机梯度上升"><a href="#随机梯度上升" class="headerlink" title="随机梯度上升"></a>随机梯度上升</h4><p>一次仅用一个样本点来更新回归系数，随机梯度上升算法是一个在线学习算法</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">def stocGradAscent1(dataMatrix, classLabels, numIter=150):</span><br><span class="line">    m,n = shape(dataMatrix)</span><br><span class="line">    weights = ones(n)   #initialize to all ones</span><br><span class="line">    for j in range(numIter):</span><br><span class="line">        dataIndex = range(m)</span><br><span class="line">        for i in range(m):</span><br><span class="line">            alpha = 4/(1.0+j+i)+0.0001    </span><br><span class="line">            #apha decreases with iteration, does not go to 0 because of the constant</span><br><span class="line">            randIndex = int(random.uniform(0,len(dataIndex)))</span><br><span class="line">            h = sigmoid(sum(dataMatrix[randIndex]*weights))</span><br><span class="line">            error = classLabels[randIndex] - h</span><br><span class="line">            weights = weights + alpha * error * dataMatrix[randIndex]</span><br><span class="line">            del(dataIndex[randIndex])</span><br><span class="line">    return weights</span><br></pre></td></tr></table></figure>
 
-<h2 id="SVM支持向量机"><a href="#SVM支持向量机" class="headerlink" title="SVM支持向量机"></a>SVM支持向量机</h2><h3 id="一-原理-3"><a href="#一-原理-3" class="headerlink" title="一.原理"></a>一.原理</h3>
+<h2 id="SVM支持向量机"><a href="#SVM支持向量机" class="headerlink" title="SVM支持向量机"></a>SVM支持向量机</h2><h3 id="一-原理-3"><a href="#一-原理-3" class="headerlink" title="一.原理"></a>一.原理</h3><p>有些人认为，SVM是最好的现成的分类器，这里说的“现成”指的是分类器不加修改即可直接使用。同时，这就意味着在数据上应用基本形式的SVM分类器就可以得到低错误率的结果。SVM能够对训练集之外的数据点做出很好的分类决策。</p>
+<p>将数据集分隔开来的直线称为<strong>分隔超平面</strong>。</p>
+<p>数据点都在二维平面上，所以此时分隔超平面就只是一条直线。</p>
+<p>如果所给的数据集是三维的，那么此时用来分隔数据的就是一个平面。</p>
+<p>点到分隔面的距离被称为<strong>间隔</strong>。</p>
+<p>支持向量（support vector）就是离分隔超平面最近的那些点,要试着最大化支持向量到分隔面的距离，需要找到此问题的优化求解方法。</p>
+<p><strong>分类器原理</strong></p>
+<p>输入数据给分类器会输出一个类别标签，这相当于一个类似于Sigmoid 的函数在作用。</p>
+<p>使用类似海维赛德阶跃函数（即单位阶跃函数）的函数对<strong>w</strong>T<strong>x</strong>+b作用得到 f(<strong>w</strong>T<strong>x</strong>+b)，其中当u&lt;0时f(u)输出-1，反之则输出+1。</p>
+<p>当计算数据点到分隔面的距离并确定分隔面的放置位置时，间隔通过label * （<strong>w</strong>T<strong>x</strong>+b）来计算。</p>
+<p>如果数据点处于正方向（即+1类）并且离分隔超平面很远的位置时，<strong>w</strong>T<strong>x</strong>+b会是一个很大的正数，同时label<em>（*</em>w<strong>T</strong>x<strong>+b）也会是一个很大的正数。而如果数据点处于负方向（-1类）并且离分隔超平面很远的位置时，此时由于类别标签为-1，则label * (</strong>w<strong>T</strong>x**+b)仍然是一个很大的正数。</p>
+<p>必须找到具有最小间隔的数据点。</p>
+<img src="/.com//Users\hp\blog\source\_posts\post-name\公式.PNG" style="zoom:50%;">
+
+<p>引入拉格朗日乘子</p>
+<img src="/.com//Users\hp\blog\source\_posts\post-name\公式1.PNG" alt="公式1" style="zoom:50%;">
+
+<p>约束条件为</p>
+<img src="/.com//Users\hp\blog\source\_posts\post-name\公式2.PNG" alt="公式2" style="zoom:50%;">
+
+<p>引入所谓松弛变量（slack variable），来允许有些数据点可以处于分隔面的错误一侧。这里的常数C用于控制“最大化间隔”和“保证大部分点的函数间隔小于1.0”这两个目标的权重，一旦求出了所有的α，那么分隔超平面就可以通过这些α来表达。SVM中的主要工作就是求解这些α。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">优点：泛化错误率低，计算开销不大，结果易解释。</span><br><span class="line">缺点：对参数调节和核函数的选择敏感，原始分类器不加修改仅适用于处理二类问题。</span><br><span class="line">适用数据类型：数值型和标称型数据。</span><br></pre></td></tr></table></figure>
+
+<h4 id="SMO算法"><a href="#SMO算法" class="headerlink" title="SMO算法"></a>SMO算法</h4><p>SMO算法的工作原理是：每次循环中选择两个α进行优化处理。一旦找到一对合适的α，那么就增大其中一个同时减小另一个。</p>
+<p>这里所谓的“合适”就是指两个α必须要符合一定的条件：</p>
+<p>一：这两个α必须要在间隔边界之外；</p>
+<p>二：这两个α还没有进行过区间化处理或者不在边界上；</p>
+<h4 id="核函数"><a href="#核函数" class="headerlink" title="核函数"></a>核函数</h4><p>一个包装器或者是接口，它能把数据从某个很难处理的形式转换成为另一个较容易处理的形式。</p>
+<p>将内积替换成核函数的方式被称为<strong>核技巧</strong></p>
+
       
 
       
