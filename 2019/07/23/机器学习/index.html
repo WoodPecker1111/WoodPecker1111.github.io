@@ -18,7 +18,11 @@
 <meta property="og:image" content="http://yoursite.com/.com//Users/hp/blog/source/_posts/post-name/公式.PNG">
 <meta property="og:image" content="http://yoursite.com/.com//Users/hp/blog/source/_posts/post-name/公式1.PNG">
 <meta property="og:image" content="http://yoursite.com/.com//Users/hp/blog/source/_posts/post-name/公式2.PNG">
-<meta property="og:updated_time" content="2019-09-05T11:41:26.482Z">
+<meta property="og:image" content="http://yoursite.com/.com//Users/hp/blog/source/_posts/post-name/公式3.PNG">
+<meta property="og:image" content="http://yoursite.com/.com//Users/hp/blog/source/_posts/post-name/公式4.PNG">
+<meta property="og:image" content="http://yoursite.com/.com//Users/hp/blog/source/_posts/post-name/公式5.PNG">
+<meta property="og:image" content="http://yoursite.com/.com//Users/hp/blog/source/_posts/post-name/公式6.PNG">
+<meta property="og:updated_time" content="2019-09-05T13:10:46.530Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习">
 <meta name="twitter:description" content="分类任务与回归任务分类问题（目标变量为标称型数据）：输出变量为有限个离散变量的预测问题 回归问题（连续）：输入变量与输出变量均为连续变量的预测问题 回归回归的目的是预测数值型的目标值 指研究一组随机变量(Y1 ，Y2 ，…，Yi)和另一组(X1，X2，…，Xk)变量之间关系的统计分析方法。 逻辑回归与线性回归线性回归：解决连续值的拟合映射，可以预测连续值，但不能解决分类问题。 逻辑回归：解决二分类">
@@ -259,7 +263,28 @@
 <p>二：这两个α还没有进行过区间化处理或者不在边界上；</p>
 <h4 id="核函数"><a href="#核函数" class="headerlink" title="核函数"></a>核函数</h4><p>一个包装器或者是接口，它能把数据从某个很难处理的形式转换成为另一个较容易处理的形式。</p>
 <p>将内积替换成核函数的方式被称为<strong>核技巧</strong></p>
-<h1 id="回归-1"><a href="#回归-1" class="headerlink" title="回归"></a>回归</h1>
+<h1 id="回归-1"><a href="#回归-1" class="headerlink" title="回归"></a>回归</h1><p>回归的目的是预测数值型的目标值。最直接的办法是依据输入写出一个目标值的计算公式。这就是所谓的回归方程。如y=ax+b，a与b就是回归系数，求这些回归系数的过程就是回归。</p>
+<p>用回归系数乘以输入值，再将结果全部加在一起，就得到了预测值。</p>
+<h2 id="普通最小二乘法"><a href="#普通最小二乘法" class="headerlink" title="普通最小二乘法"></a>普通最小二乘法</h2><h3 id="一-原理-4"><a href="#一-原理-4" class="headerlink" title="一.原理"></a>一.原理</h3><p>回归系数存放在向量w中，预测结果通过Y=XTw给出。找到使误差最小的w，这里采用平方误差。</p>
+<img src="/.com//Users\hp\blog\source\_posts\post-name\公式3.PNG" alt="公式3" style="zoom:50%;">
+
+<img src="/.com//Users\hp\blog\source\_posts\post-name\公式4.PNG" alt="公式4" style="zoom:50%;">
+
+<h3 id="二-代码实现-3"><a href="#二-代码实现-3" class="headerlink" title="二.代码实现"></a>二.代码实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">def loadDataSet(fileName):      #general function to parse tab -delimited floats</span><br><span class="line">    numFeat = len(open(fileName).readline().split(&apos;\t&apos;)) - 1 #get number of fields </span><br><span class="line">    dataMat = []; labelMat = []</span><br><span class="line">    fr = open(fileName)</span><br><span class="line">    for line in fr.readlines():</span><br><span class="line">        lineArr =[]</span><br><span class="line">        curLine = line.strip().split(&apos;\t&apos;)</span><br><span class="line">        for i in range(numFeat):</span><br><span class="line">            lineArr.append(float(curLine[i]))</span><br><span class="line">        dataMat.append(lineArr)</span><br><span class="line">        labelMat.append(float(curLine[-1]))</span><br><span class="line">    return dataMat,labelMat</span><br><span class="line"></span><br><span class="line">def standRegres(xArr,yArr):</span><br><span class="line">    xMat = mat(xArr); yMat = mat(yArr).T</span><br><span class="line">    xTx = xMat.T*xMat</span><br><span class="line">    if linalg.det(xTx) == 0.0:</span><br><span class="line">        print &quot;This matrix is singular, cannot do inverse&quot;</span><br><span class="line">        return</span><br><span class="line">    ws = xTx.I * (xMat.T*yMat)</span><br><span class="line">    return ws</span><br><span class="line"># ws为求得的回归系数</span><br></pre></td></tr></table></figure>
+
+<p>给定输入矩阵<strong>X</strong>，如果<strong>X</strong>T<strong>X</strong>的逆存在并可以求得的话， 回归法都可以直接使用。</p>
+<h2 id="局部加权线性回归LWLR"><a href="#局部加权线性回归LWLR" class="headerlink" title="局部加权线性回归LWLR"></a>局部加权线性回归LWLR</h2><h3 id="一-原理-5"><a href="#一-原理-5" class="headerlink" title="一.原理"></a>一.原理</h3><p>在该算法中，我们给待预测点附近的每个点赋予一定的权重，LWLR使用“核”（与支持向量机中的核类似）来对附近的点赋予更高的权重。</p>
+<img src="/.com//Users\hp\blog\source\_posts\post-name\公式5.PNG" alt="公式5" style="zoom:50%;">
+
+<p>其中<strong>w</strong>是一个矩阵，用来给每个数据点赋予权重。</p>
+<p>核的类型可以自由选择，最常用的核就是高斯核：</p>
+<img src="/.com//Users\hp\blog\source\_posts\post-name\公式6.PNG" alt="公式6" style="zoom:50%;">
+
+<h3 id="二-代码"><a href="#二-代码" class="headerlink" title="二.代码"></a>二.代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">def lwlr(testPoint,xArr,yArr,k=1.0):</span><br><span class="line">    xMat = mat(xArr); yMat = mat(yArr).T</span><br><span class="line">    m = shape(xMat)[0]</span><br><span class="line">    weights = mat(eye((m)))</span><br><span class="line">    for j in range(m):                      #next 2 lines create weights matrix</span><br><span class="line">        diffMat = testPoint - xMat[j,:]     #</span><br><span class="line">        weights[j,j] = exp(diffMat*diffMat.T/(-2.0*k**2))</span><br><span class="line">    xTx = xMat.T * (weights * xMat)</span><br><span class="line">    if linalg.det(xTx) == 0.0:</span><br><span class="line">        print &quot;This matrix is singular, cannot do inverse&quot;</span><br><span class="line">        return</span><br><span class="line">    ws = xTx.I * (xMat.T * (weights * yMat))</span><br><span class="line">    return testPoint * ws</span><br><span class="line"></span><br><span class="line">def lwlrTest(testArr,xArr,yArr,k=1.0):  #loops over all the data points and applies lwlr to each one</span><br><span class="line">    m = shape(testArr)[0]</span><br><span class="line">    yHat = zeros(m)</span><br><span class="line">    for i in range(m):</span><br><span class="line">        yHat[i] = lwlr(testArr[i],xArr,yArr,k)</span><br><span class="line">    return yHat</span><br></pre></td></tr></table></figure>
+
+<p><strong>岭回归</strong>：当数据的样本数比特征数还少时候，输入的数据X不是满秩矩阵，满秩矩阵求逆会出现问题。</p>
+<p>（即便当样本数比特征数多时，<strong>X</strong>T<strong>X</strong>的逆仍有可能无法直接计算，这是因为特征有可能高度相关。此时可使用岭回归）</p>
+
       
 
       
