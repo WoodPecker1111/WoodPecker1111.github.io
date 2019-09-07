@@ -152,6 +152,93 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-HMM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/19/HMM/">HMM</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/19/HMM/" class="archive-article-date">
+  	<time datetime="2019-07-19T11:56:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-马尔科夫链"><a href="#一-马尔科夫链" class="headerlink" title="一.马尔科夫链"></a>一.马尔科夫链</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">P(Xn+1=x|X1=x1,X2=x2,...,Xn=xn)=P(Xn+1=x|Xn=xn)</span><br></pre></td></tr></table></figure>
+
+<p>每个状态的转移只依赖于之前的n个状态，这个过程被称为1个n阶模型，其中n是影响转移状态的数目</p>
+<p><strong>缺陷</strong>：前后关系缺失，状态变化的概率是固定的，不能适用于中中长期预测，</p>
+<p><strong>优点</strong>：对过去和现在预测较好</p>
+<h4 id="二-隐马尔科夫模型"><a href="#二-隐马尔科夫模型" class="headerlink" title="二.隐马尔科夫模型"></a>二.隐马尔科夫模型</h4><p>一个隐藏的马尔科夫过程和一个与这个隐藏的莫尔科夫过程概率相关的并且可以观察到的状态集合，就是隐马尔科夫模型。</p>
+<p>掷骰子：假设手里有三个不同的骰子。D6有6个面，每个面出现的概率是1/6。D4有4个面，每个面出现的概率是1/4。D8有八个面，每个面出现的概率是1/8。</p>
+<p>！<a href="C:\Users\hp\blog\source_posts\post-name\HMM.jpg" target="_blank" rel="noopener">HMM</a></p>
+<p>掷三个骰子得到这么一串数字（掷骰子10次）：1 6 3 5 2 7 3 5 2 4，但是并不知道1,2,3,4,5,6是D6掷出还是D8掷出，或者1,2,3,4是其中哪一个掷出。</p>
+<p>这串数字是可见状态链</p>
+<p>骰子的序列是隐含状态链</p>
+<p>可见状态之间没有转换概率，但是隐含状态和可见状态之间有一个输出概率</p>
+<p>！<a href="C:\Users\hp\blog\source_posts\post-name\HMM1.jpg" target="_blank" rel="noopener">HMM1</a></p>
+<h4 id="三-隐马尔科夫模型的三大问题"><a href="#三-隐马尔科夫模型的三大问题" class="headerlink" title="三.隐马尔科夫模型的三大问题"></a>三.隐马尔科夫模型的三大问题</h4><p>1.知道骰子有几种（隐含状态数量），每种骰子是什么（转换概率），根据掷骰子掷出的结果（可见状态链），想知道每次掷出来的都是哪种骰子（隐含状态链）</p>
+<p>​    <strong>维特比算法Viterbi algorithm</strong>（使结果出现可能性最大）</p>
+<p>​    解法一：求一串骰子序列，这串骰子序列产生观测结果的概率最大</p>
+<p>​    解法二：不是求一组骰子序列，而是求每次掷出的骰子分别是某种骰子的概率</p>
+<p>2.知道骰子有几种（隐含状态数量），每种骰子是什么（转换概率），根据掷骰子掷出的结果（可见状态链），想知道掷出这个结果的概率</p>
+<p>​    <strong>遍历算法</strong>，把每一种情况都罗列出来，每种情况的和就是这个概率</p>
+<p>​    <strong>向前算法</strong>，计算了每个时间点时，每个状态的发生观测序列的概率</p>
+<p>​    意义不大。检测观察到的结果和已知的模型是否吻合</p>
+<p>3.知道骰子有几种（隐含状态数量），不知道每种骰子是什么（转换概率），观测到很多次掷骰子的结果（可见状态链），想反推出每种骰子是什么（转换概率）</p>
+<p>​    <strong>gradient techniques</strong></p>
+<p>​    <strong>Baum-Welch Algo，鲍姆-韦尔奇算法</strong>(类似EM)。（只能得到局部最优解，受到可见状态的限制）</p>
+<p>​    最常见的情况，很多时候我们只有可见结果，不知道HMM模型里的参数，我们需要从可见结果估计出这些参数，这是建模的一个必要步骤。</p>
+<h4 id="四-隐马尔科夫的应用"><a href="#四-隐马尔科夫的应用" class="headerlink" title="四.隐马尔科夫的应用"></a>四.隐马尔科夫的应用</h4><h5 id="词性标注"><a href="#词性标注" class="headerlink" title="词性标注"></a>词性标注</h5>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/19/HMM/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-结巴分词" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
