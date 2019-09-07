@@ -152,6 +152,263 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-机器学习-有监督" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/23/机器学习-有监督/">机器学习--有监督</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/23/机器学习-有监督/" class="archive-article-date">
+  	<time datetime="2019-07-23T02:53:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="分类任务与回归任务"><a href="#分类任务与回归任务" class="headerlink" title="分类任务与回归任务"></a>分类任务与回归任务</h4><p>分类问题（目标变量为标称型数据）：输出变量为有限个离散变量的预测问题</p>
+<p>回归问题（连续）：输入变量与输出变量均为连续变量的预测问题</p>
+<h4 id="回归"><a href="#回归" class="headerlink" title="回归"></a>回归</h4><p>回归的目的是预测数值型的目标值</p>
+<p>指研究一组随机变量(Y1 ，Y2 ，…，Yi)和另一组(X1，X2，…，Xk)变量之间关系的统计分析方法。</p>
+<h4 id="逻辑回归与线性回归"><a href="#逻辑回归与线性回归" class="headerlink" title="逻辑回归与线性回归"></a>逻辑回归与线性回归</h4><p>线性回归：解决连续值的拟合映射，可以预测连续值，但不能解决分类问题。</p>
+<p>逻辑回归：解决二分类问题。</p>
+<p>所以逻辑回归就是将线性回归的(−∞,+∞)结果，通过sigmoid函数映射到(0,1)之间。</p>
+<p>利用逻辑回归进行分类的主要思想是：根据现有数据对分类边界线建立回归公式，以此进行分类。</p>
+<h4 id="准确率-accuracy-召回率-recall-精确率-precision"><a href="#准确率-accuracy-召回率-recall-精确率-precision" class="headerlink" title="准确率(accuracy)召回率(recall)精确率(precision)"></a>准确率(accuracy)召回率(recall)精确率(precision)</h4><p>准确率就是<strong>找得对</strong>，召回率就是<strong>找得全</strong>，准确率越大，召回率越小，召回率越大，准确率越小。</p>
+<p>精确率是找出来的数据中对的数量占比</p>
+<p><a href="https://www.cnblogs.com/sddai/p/5696870.html" target="_blank" rel="noopener">https://www.cnblogs.com/sddai/p/5696870.html</a></p>
+<h4 id="批处理"><a href="#批处理" class="headerlink" title="批处理"></a>批处理</h4><p>一次处理所有数据</p>
+<h1 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h1><h2 id="k-临近算法（KNN）"><a href="#k-临近算法（KNN）" class="headerlink" title="k-临近算法（KNN）"></a>k-临近算法（KNN）</h2><h3 id="一-原理"><a href="#一-原理" class="headerlink" title="一.原理"></a>一.原理</h3><p>k<em>-近邻算法采用*</em>测量不同特征值之间的距离**方法进行分类</p>
+<p>存在一个样本数据集合，也称作训练样本集，并且样本集中每个数据都存在标签，即我们知道样本集中每一数据与所属分类的对应关系。输入没有标签的新数据后，将新数据的每个特征与样本集中数据对应的特征进行比较，然后算法提取样本集中特征最相似数据（最近邻）的分类标签。我们只选择样本数据集中前<em>k</em>个<strong>最相似的数据</strong>，这就是<em>k</em>-近邻算法中<em>k</em>的出处，通常<em>k</em>是不大于20的整数。 最后，选择<em>k</em>个最相似数据中出现次数最多的分类，作为新数据的分类。</p>
+<p>简单地说，<em>k</em>-近邻算法采用测量不同特征值之间的距离方法进行分类。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">优点：精度高、对异常值不敏感、无数据输入假定。 </span><br><span class="line"></span><br><span class="line">缺点：计算复杂度高、空间复杂度高。 </span><br><span class="line"></span><br><span class="line">适用数据范围：数值型和标称型。</span><br></pre></td></tr></table></figure>
+
+<h3 id="二-代码实现"><a href="#二-代码实现" class="headerlink" title="二.代码实现"></a>二.代码实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">def classify0(inX, dataSet, labels, k):</span><br><span class="line">    dataSetSize = dataSet.shape[0]		</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    矩阵（的shape属性可以获取矩阵的形状（例如二维数组的行列），得到一个元组</span><br><span class="line">    shape  行和列（4，3）</span><br><span class="line">    shape[0] 只输出行数</span><br><span class="line">    shape[1] 只输出列数</span><br><span class="line">    下面inX展开成dataSet大小矩阵</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    diffMat = tile(inX, (dataSetSize,1)) - dataSet</span><br><span class="line">    sqDiffMat = diffMat**2</span><br><span class="line">    sqDistances = sqDiffMat.sum(axis=1)</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    sum函数</span><br><span class="line">    无参数，所有相加</span><br><span class="line">    axis=0，按列相加</span><br><span class="line">    axis=1，按行相加</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    distances = sqDistances**0.5</span><br><span class="line">    sortedDistIndicies = distances.argsort()   </span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    argsort（）将x中的元素从小到大排列，提取其对应的index(索引)，</span><br><span class="line">    然后输出到y。这里获得距离从小到大排列votelabel 获得距离最小到i的索引，然后得到标签。</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    classCount=&#123;&#125;          </span><br><span class="line">    for i in range(k):</span><br><span class="line">        voteIlabel = labels[sortedDistIndicies[i]]</span><br><span class="line">        classCount[voteIlabel] = classCount.get(voteIlabel,0) + 1</span><br><span class="line">    sortedClassCount = sorted(classCount.iteritems(), key=operator.itemgetter(1), reverse=True)</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">        Python 字典(Dictionary) get() 函数返回指定键的值，如果值不在字典中返回默认值0。这里出现一次		就加一b=operator.itemgetter(1)定义函数b，获取对象的第2个域的值.</span><br><span class="line">    要注意，operator.itemgetter函数获取的不是值，而是定义了一个函数，通过该函数作用到对象上才能获取值		reverse默认为false（升序排列），定义为True时将按降序排列。</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    return sortedClassCount[0][0]</span><br></pre></td></tr></table></figure>
+
+<h2 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h2><h3 id="一-原理-1"><a href="#一-原理-1" class="headerlink" title="一.原理"></a>一.原理</h3><p>你是否玩过二十个问题的游戏，游戏的规则很简单：参与游戏的一方在脑海里想某个事物，其他参与者向他提问题，只允许提20个问题，问题的答案也只能用对或错回答。问问题的人通过推断分解，逐步缩小待猜测事物的范围。决策树的工作原理与20个问题类似，用户输入一系列数据，然后给出游戏的答案。</p>
+<p>经常使用决策树处理分类问题，决策树的一个重要任务是为了数据中所蕴含的知识信息，因此决策树可以使用不熟悉的数据集合，并从中提取出一系列规则，在这些机器根据数据集创建规则时，就是机器学习的过程。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">优点：计算复杂度不高，输出结果易于理解，对中间值的缺失不敏感，可以处理不相关特</span><br><span class="line">征数据。</span><br><span class="line">缺点：可能会产生过度匹配问题。</span><br><span class="line">适用数据类型：数值型和标称型。</span><br></pre></td></tr></table></figure>
+
+<h3 id="二-代码实现-1"><a href="#二-代码实现-1" class="headerlink" title="二.代码实现"></a>二.代码实现</h3><p>在划分数据集之前之后信息发生的变化称为信息增益</p>
+<p>获得信息增益最高的特征就是最好的选择</p>
+<p>熵越高，则混合的数据也越多</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">def calcShannonEnt(dataSet):        #计算香农熵</span><br><span class="line">    numEntries = len(dataSet)</span><br><span class="line">    labelCounts = &#123;&#125;</span><br><span class="line">    for featVec in dataSet: #the the number of unique elements and their occurance</span><br><span class="line">        currentLabel = featVec[-1]</span><br><span class="line">        if currentLabel not in labelCounts.keys(): labelCounts[currentLabel] = 0</span><br><span class="line">        labelCounts[currentLabel] += 1</span><br><span class="line">    shannonEnt = 0.0</span><br><span class="line">    for key in labelCounts:</span><br><span class="line">        prob = float(labelCounts[key])/numEntries</span><br><span class="line">        shannonEnt -= prob * log(prob,2) #log base 2</span><br><span class="line">    return shannonEnt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def splitDataSet(dataSet, axis, value):			#划分数据集</span><br><span class="line">    retDataSet = []</span><br><span class="line">    for featVec in dataSet:</span><br><span class="line">        if featVec[axis] == value:</span><br><span class="line">            reducedFeatVec = featVec[:axis]     #chop out axis used for splitting</span><br><span class="line">            reducedFeatVec.extend(featVec[axis+1:])</span><br><span class="line">            retDataSet.append(reducedFeatVec)</span><br><span class="line">    return retDataSet</span><br><span class="line">    </span><br><span class="line">def chooseBestFeatureToSplit(dataSet):			#选择最好的数据集划分方式</span><br><span class="line">    numFeatures = len(dataSet[0]) - 1      #the last column is used for the labels</span><br><span class="line">    baseEntropy = calcShannonEnt(dataSet)</span><br><span class="line">    bestInfoGain = 0.0; bestFeature = -1</span><br><span class="line">    for i in range(numFeatures):        #iterate over all the features</span><br><span class="line">        featList = [example[i] for example in dataSet]</span><br><span class="line">        #create a list of all the examples of this feature</span><br><span class="line">        uniqueVals = set(featList)       #get a set of unique values</span><br><span class="line">        newEntropy = 0.0</span><br><span class="line">        for value in uniqueVals:</span><br><span class="line">            subDataSet = splitDataSet(dataSet, i, value)</span><br><span class="line">            prob = len(subDataSet)/float(len(dataSet))</span><br><span class="line">            newEntropy += prob * calcShannonEnt(subDataSet)     </span><br><span class="line">        infoGain = baseEntropy - newEntropy     </span><br><span class="line">        #calculate the info gain; ie reduction in entropy</span><br><span class="line">        if (infoGain &gt; bestInfoGain):       #compare this to the best gain so far</span><br><span class="line">            bestInfoGain = infoGain         #if better than current best, set to best</span><br><span class="line">            bestFeature = i</span><br><span class="line">    return bestFeature                      #returns an integer</span><br></pre></td></tr></table></figure>
+
+<h2 id="朴素贝叶斯"><a href="#朴素贝叶斯" class="headerlink" title="朴素贝叶斯"></a>朴素贝叶斯</h2><h3 id="贝叶斯决策理论"><a href="#贝叶斯决策理论" class="headerlink" title="贝叶斯决策理论"></a>贝叶斯决策理论</h3><p>用p1(x,y)表示数据点(<em>x</em>,<em>y</em>)属于类别1的概率，用p2(x,y)表示数据点(<em>x</em>,<em>y</em>)属于类别2的概率，那么对于一个新数据点(<em>x</em>,<em>y</em>)，可以用下面的规则来判断它的类别：</p>
+<ul>
+<li><p>如果 p1(x,y) &gt; p2(x,y)，那么类别为1。 </p>
+</li>
+<li><p>如果 p2(x,y) &gt; p1(x,y)，那么类别为2。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">def trainNB0(trainMatrix, trainCategory):</span><br><span class="line">    numTrainDocs = len(trainMatrix)     # 取矩阵长度，文章长度</span><br><span class="line">    numWords = len(trainMatrix[0])      # 取矩阵一行长度</span><br><span class="line">    pAbusive = sum(trainCategory)/float(numTrainDocs)   # 特征向量1的和除以文章长度</span><br><span class="line">    p0Num = zeros(numWords); p1Num = zeros(numWords)      #变为全为零矩阵</span><br><span class="line">    p0Denom = 0.0; p1Denom = 0.0                        #change to 2.0</span><br><span class="line">    for i in range(numTrainDocs):</span><br><span class="line">        if trainCategory[i] == 1:</span><br><span class="line">            p1Num += trainMatrix[i]</span><br><span class="line">            p1Denom += sum(trainMatrix[i])</span><br><span class="line">        else:</span><br><span class="line">            p0Num += trainMatrix[i]</span><br><span class="line">            p0Denom += sum(trainMatrix[i])</span><br><span class="line">    p1Vect = (p1Num/p1Denom)          #change to log()</span><br><span class="line">    p0Vect = (p0Num/p0Denom)          #change to log()</span><br><span class="line">    return p0Vect,p1Vect,pAbusive</span><br></pre></td></tr></table></figure>
+
+<h2 id="逻辑回归梯度上升算法"><a href="#逻辑回归梯度上升算法" class="headerlink" title="逻辑回归梯度上升算法"></a>逻辑回归梯度上升算法</h2><h3 id="一-原理-2"><a href="#一-原理-2" class="headerlink" title="一.原理"></a>一.原理</h3><h5 id="梯度上升"><a href="#梯度上升" class="headerlink" title="梯度上升"></a>梯度上升</h5><p>Sigmoid函数的输入记为z，由下面公式得出：z=W0X0+W1X1+…WnXn</p>
+<p>如果采用向量的写法，上述公式可以写成z = wTx，它表示将这两个数值向量对应元素相乘然后全部加起来即得到<em>z</em>值。其中的向量<strong><em>x</em></strong>是分类器的输入数据，向量<strong><em>w</em></strong>也就是我们要找到的最佳参数。</p>
+<p>梯度上升公式：w=w+α∇wf(w)</p>
+<p>沿着移动方向进行的移动量：α；梯度算子∇：总是指向函数值增长最快的方向</p>
+<p>该公式将一直被迭代执行，直至达到某个停止条件为止，比如迭代次数达到某个指定值或算法达到某个可以允许的误差范围。</p>
+<h5 id="梯度下降"><a href="#梯度下降" class="headerlink" title="梯度下降"></a>梯度下降</h5><p><strong>梯度上升算法用来求函数的最大值，而梯度下降算法用来求函数的最小值</strong></p>
+<p>w=w-α∇wf(w)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">优点：计算代价不高，易于理解和实现。</span><br><span class="line">缺点：容易欠拟合，分类精度可能不高。</span><br><span class="line">适用数据类型：数值型和标称型数据。</span><br></pre></td></tr></table></figure>
+
+<h3 id="二-代码实现-2"><a href="#二-代码实现-2" class="headerlink" title="二.代码实现"></a>二.代码实现</h3><p>把测试集上每个特征向量乘以最优化方法得来的回归系数，再将该乘积结果求和，最后输入到Sigmoid函数中即可。如果对应的Sigmoid值大于0.5就预测类别标签为1，否则为0。</p>
+<h4 id="梯度上升-1"><a href="#梯度上升-1" class="headerlink" title="梯度上升"></a>梯度上升</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">def sigmoid(inX):</span><br><span class="line">    return 1.0/(1+exp(-inX))</span><br><span class="line"># 变量alpha是向目标移动的步长，maxCycles是迭代次数，变量h不是一个数而是一个列向量，列向量的元素个数等于样本个数</span><br><span class="line">def gradAscent(dataMatIn, classLabels):</span><br><span class="line">    dataMatrix = mat(dataMatIn)             #convert to NumPy matrix</span><br><span class="line">    labelMat = mat(classLabels).transpose() #convert to NumPy matrix</span><br><span class="line">    m,n = shape(dataMatrix)</span><br><span class="line">    alpha = 0.001</span><br><span class="line">    maxCycles = 500</span><br><span class="line">    weights = ones((n,1))</span><br><span class="line">    for k in range(maxCycles):              #heavy on matrix operations</span><br><span class="line">    	# 计算真实类别与预测类别的差值，接下来就是按照该差值的方向调整回归系数</span><br><span class="line">        h = sigmoid(dataMatrix*weights)     #matrix mult</span><br><span class="line">        error = (labelMat - h)              #vector subtraction</span><br><span class="line">        weights = weights + alpha * dataMatrix.transpose()* error #matrix mult</span><br><span class="line">    return weights</span><br></pre></td></tr></table></figure>
+
+<h4 id="随机梯度上升"><a href="#随机梯度上升" class="headerlink" title="随机梯度上升"></a>随机梯度上升</h4><p>一次仅用一个样本点来更新回归系数，随机梯度上升算法是一个在线学习算法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">def stocGradAscent1(dataMatrix, classLabels, numIter=150):</span><br><span class="line">    m,n = shape(dataMatrix)</span><br><span class="line">    weights = ones(n)   #initialize to all ones</span><br><span class="line">    for j in range(numIter):</span><br><span class="line">        dataIndex = range(m)</span><br><span class="line">        for i in range(m):</span><br><span class="line">            alpha = 4/(1.0+j+i)+0.0001    </span><br><span class="line">            #apha decreases with iteration, does not go to 0 because of the constant</span><br><span class="line">            randIndex = int(random.uniform(0,len(dataIndex)))</span><br><span class="line">            h = sigmoid(sum(dataMatrix[randIndex]*weights))</span><br><span class="line">            error = classLabels[randIndex] - h</span><br><span class="line">            weights = weights + alpha * error * dataMatrix[randIndex]</span><br><span class="line">            del(dataIndex[randIndex])</span><br><span class="line">    return weights</span><br></pre></td></tr></table></figure>
+
+<h2 id="SVM支持向量机"><a href="#SVM支持向量机" class="headerlink" title="SVM支持向量机"></a>SVM支持向量机</h2><h3 id="一-原理-3"><a href="#一-原理-3" class="headerlink" title="一.原理"></a>一.原理</h3><p>有些人认为，SVM是最好的现成的分类器，这里说的“现成”指的是分类器不加修改即可直接使用。同时，这就意味着在数据上应用基本形式的SVM分类器就可以得到低错误率的结果。SVM能够对训练集之外的数据点做出很好的分类决策。</p>
+<p>将数据集分隔开来的直线称为<strong>分隔超平面</strong>。</p>
+<p>数据点都在二维平面上，所以此时分隔超平面就只是一条直线。</p>
+<p>如果所给的数据集是三维的，那么此时用来分隔数据的就是一个平面。</p>
+<p>点到分隔面的距离被称为<strong>间隔</strong>。</p>
+<p>支持向量（support vector）就是离分隔超平面最近的那些点,要试着最大化支持向量到分隔面的距离，需要找到此问题的优化求解方法。</p>
+<p><strong>分类器原理</strong></p>
+<p>输入数据给分类器会输出一个类别标签，这相当于一个类似于Sigmoid 的函数在作用。</p>
+<p>使用类似海维赛德阶跃函数（即单位阶跃函数）的函数对<strong>w</strong>T<strong>x</strong>+b作用得到 f(<strong>w</strong>T<strong>x</strong>+b)，其中当u&lt;0时f(u)输出-1，反之则输出+1。</p>
+<p>当计算数据点到分隔面的距离并确定分隔面的放置位置时，间隔通过label * （<strong>w</strong>T<strong>x</strong>+b）来计算。</p>
+<p>如果数据点处于正方向（即+1类）并且离分隔超平面很远的位置时，<strong>w</strong>T<strong>x</strong>+b会是一个很大的正数，同时label<em>（*</em>w<strong>T</strong>x<strong>+b）也会是一个很大的正数。而如果数据点处于负方向（-1类）并且离分隔超平面很远的位置时，此时由于类别标签为-1，则label * (</strong>w<strong>T</strong>x**+b)仍然是一个很大的正数。</p>
+<p>必须找到具有最小间隔的数据点。</p>
+<img src="/.com//Users\hp\blog\source\_posts\post-name\公式.PNG" style="zoom:50%;">
+
+<p>引入拉格朗日乘子</p>
+<img src="/.com//Users\hp\blog\source\_posts\post-name\公式1.PNG" alt="公式1" style="zoom:50%;">
+
+<p>约束条件为</p>
+<img src="/.com//Users\hp\blog\source\_posts\post-name\公式2.PNG" alt="公式2" style="zoom:50%;">
+
+<p>引入所谓松弛变量（slack variable），来允许有些数据点可以处于分隔面的错误一侧。这里的常数C用于控制“最大化间隔”和“保证大部分点的函数间隔小于1.0”这两个目标的权重，一旦求出了所有的α，那么分隔超平面就可以通过这些α来表达。SVM中的主要工作就是求解这些α。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">优点：泛化错误率低，计算开销不大，结果易解释。</span><br><span class="line">缺点：对参数调节和核函数的选择敏感，原始分类器不加修改仅适用于处理二类问题。</span><br><span class="line">适用数据类型：数值型和标称型数据。</span><br></pre></td></tr></table></figure>
+
+<h4 id="SMO算法"><a href="#SMO算法" class="headerlink" title="SMO算法"></a>SMO算法</h4><p>SMO算法的工作原理是：每次循环中选择两个α进行优化处理。一旦找到一对合适的α，那么就增大其中一个同时减小另一个。</p>
+<p>这里所谓的“合适”就是指两个α必须要符合一定的条件：</p>
+<p>一：这两个α必须要在间隔边界之外；</p>
+<p>二：这两个α还没有进行过区间化处理或者不在边界上；</p>
+<h4 id="核函数"><a href="#核函数" class="headerlink" title="核函数"></a>核函数</h4><p>一个包装器或者是接口，它能把数据从某个很难处理的形式转换成为另一个较容易处理的形式。</p>
+<p>将内积替换成核函数的方式被称为<strong>核技巧</strong></p>
+<h1 id="回归-1"><a href="#回归-1" class="headerlink" title="回归"></a>回归</h1><p>回归的目的是预测数值型的目标值。最直接的办法是依据输入写出一个目标值的计算公式。这就是所谓的回归方程。如y=ax+b，a与b就是回归系数，求这些回归系数的过程就是回归。</p>
+<p>用回归系数乘以输入值，再将结果全部加在一起，就得到了预测值。</p>
+<h2 id="普通最小二乘法"><a href="#普通最小二乘法" class="headerlink" title="普通最小二乘法"></a>普通最小二乘法</h2><h3 id="一-原理-4"><a href="#一-原理-4" class="headerlink" title="一.原理"></a>一.原理</h3><p>回归系数存放在向量w中，预测结果通过Y=XTw给出。找到使误差最小的w，这里采用平方误差。</p>
+<img src="/.com//Users\hp\blog\source\_posts\post-name\公式3.PNG" alt="公式3" style="zoom:50%;">
+
+<img src="/.com//Users\hp\blog\source\_posts\post-name\公式4.PNG" alt="公式4" style="zoom:50%;">
+
+<h3 id="二-代码实现-3"><a href="#二-代码实现-3" class="headerlink" title="二.代码实现"></a>二.代码实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">def loadDataSet(fileName):      #general function to parse tab -delimited floats</span><br><span class="line">    numFeat = len(open(fileName).readline().split(&apos;\t&apos;)) - 1 #get number of fields </span><br><span class="line">    dataMat = []; labelMat = []</span><br><span class="line">    fr = open(fileName)</span><br><span class="line">    for line in fr.readlines():</span><br><span class="line">        lineArr =[]</span><br><span class="line">        curLine = line.strip().split(&apos;\t&apos;)</span><br><span class="line">        for i in range(numFeat):</span><br><span class="line">            lineArr.append(float(curLine[i]))</span><br><span class="line">        dataMat.append(lineArr)</span><br><span class="line">        labelMat.append(float(curLine[-1]))</span><br><span class="line">    return dataMat,labelMat</span><br><span class="line"></span><br><span class="line">def standRegres(xArr,yArr):</span><br><span class="line">    xMat = mat(xArr); yMat = mat(yArr).T</span><br><span class="line">    xTx = xMat.T*xMat</span><br><span class="line">    if linalg.det(xTx) == 0.0:</span><br><span class="line">        print &quot;This matrix is singular, cannot do inverse&quot;</span><br><span class="line">        return</span><br><span class="line">    ws = xTx.I * (xMat.T*yMat)</span><br><span class="line">    return ws</span><br><span class="line"># ws为求得的回归系数</span><br></pre></td></tr></table></figure>
+
+<p>给定输入矩阵<strong>X</strong>，如果<strong>X</strong>T<strong>X</strong>的逆存在并可以求得的话， 回归法都可以直接使用。</p>
+<h2 id="局部加权线性回归LWLR"><a href="#局部加权线性回归LWLR" class="headerlink" title="局部加权线性回归LWLR"></a>局部加权线性回归LWLR</h2><h3 id="一-原理-5"><a href="#一-原理-5" class="headerlink" title="一.原理"></a>一.原理</h3><p>在该算法中，我们给待预测点附近的每个点赋予一定的权重，LWLR使用“核”（与支持向量机中的核类似）来对附近的点赋予更高的权重。</p>
+<img src="/.com//Users\hp\blog\source\_posts\post-name\公式5.PNG" alt="公式5" style="zoom:50%;">
+
+<p>其中<strong>w</strong>是一个矩阵，用来给每个数据点赋予权重。</p>
+<p>核的类型可以自由选择，最常用的核就是高斯核：</p>
+<img src="/.com//Users\hp\blog\source\_posts\post-name\公式6.PNG" alt="公式6" style="zoom:50%;">
+
+<h3 id="二-代码"><a href="#二-代码" class="headerlink" title="二.代码"></a>二.代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">def lwlr(testPoint,xArr,yArr,k=1.0):</span><br><span class="line">    xMat = mat(xArr); yMat = mat(yArr).T</span><br><span class="line">    m = shape(xMat)[0]</span><br><span class="line">    weights = mat(eye((m)))</span><br><span class="line">    for j in range(m):                      #next 2 lines create weights matrix</span><br><span class="line">        diffMat = testPoint - xMat[j,:]     #</span><br><span class="line">        weights[j,j] = exp(diffMat*diffMat.T/(-2.0*k**2))</span><br><span class="line">    xTx = xMat.T * (weights * xMat)</span><br><span class="line">    if linalg.det(xTx) == 0.0:</span><br><span class="line">        print &quot;This matrix is singular, cannot do inverse&quot;</span><br><span class="line">        return</span><br><span class="line">    ws = xTx.I * (xMat.T * (weights * yMat))</span><br><span class="line">    return testPoint * ws</span><br><span class="line"></span><br><span class="line">def lwlrTest(testArr,xArr,yArr,k=1.0):  #loops over all the data points and applies lwlr to each one</span><br><span class="line">    m = shape(testArr)[0]</span><br><span class="line">    yHat = zeros(m)</span><br><span class="line">    for i in range(m):</span><br><span class="line">        yHat[i] = lwlr(testArr[i],xArr,yArr,k)</span><br><span class="line">    return yHat</span><br></pre></td></tr></table></figure>
+
+<h2 id="岭回归"><a href="#岭回归" class="headerlink" title="岭回归"></a>岭回归</h2><h3 id="一-原理-6"><a href="#一-原理-6" class="headerlink" title="一.原理"></a>一.原理</h3><p>当数据的样本数比特征数还少时候（m&lt;n），输入的数据X不是满秩矩阵，满秩矩阵求逆会出现问题。</p>
+<p>（即便当样本数比特征数多时，<strong>X</strong>T<strong>X</strong>的逆仍有可能无法直接计算，这是因为特征有可能高度相关。此时可使用岭回归）</p>
+<p>岭回归就是在矩阵<strong>X</strong>T<strong>X</strong>上加一个λ<strong>I</strong>从而使得矩阵非奇异(非奇异矩阵即可逆矩阵)，进而能对<strong>X</strong>T <strong>X</strong> + λ<strong>I</strong>求逆。这里通过引入λ来限制了所有w之和，通过引入该惩罚项，能够减少不重要的参数，这个技术在统计学中也叫做<strong>缩减</strong></p>
+<img src="/.com//Users\hp\blog\source\_posts\post-name\公式7.PNG" alt="公式7" style="zoom:50%;">
+
+<p>通过预测误差最小化得到λ：数据获取之后，首先抽一部分数据用于测试，剩余的作为训练集用于训练参数w。训练完毕后在测试集上测试预测性能。通过选取不同的λ来重复上述测试过程，最终得到一个使预测误差最小的λ。</p>
+<h3 id="二-代码-1"><a href="#二-代码-1" class="headerlink" title="二.代码"></a>二.代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">def ridgeRegres(xMat,yMat,lam=0.2):</span><br><span class="line">    xTx = xMat.T*xMat</span><br><span class="line">    denom = xTx + eye(shape(xMat)[1])*lam</span><br><span class="line">    if linalg.det(denom) == 0.0:</span><br><span class="line">        print &quot;This matrix is singular, cannot do inverse&quot;</span><br><span class="line">        return</span><br><span class="line">    ws = denom.I * (xMat.T*yMat)</span><br><span class="line">    return ws</span><br><span class="line">    </span><br><span class="line">def ridgeTest(xArr,yArr):</span><br><span class="line">    xMat = mat(xArr); yMat=mat(yArr).T</span><br><span class="line">    yMean = mean(yMat,0)</span><br><span class="line">    yMat = yMat - yMean     #to eliminate X0 take mean off of Y</span><br><span class="line">    #regularize X&apos;s</span><br><span class="line">    xMeans = mean(xMat,0)   #calc mean then subtract it off</span><br><span class="line">    xVar = var(xMat,0)      #calc variance of Xi then divide by it</span><br><span class="line">    xMat = (xMat - xMeans)/xVar</span><br><span class="line">    numTestPts = 30</span><br><span class="line">    wMat = zeros((numTestPts,shape(xMat)[1]))</span><br><span class="line">    for i in range(numTestPts):</span><br><span class="line">        ws = ridgeRegres(xMat,yMat,exp(i-10))</span><br><span class="line">        wMat[i,:]=ws.T</span><br><span class="line">    return wMat</span><br></pre></td></tr></table></figure>
+
+<h2 id="树回归"><a href="#树回归" class="headerlink" title="树回归"></a>树回归</h2><h3 id="一-原理-7"><a href="#一-原理-7" class="headerlink" title="一.原理"></a>一.原理</h3><p><strong>树构建的算法</strong>：ID3；二元切分法</p>
+<p><strong>ID3</strong>：每次选取当前最佳的特征来分割数据，并按照该特征的所有可能取值来切分。如果一个特征有4种取值，那么数据将被切成4份。一旦按某特征切分后，该特征在之后的算法执行过程中将不会再起作用。</p>
+<p><strong>优点</strong>：迅速。</p>
+<p><strong>缺点</strong>：不能直接处理连续型特征。只有事先将连续型特征转换成离散型，才能在ID3算法中使用。</p>
+<p><strong>二元切分</strong>：每次把数据集切成两份。如果数据的某特征值等于切分所要求的值，那么这些数据就进入树的左子树，反之则进入树的右子树。</p>
+<p><strong>优点</strong>：易于对树构建过程进行调整以处理连续型特征。</p>
+<h3 id="CART"><a href="#CART" class="headerlink" title="CART"></a>CART</h3><p>使用二元切分来处理连续型变量</p>
+<h3 id="二-CART算法"><a href="#二-CART算法" class="headerlink" title="二.CART算法"></a>二.CART算法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">def loadDataSet(fileName):      #general function to parse tab -delimited floats</span><br><span class="line">    dataMat = []                #assume last column is target value</span><br><span class="line">    fr = open(fileName)</span><br><span class="line">    for line in fr.readlines():</span><br><span class="line">        curLine = line.strip().split(&apos;\t&apos;)</span><br><span class="line">        fltLine = map(float,curLine) #map all elements to float()</span><br><span class="line">        dataMat.append(fltLine)</span><br><span class="line">    return dataMat</span><br><span class="line"></span><br><span class="line">def binSplitDataSet(dataSet, feature, value):</span><br><span class="line">    mat0 = dataSet[nonzero(dataSet[:,feature] &gt; value)[0],:][0]</span><br><span class="line">    mat1 = dataSet[nonzero(dataSet[:,feature] &lt;= value)[0],:][0]</span><br><span class="line">    return mat0,mat1</span><br><span class="line"></span><br><span class="line">def createTree(dataSet, leafType=regLeaf, errType=regErr, ops=(1,4)):</span><br><span class="line">	#assume dataSet is NumPy Mat so we can array filtering</span><br><span class="line">    feat, val = chooseBestSplit(dataSet, leafType, errType, ops)#choose the best split</span><br><span class="line">    if feat == None: return val #if the splitting hit a stop condition return val</span><br><span class="line">    retTree = &#123;&#125;</span><br><span class="line">    retTree[&apos;spInd&apos;] = feat</span><br><span class="line">    retTree[&apos;spVal&apos;] = val</span><br><span class="line">    lSet, rSet = binSplitDataSet(dataSet, feat, val)</span><br><span class="line">    retTree[&apos;left&apos;] = createTree(lSet, leafType, errType, ops)</span><br><span class="line">    retTree[&apos;right&apos;] = createTree(rSet, leafType, errType, ops)</span><br><span class="line">    return retTree  </span><br><span class="line"></span><br><span class="line">def binSplitDataSet(dataSet, feature, value):</span><br><span class="line">    mat0 = dataSet[nonzero(dataSet[:,feature] &gt; value)[0],:][0]</span><br><span class="line">    mat1 = dataSet[nonzero(dataSet[:,feature] &lt;= value)[0],:][0]</span><br><span class="line">    return mat0,mat1</span><br><span class="line">    </span><br><span class="line">def chooseBestSplit(dataSet, leafType=regLeaf, errType=regErr, ops=(1,4)):</span><br><span class="line">    tolS = ops[0]; tolN = ops[1]</span><br><span class="line">    #if all the target variables are the same value: quit and return value</span><br><span class="line">    if len(set(dataSet[:,-1].T.tolist()[0])) == 1: #exit cond 1</span><br><span class="line">        return None, leafType(dataSet)</span><br><span class="line">    m,n = shape(dataSet)</span><br><span class="line">    #the choice of the best feature is driven by Reduction in RSS error from mean</span><br><span class="line">    S = errType(dataSet)</span><br><span class="line">    bestS = inf; bestIndex = 0; bestValue = 0</span><br><span class="line">    for featIndex in range(n-1):</span><br><span class="line">        for splitVal in set(dataSet[:,featIndex]):</span><br><span class="line">            mat0, mat1 = binSplitDataSet(dataSet, featIndex, splitVal)</span><br><span class="line">            if (shape(mat0)[0] &lt; tolN) or (shape(mat1)[0] &lt; tolN): continue</span><br><span class="line">            newS = errType(mat0) + errType(mat1)</span><br><span class="line">            if newS &lt; bestS: </span><br><span class="line">                bestIndex = featIndex</span><br><span class="line">                bestValue = splitVal</span><br><span class="line">                bestS = newS</span><br><span class="line">    #if the decrease (S-bestS) is less than a threshold don&apos;t do the split</span><br><span class="line">    if (S - bestS) &lt; tolS: </span><br><span class="line">        return None, leafType(dataSet) #exit cond 2</span><br><span class="line">    mat0, mat1 = binSplitDataSet(dataSet, bestIndex, bestValue)</span><br><span class="line">    if (shape(mat0)[0] &lt; tolN) or (shape(mat1)[0] &lt; tolN):  #exit cond 3</span><br><span class="line">        return None, leafType(dataSet)</span><br><span class="line">    return bestIndex,bestValue#returns the best feature to split on</span><br><span class="line">                              #and the value used for that split</span><br></pre></td></tr></table></figure>
+
+<p>为成功构建以分段常数为叶节点的树，需要度量出数据的一致性。</p>
+<p>如何计算连续型数值的混乱度：首先计算所有数据的均值，然后计算每条数据的值到均值的差值。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/23/机器学习-有监督/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-LDA" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/20/LDA/">LDA主题模型</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/20/LDA/" class="archive-article-date">
+  	<time datetime="2019-07-20T11:52:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-LDA主题模型"><a href="#一-LDA主题模型" class="headerlink" title="一.LDA主题模型"></a>一.LDA主题模型</h3><p><strong>文档生成模型</strong>，包含词、主题和文档三层结构，根据给定的一篇文档，反推其主题分布</p>
+<p><strong>无监督的贝叶斯模型</strong>，可以用来识别大规模文档集（document collection）或语料库（corpus）中潜藏的主题信息</p>
+<p><strong>词袋模型</strong>，一篇文档是由一组词构成，词与词之间没有先后顺序的关系</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">公式：	P(w|d)=P(w|t)P(t|d)</span><br></pre></td></tr></table></figure>
+
+<p>d:  文档          t:  主题       w:  单词</p>
+<p>以Topic作为中间层，可以通过当前的θd和φt给出了文档d中出现单词w的概率。其中p(t|d)利⽤θd计算得到，p(w|t)利⽤φt计算得到。</p>
+<p>利用当前的θd和φt，我们可以为⼀个⽂档中的⼀个单词计算它对应任意⼀个Topic时的p(w|d)，然后根据这些结果来更新这个词应该对应的topic。然后，如果这个更新改变了这个单词所对应的Topic，就会反过来影响θd和φt</p>
+<h3 id="二-LDA学习过程"><a href="#二-LDA学习过程" class="headerlink" title="二.LDA学习过程"></a>二.LDA学习过程</h3><p>LDA算法开始时，先随机地给θd和φt赋值（对所有的d和t）。然后： </p>
+<p>1.针对⼀个特定的⽂档ds中的第i单词wi，如果令该单词对应的topic为tj，可以把 上述公式改写为：</p>
+<p><strong>P</strong>j<strong>(w</strong>i <strong>| d</strong>s<strong>)=P(w</strong>i <strong>| t</strong>j<strong>)*P(t</strong>j | <strong>d</strong> <strong>s</strong>)</p>
+<p>2.现在我们可以枚举T中的topic，得到所有的pj(wi | ds)。然后可以根据这些概率值结果为ds中的第i个单词wi选择⼀个topic。最简单的想法是取令pj(wi | ds)最⼤ 的tj（注意，这个式⼦⾥只有j是变量） </p>
+<p>3.然后，如果ds中的第i个单词wi在这里选择了⼀个与原先不同的topic（也就是说，这个时候i在遍历ds中所有的单词，而tj理当不变），就会对θd和φt有影响 了。它们的影响⼜会反过来影响对上⾯提到的p(w | d)的计算。对D中所有的d中 的所有w进行⼀次p(w | d)的计算并重新选择topic看作⼀次迭代。这样进行n次循 环迭代之后，就收敛到LDA所需要的结果了。</p>
+<h3 id="三-LDA的应用"><a href="#三-LDA的应用" class="headerlink" title="三.LDA的应用"></a>三.LDA的应用</h3><p>主题分类</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/20/LDA/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-HMM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
