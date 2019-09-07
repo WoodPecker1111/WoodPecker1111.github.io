@@ -152,6 +152,100 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-神经网络" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/24/神经网络/">神经网络</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/24/神经网络/" class="archive-article-date">
+  	<time datetime="2019-07-24T08:14:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前馈神经网络"><a href="#前馈神经网络" class="headerlink" title="前馈神经网络"></a>前馈神经网络</h3><p>以上⼀层的输出作为下⼀层的输⼊</p>
+<h3 id="递归神经网络"><a href="#递归神经网络" class="headerlink" title="递归神经网络"></a>递归神经网络</h3><p>有回路的——信息向前传播，并且反向回馈；</p>
+<p>这种模型的设计思想，是具有休眠前会在⼀段有限的时间内保持激活状态的神经元。这种激活状态可以刺激其它神经元，使其随后被激活并同样保持⼀段有限的时间。这样会导致更多的神经元被激活，随着时间的推移，我们得到⼀个级联的神经元激活系统。因为⼀个神经元的输出只在⼀段时间后⽽不是即刻影响它的输⼊，在这个模型中回路并不会引起问题</p>
+<h3 id="梯度下降"><a href="#梯度下降" class="headerlink" title="梯度下降"></a>梯度下降</h3><p><strong>代价函数</strong>：找到权重和偏置，使得代价函数接近于0，促进神经网络自身的学习</p>
+<p><strong>交叉熵</strong>：解决代价函数中，神经元犯错误学习速度缓慢问题</p>
+<h3 id="过拟合"><a href="#过拟合" class="headerlink" title="过拟合"></a>过拟合</h3><p>指为了得到一致假设而使假设变得过度严格。避免过拟合是分类器设计中的一个核心任务。通常采用增大数据量和测试样本集的方法对分类器性能进行评价</p>
+<h3 id="验证集：用来调节参数"><a href="#验证集：用来调节参数" class="headerlink" title="验证集：用来调节参数"></a>验证集：用来调节参数</h3><p>将验证集看成是⼀种特殊的训练数据集能够帮助我们学习好的超参数。这种寻找好的超参数的⽅法有时候被称为 hold out ⽅法，因为 validation_data 是从 traning_data 训练集中留出或者“拿出”的⼀部分。</p>
+<p><strong>为了测试机器学习算法的效果，通常使用两套独立的样本集：训练数据和测试数据。当机器学习程序开始运行时，使用训练样本集作为算法的输入，训练完成之后输入测试样本。输入测试 样本时并不提供测试样本的目标变量，由程序决定样本属于哪个类别。比较测试样本预测的目标变量值与实际样本类别之间的差别，就可以得出算法的实际精确度。</strong></p>
+<h3 id="训练集"><a href="#训练集" class="headerlink" title="训练集"></a>训练集</h3><p>通常为算法输入大量已分类数据作为算法的训练集</p>
+<p>训练集是用于训练机器学习算法的数据样本集合</p>
+<h3 id="留存交叉验证"><a href="#留存交叉验证" class="headerlink" title="留存交叉验证"></a>留存交叉验证</h3><p>随机选择数据的一部分作为训练集，而剩余部分作为测试集的过程</p>
+<h3 id="解决过拟合"><a href="#解决过拟合" class="headerlink" title="解决过拟合"></a>解决过拟合</h3><h5 id="1-增加训练集的数量"><a href="#1-增加训练集的数量" class="headerlink" title="1.增加训练集的数量"></a>1.增加训练集的数量</h5><h5 id="2-规范化"><a href="#2-规范化" class="headerlink" title="2.规范化"></a>2.规范化</h5><p>规范化的效果是让⽹络倾向于学习小⼀点的权重，其他的东西都⼀样的。</p>
+<p>规范化可以当做⼀种寻找小的权重和最小化原始的代价函数之间的折中</p>
+<h3 id="epoch"><a href="#epoch" class="headerlink" title="epoch"></a>epoch</h3><p>Epoch数是一个超参数，它定义了学习算法在整个训练数据集中的工作次数</p>
+<p>一个Epoch意味着训练数据集中的每个样本都有机会更新内部模型参数。Epoch由一个或多个Batch组成。</p>
+<h3 id="batch"><a href="#batch" class="headerlink" title="batch"></a>batch</h3><p>Batch大小是一个超参数，用于定义在更新内部模型参数之前要处理的样本数</p>
+<p>训练数据集可以分为一个或多个Batch</p>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><p>假设您有一个包含200个样本（数据行）的数据集，并且您选择的Batch大小为5和1,000个Epoch。</p>
+<p>这意味着数据集将分为40个Batch，每个Batch有5个样本。每批五个样品后，模型权重将更新。</p>
+<p>这也意味着一个epoch将涉及40个Batch或40个模型更新。</p>
+<p>有1000个Epoch，模型将暴露或传递整个数据集1,000次。在整个培训过程中，总共有40,000Batch。</p>
+<h4 id="预训练"><a href="#预训练" class="headerlink" title="预训练"></a><strong>预训练</strong></h4><p> 就是指预先训练的一个模型或者指预先训练模型的过程；</p>
+<p>你需要搭建一个网络模型来完成一个特定的图像分类的任务。首先，你需要随机初始化参数，然后开始训练网络，不断调整直到网络的损失越来越小。在训练的过程中，一开始初始化的参数会不断变化。当你觉得结果很满意的时候，你就可以将训练模型的参数保存下来，以便训练好的模型可以在下次执行类似任务时获得较好的结果。这个过程就是 pre-training</p>
+<h4 id="微调"><a href="#微调" class="headerlink" title="微调"></a><strong>微调</strong></h4><p>就是指将预训练过的模型作用于自己的数据集，并使参数适应自己数据集的过程</p>
+<p>我们知道，CNN 在图像识别这一领域取得了巨大的进步。如果想将 CNN 应用到我们自己的数据集上，这时通常就会面临一个问题：通常我们的 dataset 都不会特别大，一般不会超过 1 万张，甚至更少，每一类图片只有几十或者十几张。这时候，直接应用这些数据训练一个网络的想法就不可行了，因为深度学习成功的一个关键性因素就是大量带标签数据组成的训练集。如果只利用手头上这点数据，即使我们利用非常好的网络结构，也达不到很高的 performance。这时候，fine-tuning 的思想就可以很好解决我们的问题：我们通过对 ImageNet 上训练出来的模型（如CaffeNet,VGGNet,ResNet) 进行微调，然后应用到我们自己的数据集上。</p>
+<h4 id="表征学习"><a href="#表征学习" class="headerlink" title="表征学习"></a>表征学习</h4><p>用学到的知识至少完成一件事情</p>
+<p>学习的本质是“存储”和“提取”。“存储”是把知识组块存储进长时工作记忆系统的能力。“提取”是把知识组块从长时工作记忆系统中提取出来的能力。这两个能力越强，学习越高效。而“表征学习法”，就特别高效能地提升这两项能力</p>
+<p>.“表征”，是指实践之后的体会。你获得知识的时候，会有一个体会。把知识拿去实践之后，又会有另一番体会。而实践之后的体会，叫“表征”。</p>
+<p>最高效到最不高效：</p>
+<p>最高标准，就是这个知识讲什么，你就原原本本的在现实生活中不打折扣地做一遍(甚至好几遍)。</p>
+<p>次级标准，有些知识可能你不方便实践，因为没资源没能力等等。比如上面的“管理要抓大放小”，我一个学生管谁呢(其实也可以用来管自己)。在这种不方便实践的情况下，启动次级标准——举几个例子。能够成功举几个例子，这知识的原理你也算走通好几遍了。</p>
+<p>最低标准，有些知识太抽象了(其实是自己视野不够宽阔)，我连例子都不好找。比如“围绕某个核心领域来学习不会使我狭隘”，这怎么举例子，我及我身边的人都没有这种体验。在这种不好举例的情况下，启动最低标准——至少用作者原话理解一遍，再用自己的大白话复述一遍吧。这也算打通知识阻塞了。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/24/神经网络/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-机器学习-有监督" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -496,6 +590,91 @@
 
 
   
+    <article id="post-n-gram" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/19/n-gram/">N-gram语言模型</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/19/n-gram/" class="archive-article-date">
+  	<time datetime="2019-07-19T02:13:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="N-gram语言模型"><a href="#N-gram语言模型" class="headerlink" title="N-gram语言模型"></a>N-gram语言模型</h3><p>如果我们考虑一个词语对上一个词语的依赖关系，我们把它叫做二元语法（bigram，2-gram）:</p>
+<blockquote>
+<p>P(x1,x2,x3,x4,x5,x6,x7,x8,x9,x10)=P(x1)P(x2|x1)P(x3|x2)P(x4|x3)..P(x10|x9)=P(“我”)P(“司”|“我”)P(“可”|“司”)P(“办理”|“可”)…P(“优惠”|“点数”)</p>
+</blockquote>
+<p>如果把依赖词长度再拉长一点，考虑一个词对前两个词的依赖关系，就叫做三元语法（trigram，3-gram），公式如下:</p>
+<blockquote>
+<p>P(x1,x2,x3,x4,x5,x6,x7,x8,x9,x10)=P(x1)P(x2|x1)P(x3|x1,x2)P(x4|x2,x3)×…×P(x10|x8,x9) =P(“我”)P(“司”|“我”)P(“可”|“我”,“司”)P(“办理”|“司”,“可”)…P(“优惠”|“发票”,“点数”)</p>
+</blockquote>
+<p>如果我们再考虑长一点，考虑n个词语之间的关系，这就是n-gram</p>
+<p>以上几个简化后的公式，就是著名的<strong>马尔科夫假设（Markov Assumption）：下一个词的出现仅依赖于它前面的一个或几个词</strong></p>
+<h3 id="N-gram实际应用"><a href="#N-gram实际应用" class="headerlink" title="N-gram实际应用"></a>N-gram实际应用</h3><p>N-gram方法在实际应用中有一些tricks需要注意：</p>
+<p>句子开头的词，比如本例中的“我”，<strong>因为要考虑其本身作为开头的特征，可以考虑在其前面再添加一个句子起始符号如”《S》”，这样我们就不必单独计算P(“我”|Yi)，而是替换为计算P(“我”|”《S》”,Yi)。形式上与2-gram统一。</strong> 这样统计和预测起来都比较方便。</p>
+<p>一般地，<strong>如果采用N-gram模型，可以在文本开头加入n-1个虚拟的开始符号</strong>，这样在所有情况下预测下一个词的可依赖词数都是一致的。</p>
+<p>与朴素贝叶斯方法一样，<strong>N-gram模型也会发生零概率问题，也需要平滑技术。</strong></p>
+<h5 id="1-词性标注（利用前一个词，可用于一词多词性问题）"><a href="#1-词性标注（利用前一个词，可用于一词多词性问题）" class="headerlink" title="1.词性标注（利用前一个词，可用于一词多词性问题）"></a>1.词性标注（利用前一个词，可用于一词多词性问题）</h5><h5 id="2-垃圾邮件识别（考虑到了上文，效果更好）"><a href="#2-垃圾邮件识别（考虑到了上文，效果更好）" class="headerlink" title="2.垃圾邮件识别（考虑到了上文，效果更好）"></a>2.垃圾邮件识别（考虑到了上文，效果更好）</h5><h5 id="3-中文分词（在可能出现的结果中，根据概率择优选择更好的分词方案）"><a href="#3-中文分词（在可能出现的结果中，根据概率择优选择更好的分词方案）" class="headerlink" title="3.中文分词（在可能出现的结果中，根据概率择优选择更好的分词方案）"></a>3.中文分词（在可能出现的结果中，根据概率择优选择更好的分词方案）</h5><h5 id="4-机器翻译与语音识别（在可能出现的结果中，根据概率择优选择更好的翻译方案）"><a href="#4-机器翻译与语音识别（在可能出现的结果中，根据概率择优选择更好的翻译方案）" class="headerlink" title="4.机器翻译与语音识别（在可能出现的结果中，根据概率择优选择更好的翻译方案）"></a>4.机器翻译与语音识别（在可能出现的结果中，根据概率择优选择更好的翻译方案）</h5><h3 id="PS：平滑技术"><a href="#PS：平滑技术" class="headerlink" title="PS：平滑技术"></a>PS：平滑技术</h3><p>为了解决零概率问题，需要给 <strong>“未出现的n-gram条件概率分布一个非零估计值，相应的需要降低已出现n-gram条件概率分布，且经数据平滑后一定保证概率和为1”</strong>。</p>
+<ul>
+<li><p>拉普拉斯平滑</p>
+</li>
+<li><p>古德图灵平滑</p>
+</li>
+<li><p>组合估计平滑</p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/19/n-gram/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-结巴分词" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -585,91 +764,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/07/19/结巴分词/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-n-gram" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/19/n-gram/">N-gram语言模型</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/19/n-gram/" class="archive-article-date">
-  	<time datetime="2019-07-19T02:13:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="N-gram语言模型"><a href="#N-gram语言模型" class="headerlink" title="N-gram语言模型"></a>N-gram语言模型</h3><p>如果我们考虑一个词语对上一个词语的依赖关系，我们把它叫做二元语法（bigram，2-gram）:</p>
-<blockquote>
-<p>P(x1,x2,x3,x4,x5,x6,x7,x8,x9,x10)=P(x1)P(x2|x1)P(x3|x2)P(x4|x3)..P(x10|x9)=P(“我”)P(“司”|“我”)P(“可”|“司”)P(“办理”|“可”)…P(“优惠”|“点数”)</p>
-</blockquote>
-<p>如果把依赖词长度再拉长一点，考虑一个词对前两个词的依赖关系，就叫做三元语法（trigram，3-gram），公式如下:</p>
-<blockquote>
-<p>P(x1,x2,x3,x4,x5,x6,x7,x8,x9,x10)=P(x1)P(x2|x1)P(x3|x1,x2)P(x4|x2,x3)×…×P(x10|x8,x9) =P(“我”)P(“司”|“我”)P(“可”|“我”,“司”)P(“办理”|“司”,“可”)…P(“优惠”|“发票”,“点数”)</p>
-</blockquote>
-<p>如果我们再考虑长一点，考虑n个词语之间的关系，这就是n-gram</p>
-<p>以上几个简化后的公式，就是著名的<strong>马尔科夫假设（Markov Assumption）：下一个词的出现仅依赖于它前面的一个或几个词</strong></p>
-<h3 id="N-gram实际应用"><a href="#N-gram实际应用" class="headerlink" title="N-gram实际应用"></a>N-gram实际应用</h3><p>N-gram方法在实际应用中有一些tricks需要注意：</p>
-<p>句子开头的词，比如本例中的“我”，<strong>因为要考虑其本身作为开头的特征，可以考虑在其前面再添加一个句子起始符号如”《S》”，这样我们就不必单独计算P(“我”|Yi)，而是替换为计算P(“我”|”《S》”,Yi)。形式上与2-gram统一。</strong> 这样统计和预测起来都比较方便。</p>
-<p>一般地，<strong>如果采用N-gram模型，可以在文本开头加入n-1个虚拟的开始符号</strong>，这样在所有情况下预测下一个词的可依赖词数都是一致的。</p>
-<p>与朴素贝叶斯方法一样，<strong>N-gram模型也会发生零概率问题，也需要平滑技术。</strong></p>
-<h5 id="1-词性标注（利用前一个词，可用于一词多词性问题）"><a href="#1-词性标注（利用前一个词，可用于一词多词性问题）" class="headerlink" title="1.词性标注（利用前一个词，可用于一词多词性问题）"></a>1.词性标注（利用前一个词，可用于一词多词性问题）</h5><h5 id="2-垃圾邮件识别（考虑到了上文，效果更好）"><a href="#2-垃圾邮件识别（考虑到了上文，效果更好）" class="headerlink" title="2.垃圾邮件识别（考虑到了上文，效果更好）"></a>2.垃圾邮件识别（考虑到了上文，效果更好）</h5><h5 id="3-中文分词（在可能出现的结果中，根据概率择优选择更好的分词方案）"><a href="#3-中文分词（在可能出现的结果中，根据概率择优选择更好的分词方案）" class="headerlink" title="3.中文分词（在可能出现的结果中，根据概率择优选择更好的分词方案）"></a>3.中文分词（在可能出现的结果中，根据概率择优选择更好的分词方案）</h5><h5 id="4-机器翻译与语音识别（在可能出现的结果中，根据概率择优选择更好的翻译方案）"><a href="#4-机器翻译与语音识别（在可能出现的结果中，根据概率择优选择更好的翻译方案）" class="headerlink" title="4.机器翻译与语音识别（在可能出现的结果中，根据概率择优选择更好的翻译方案）"></a>4.机器翻译与语音识别（在可能出现的结果中，根据概率择优选择更好的翻译方案）</h5><h3 id="PS：平滑技术"><a href="#PS：平滑技术" class="headerlink" title="PS：平滑技术"></a>PS：平滑技术</h3><p>为了解决零概率问题，需要给 <strong>“未出现的n-gram条件概率分布一个非零估计值，相应的需要降低已出现n-gram条件概率分布，且经数据平滑后一定保证概率和为1”</strong>。</p>
-<ul>
-<li><p>拉普拉斯平滑</p>
-</li>
-<li><p>古德图灵平滑</p>
-</li>
-<li><p>组合估计平滑</p>
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/19/n-gram/">展开全文 >></a>
         </p>
       
 

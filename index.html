@@ -152,6 +152,77 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-预训练技术之感" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/07/预训练技术之感/">预训练总结</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/07/预训练技术之感/" class="archive-article-date">
+  	<time datetime="2019-09-07T12:47:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>Word2vec</strong>不能解决一词多义问题</p>
+<p><strong>ELMO</strong>通过加两层LSTM，添加了上下文信息，在Embedding基础上根据语义调整，得到含有上下文语义的词向量</p>
+<p><strong>GPT</strong>在把LSTM换成了Transformer（特征提取效果比LSTM要好）,但是采取的是单向语言模型（ELMO是双向），只融合了上文，抛开了下文</p>
+<p><strong>BERT</strong>特征抽取器Transformer和预训练采用双向语言模型（这里并没有用Transformer）、<br>双向语言模型<br>单词预测粒度的训练：采用“完形填空”的模式masked：随机选择语料中15%的单词，把它抠掉（%15中有80%是mask标记，还有10%被替换成另一个单词，10%这个单词待在原地不动）<br>句子关系预测：分两种情况选择两个句子，一种是选择语料中真正顺序相连的两个句子；另外一种是第二个句子从语料库中抛色子，随机选择一个拼到第一个句子后面。</p>
+<p>它的输入部分是个线性序列，两个句子通过分隔符分割，最前面和最后增加两个标识符号。每个单词有三个embedding:位置信息embedding，这是因为NLP中单词顺序是很重要的特征，需要在这里对位置信息进行编码；单词embedding,这个就是我们之前一直提到的单词embedding；第三个是句子embedding，因为前面提到训练数据都是由两个句子构成的，那么每个句子有个句子整体的embedding项对应给每个单词。把单词对应的三个embedding叠加，就形成了Bert的输入</p>
+<p><strong>Bert的创新</strong></p>
+<p>首先是两阶段模型，第一阶段双向语言模型预训练，这里注意要用双向而不是单向，第二阶段采用具体任务Fine-tuning或者做特征集成；<br>第二是特征抽取要用Transformer作为特征提取器而不是RNN或者CNN；<br>第三，双向语言模型可以采取CBOW的方法去做</p>
+<p><strong>研究点</strong></p>
+<p>另外，我们应该弄清楚预训练这个过程本质上是在做什么事情，本质上预训练是通过设计好一个网络结构来做语言模型任务，然后把大量甚至是无穷尽的无标注的自然语言文本利用起来，预训练任务把大量语言学知识抽取出来编码到网络结构中，当手头任务带有标注信息的数据有限时，这些先验的语言学特征当然会对手头任务有极大的特征补充作用，因为当数据有限的时候，很多语言学现象是覆盖不到的，泛化能力就弱，集成尽量通用的语言学知识自然会加强模型的泛化能力。如何引入先验的语言学知识其实一直是NLP尤其是深度学习场景下的NLP的主要目标之一，不过一直没有太好的解决办法，而ELMO/GPT/Bert的这种两阶段模式看起来无疑是解决这个问题自然又简洁的方法，这也是这些方法的主要价值所在。<br>对于当前NLP的发展方向，我个人觉得有两点非常重要，一个是需要更强的特征抽取器，目前看Transformer会逐渐担当大任，但是肯定还是不够强的，需要发展更强的特征抽取器；第二个就是如何优雅地引入大量无监督数据中包含的语言学知识，注意我这里强调地是优雅，而不是引入，此前相当多的工作试图做各种语言学知识的嫁接或者引入，但是很多方法看着让人牙疼，就是我说的不优雅。目前看预训练这种两阶段方法还是很有效的，也非常简洁，当然后面肯定还会有更好的模型出现。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/07/预训练技术之感/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-MapReduce" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -809,100 +880,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/08/15/模型/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-神经网络" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/24/神经网络/">神经网络</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/24/神经网络/" class="archive-article-date">
-  	<time datetime="2019-07-24T08:14:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前馈神经网络"><a href="#前馈神经网络" class="headerlink" title="前馈神经网络"></a>前馈神经网络</h3><p>以上⼀层的输出作为下⼀层的输⼊</p>
-<h3 id="递归神经网络"><a href="#递归神经网络" class="headerlink" title="递归神经网络"></a>递归神经网络</h3><p>有回路的——信息向前传播，并且反向回馈；</p>
-<p>这种模型的设计思想，是具有休眠前会在⼀段有限的时间内保持激活状态的神经元。这种激活状态可以刺激其它神经元，使其随后被激活并同样保持⼀段有限的时间。这样会导致更多的神经元被激活，随着时间的推移，我们得到⼀个级联的神经元激活系统。因为⼀个神经元的输出只在⼀段时间后⽽不是即刻影响它的输⼊，在这个模型中回路并不会引起问题</p>
-<h3 id="梯度下降"><a href="#梯度下降" class="headerlink" title="梯度下降"></a>梯度下降</h3><p><strong>代价函数</strong>：找到权重和偏置，使得代价函数接近于0，促进神经网络自身的学习</p>
-<p><strong>交叉熵</strong>：解决代价函数中，神经元犯错误学习速度缓慢问题</p>
-<h3 id="过拟合"><a href="#过拟合" class="headerlink" title="过拟合"></a>过拟合</h3><p>指为了得到一致假设而使假设变得过度严格。避免过拟合是分类器设计中的一个核心任务。通常采用增大数据量和测试样本集的方法对分类器性能进行评价</p>
-<h3 id="验证集：用来调节参数"><a href="#验证集：用来调节参数" class="headerlink" title="验证集：用来调节参数"></a>验证集：用来调节参数</h3><p>将验证集看成是⼀种特殊的训练数据集能够帮助我们学习好的超参数。这种寻找好的超参数的⽅法有时候被称为 hold out ⽅法，因为 validation_data 是从 traning_data 训练集中留出或者“拿出”的⼀部分。</p>
-<p><strong>为了测试机器学习算法的效果，通常使用两套独立的样本集：训练数据和测试数据。当机器学习程序开始运行时，使用训练样本集作为算法的输入，训练完成之后输入测试样本。输入测试 样本时并不提供测试样本的目标变量，由程序决定样本属于哪个类别。比较测试样本预测的目标变量值与实际样本类别之间的差别，就可以得出算法的实际精确度。</strong></p>
-<h3 id="训练集"><a href="#训练集" class="headerlink" title="训练集"></a>训练集</h3><p>通常为算法输入大量已分类数据作为算法的训练集</p>
-<p>训练集是用于训练机器学习算法的数据样本集合</p>
-<h3 id="留存交叉验证"><a href="#留存交叉验证" class="headerlink" title="留存交叉验证"></a>留存交叉验证</h3><p>随机选择数据的一部分作为训练集，而剩余部分作为测试集的过程</p>
-<h3 id="解决过拟合"><a href="#解决过拟合" class="headerlink" title="解决过拟合"></a>解决过拟合</h3><h5 id="1-增加训练集的数量"><a href="#1-增加训练集的数量" class="headerlink" title="1.增加训练集的数量"></a>1.增加训练集的数量</h5><h5 id="2-规范化"><a href="#2-规范化" class="headerlink" title="2.规范化"></a>2.规范化</h5><p>规范化的效果是让⽹络倾向于学习小⼀点的权重，其他的东西都⼀样的。</p>
-<p>规范化可以当做⼀种寻找小的权重和最小化原始的代价函数之间的折中</p>
-<h3 id="epoch"><a href="#epoch" class="headerlink" title="epoch"></a>epoch</h3><p>Epoch数是一个超参数，它定义了学习算法在整个训练数据集中的工作次数</p>
-<p>一个Epoch意味着训练数据集中的每个样本都有机会更新内部模型参数。Epoch由一个或多个Batch组成。</p>
-<h3 id="batch"><a href="#batch" class="headerlink" title="batch"></a>batch</h3><p>Batch大小是一个超参数，用于定义在更新内部模型参数之前要处理的样本数</p>
-<p>训练数据集可以分为一个或多个Batch</p>
-<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><p>假设您有一个包含200个样本（数据行）的数据集，并且您选择的Batch大小为5和1,000个Epoch。</p>
-<p>这意味着数据集将分为40个Batch，每个Batch有5个样本。每批五个样品后，模型权重将更新。</p>
-<p>这也意味着一个epoch将涉及40个Batch或40个模型更新。</p>
-<p>有1000个Epoch，模型将暴露或传递整个数据集1,000次。在整个培训过程中，总共有40,000Batch。</p>
-<h4 id="预训练"><a href="#预训练" class="headerlink" title="预训练"></a><strong>预训练</strong></h4><p> 就是指预先训练的一个模型或者指预先训练模型的过程；</p>
-<p>你需要搭建一个网络模型来完成一个特定的图像分类的任务。首先，你需要随机初始化参数，然后开始训练网络，不断调整直到网络的损失越来越小。在训练的过程中，一开始初始化的参数会不断变化。当你觉得结果很满意的时候，你就可以将训练模型的参数保存下来，以便训练好的模型可以在下次执行类似任务时获得较好的结果。这个过程就是 pre-training</p>
-<h4 id="微调"><a href="#微调" class="headerlink" title="微调"></a><strong>微调</strong></h4><p>就是指将预训练过的模型作用于自己的数据集，并使参数适应自己数据集的过程</p>
-<p>我们知道，CNN 在图像识别这一领域取得了巨大的进步。如果想将 CNN 应用到我们自己的数据集上，这时通常就会面临一个问题：通常我们的 dataset 都不会特别大，一般不会超过 1 万张，甚至更少，每一类图片只有几十或者十几张。这时候，直接应用这些数据训练一个网络的想法就不可行了，因为深度学习成功的一个关键性因素就是大量带标签数据组成的训练集。如果只利用手头上这点数据，即使我们利用非常好的网络结构，也达不到很高的 performance。这时候，fine-tuning 的思想就可以很好解决我们的问题：我们通过对 ImageNet 上训练出来的模型（如CaffeNet,VGGNet,ResNet) 进行微调，然后应用到我们自己的数据集上。</p>
-<h4 id="表征学习"><a href="#表征学习" class="headerlink" title="表征学习"></a>表征学习</h4><p>用学到的知识至少完成一件事情</p>
-<p>学习的本质是“存储”和“提取”。“存储”是把知识组块存储进长时工作记忆系统的能力。“提取”是把知识组块从长时工作记忆系统中提取出来的能力。这两个能力越强，学习越高效。而“表征学习法”，就特别高效能地提升这两项能力</p>
-<p>.“表征”，是指实践之后的体会。你获得知识的时候，会有一个体会。把知识拿去实践之后，又会有另一番体会。而实践之后的体会，叫“表征”。</p>
-<p>最高效到最不高效：</p>
-<p>最高标准，就是这个知识讲什么，你就原原本本的在现实生活中不打折扣地做一遍(甚至好几遍)。</p>
-<p>次级标准，有些知识可能你不方便实践，因为没资源没能力等等。比如上面的“管理要抓大放小”，我一个学生管谁呢(其实也可以用来管自己)。在这种不方便实践的情况下，启动次级标准——举几个例子。能够成功举几个例子，这知识的原理你也算走通好几遍了。</p>
-<p>最低标准，有些知识太抽象了(其实是自己视野不够宽阔)，我连例子都不好找。比如“围绕某个核心领域来学习不会使我狭隘”，这怎么举例子，我及我身边的人都没有这种体验。在这种不好举例的情况下，启动最低标准——至少用作者原话理解一遍，再用自己的大白话复述一遍吧。这也算打通知识阻塞了。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/24/神经网络/">展开全文 >></a>
         </p>
       
 
