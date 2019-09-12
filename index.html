@@ -152,6 +152,56 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-MapReduce - 副本" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="自然语言处理任务的特点："><a href="#自然语言处理任务的特点：" class="headerlink" title="自然语言处理任务的特点："></a>自然语言处理任务的特点：</h5><p>输入是一个一维线性序列</p>
+<p>输入不定长，有长有短</p>
+<p>单词或者句子的相对位置关系很重要</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/10/MapReduce - 副本/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-预训练技术之感" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -803,83 +853,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/08/16/TensorFlow/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-模型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/15/模型/">模型</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/15/模型/" class="archive-article-date">
-  	<time datetime="2019-08-15T07:37:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h3><p><strong>组成</strong>：输入门，遗忘门，输出门</p>
-<p>概念链接：<a href="https://blog.csdn.net/zhangbaoanhadoop/article/details/81952284" target="_blank" rel="noopener">https://blog.csdn.net/zhangbaoanhadoop/article/details/81952284</a></p>
-<h3 id="seq2seq"><a href="#seq2seq" class="headerlink" title="seq2seq"></a>seq2seq</h3><p><strong>用途</strong>：模型用于聊天机器人、语音识别、对话系统、问答系统、图像标注</p>
-<p>seq2seq的关键就是序列保持输入的顺序</p>
-<p><strong>组成</strong>：由两个独立的RNN构成，即<strong>编码器和解码器</strong></p>
-<p>​      编码器：将多个时间步长的信息输入到网络中，并将输入序列编码为上下文向量</p>
-<p>​      解码器：获取隐藏状态并将其解码为所需的输出序列</p>
-<p><strong>关键任务</strong>：将序列转换成固定大小的特征向量，并只对序列中重要的信息进行编码，丢掉没有用的信息</p>
-<h4 id="双向编码器"><a href="#双向编码器" class="headerlink" title="双向编码器"></a>双向编码器</h4><p><strong>组成</strong>：两组LSTM</p>
-<p>一组LSTM：覆盖向前方向的文本</p>
-<p>一组LSTM：覆盖向后方向到来的文本</p>
-<h4 id="叠加双向编码器"><a href="#叠加双向编码器" class="headerlink" title="叠加双向编码器"></a>叠加双向编码器</h4><p><strong>组成</strong>：两个双向LSTM，即四层</p>
-<p>这些LSTM层的每一层内部都有权重，它们各自学习，同时也影响前面层的权重值</p>
-<h4 id="解码器"><a href="#解码器" class="headerlink" title="解码器"></a>解码器</h4><p><strong>组成</strong>：每个时间步长都带有一个softmax的稠密层</p>
-<p>如果要开始预测，就需要传递一个<go>令牌来启动预测过程，将<go>作为第一个单元的输入，现在解码器从上下文中向量中得到信息，对应答的第一个单词进行预测，然后我们从模型中取出预测出来的第一个单词，并将其作为输入提供给下一个时间步长，进而预测第二个单词，以此类推，就可以得到完整的应答文本。</go></go></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/15/模型/">展开全文 >></a>
         </p>
       
 

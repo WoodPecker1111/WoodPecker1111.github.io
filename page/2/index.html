@@ -152,6 +152,83 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-模型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/15/模型/">模型</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/15/模型/" class="archive-article-date">
+  	<time datetime="2019-08-15T07:37:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h3><p><strong>组成</strong>：输入门，遗忘门，输出门</p>
+<p>概念链接：<a href="https://blog.csdn.net/zhangbaoanhadoop/article/details/81952284" target="_blank" rel="noopener">https://blog.csdn.net/zhangbaoanhadoop/article/details/81952284</a></p>
+<h3 id="seq2seq"><a href="#seq2seq" class="headerlink" title="seq2seq"></a>seq2seq</h3><p><strong>用途</strong>：模型用于聊天机器人、语音识别、对话系统、问答系统、图像标注</p>
+<p>seq2seq的关键就是序列保持输入的顺序</p>
+<p><strong>组成</strong>：由两个独立的RNN构成，即<strong>编码器和解码器</strong></p>
+<p>​      编码器：将多个时间步长的信息输入到网络中，并将输入序列编码为上下文向量</p>
+<p>​      解码器：获取隐藏状态并将其解码为所需的输出序列</p>
+<p><strong>关键任务</strong>：将序列转换成固定大小的特征向量，并只对序列中重要的信息进行编码，丢掉没有用的信息</p>
+<h4 id="双向编码器"><a href="#双向编码器" class="headerlink" title="双向编码器"></a>双向编码器</h4><p><strong>组成</strong>：两组LSTM</p>
+<p>一组LSTM：覆盖向前方向的文本</p>
+<p>一组LSTM：覆盖向后方向到来的文本</p>
+<h4 id="叠加双向编码器"><a href="#叠加双向编码器" class="headerlink" title="叠加双向编码器"></a>叠加双向编码器</h4><p><strong>组成</strong>：两个双向LSTM，即四层</p>
+<p>这些LSTM层的每一层内部都有权重，它们各自学习，同时也影响前面层的权重值</p>
+<h4 id="解码器"><a href="#解码器" class="headerlink" title="解码器"></a>解码器</h4><p><strong>组成</strong>：每个时间步长都带有一个softmax的稠密层</p>
+<p>如果要开始预测，就需要传递一个<go>令牌来启动预测过程，将<go>作为第一个单元的输入，现在解码器从上下文中向量中得到信息，对应答的第一个单词进行预测，然后我们从模型中取出预测出来的第一个单词，并将其作为输入提供给下一个时间步长，进而预测第二个单词，以此类推，就可以得到完整的应答文本。</go></go></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/15/模型/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-神经网络" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -590,91 +667,6 @@
 
 
   
-    <article id="post-n-gram" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/19/n-gram/">N-gram语言模型</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/19/n-gram/" class="archive-article-date">
-  	<time datetime="2019-07-19T02:13:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="N-gram语言模型"><a href="#N-gram语言模型" class="headerlink" title="N-gram语言模型"></a>N-gram语言模型</h3><p>如果我们考虑一个词语对上一个词语的依赖关系，我们把它叫做二元语法（bigram，2-gram）:</p>
-<blockquote>
-<p>P(x1,x2,x3,x4,x5,x6,x7,x8,x9,x10)=P(x1)P(x2|x1)P(x3|x2)P(x4|x3)..P(x10|x9)=P(“我”)P(“司”|“我”)P(“可”|“司”)P(“办理”|“可”)…P(“优惠”|“点数”)</p>
-</blockquote>
-<p>如果把依赖词长度再拉长一点，考虑一个词对前两个词的依赖关系，就叫做三元语法（trigram，3-gram），公式如下:</p>
-<blockquote>
-<p>P(x1,x2,x3,x4,x5,x6,x7,x8,x9,x10)=P(x1)P(x2|x1)P(x3|x1,x2)P(x4|x2,x3)×…×P(x10|x8,x9) =P(“我”)P(“司”|“我”)P(“可”|“我”,“司”)P(“办理”|“司”,“可”)…P(“优惠”|“发票”,“点数”)</p>
-</blockquote>
-<p>如果我们再考虑长一点，考虑n个词语之间的关系，这就是n-gram</p>
-<p>以上几个简化后的公式，就是著名的<strong>马尔科夫假设（Markov Assumption）：下一个词的出现仅依赖于它前面的一个或几个词</strong></p>
-<h3 id="N-gram实际应用"><a href="#N-gram实际应用" class="headerlink" title="N-gram实际应用"></a>N-gram实际应用</h3><p>N-gram方法在实际应用中有一些tricks需要注意：</p>
-<p>句子开头的词，比如本例中的“我”，<strong>因为要考虑其本身作为开头的特征，可以考虑在其前面再添加一个句子起始符号如”《S》”，这样我们就不必单独计算P(“我”|Yi)，而是替换为计算P(“我”|”《S》”,Yi)。形式上与2-gram统一。</strong> 这样统计和预测起来都比较方便。</p>
-<p>一般地，<strong>如果采用N-gram模型，可以在文本开头加入n-1个虚拟的开始符号</strong>，这样在所有情况下预测下一个词的可依赖词数都是一致的。</p>
-<p>与朴素贝叶斯方法一样，<strong>N-gram模型也会发生零概率问题，也需要平滑技术。</strong></p>
-<h5 id="1-词性标注（利用前一个词，可用于一词多词性问题）"><a href="#1-词性标注（利用前一个词，可用于一词多词性问题）" class="headerlink" title="1.词性标注（利用前一个词，可用于一词多词性问题）"></a>1.词性标注（利用前一个词，可用于一词多词性问题）</h5><h5 id="2-垃圾邮件识别（考虑到了上文，效果更好）"><a href="#2-垃圾邮件识别（考虑到了上文，效果更好）" class="headerlink" title="2.垃圾邮件识别（考虑到了上文，效果更好）"></a>2.垃圾邮件识别（考虑到了上文，效果更好）</h5><h5 id="3-中文分词（在可能出现的结果中，根据概率择优选择更好的分词方案）"><a href="#3-中文分词（在可能出现的结果中，根据概率择优选择更好的分词方案）" class="headerlink" title="3.中文分词（在可能出现的结果中，根据概率择优选择更好的分词方案）"></a>3.中文分词（在可能出现的结果中，根据概率择优选择更好的分词方案）</h5><h5 id="4-机器翻译与语音识别（在可能出现的结果中，根据概率择优选择更好的翻译方案）"><a href="#4-机器翻译与语音识别（在可能出现的结果中，根据概率择优选择更好的翻译方案）" class="headerlink" title="4.机器翻译与语音识别（在可能出现的结果中，根据概率择优选择更好的翻译方案）"></a>4.机器翻译与语音识别（在可能出现的结果中，根据概率择优选择更好的翻译方案）</h5><h3 id="PS：平滑技术"><a href="#PS：平滑技术" class="headerlink" title="PS：平滑技术"></a>PS：平滑技术</h3><p>为了解决零概率问题，需要给 <strong>“未出现的n-gram条件概率分布一个非零估计值，相应的需要降低已出现n-gram条件概率分布，且经数据平滑后一定保证概率和为1”</strong>。</p>
-<ul>
-<li><p>拉普拉斯平滑</p>
-</li>
-<li><p>古德图灵平滑</p>
-</li>
-<li><p>组合估计平滑</p>
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/19/n-gram/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-结巴分词" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -764,6 +756,91 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/07/19/结巴分词/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-n-gram" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/19/n-gram/">N-gram语言模型</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/19/n-gram/" class="archive-article-date">
+  	<time datetime="2019-07-19T02:13:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="N-gram语言模型"><a href="#N-gram语言模型" class="headerlink" title="N-gram语言模型"></a>N-gram语言模型</h3><p>如果我们考虑一个词语对上一个词语的依赖关系，我们把它叫做二元语法（bigram，2-gram）:</p>
+<blockquote>
+<p>P(x1,x2,x3,x4,x5,x6,x7,x8,x9,x10)=P(x1)P(x2|x1)P(x3|x2)P(x4|x3)..P(x10|x9)=P(“我”)P(“司”|“我”)P(“可”|“司”)P(“办理”|“可”)…P(“优惠”|“点数”)</p>
+</blockquote>
+<p>如果把依赖词长度再拉长一点，考虑一个词对前两个词的依赖关系，就叫做三元语法（trigram，3-gram），公式如下:</p>
+<blockquote>
+<p>P(x1,x2,x3,x4,x5,x6,x7,x8,x9,x10)=P(x1)P(x2|x1)P(x3|x1,x2)P(x4|x2,x3)×…×P(x10|x8,x9) =P(“我”)P(“司”|“我”)P(“可”|“我”,“司”)P(“办理”|“司”,“可”)…P(“优惠”|“发票”,“点数”)</p>
+</blockquote>
+<p>如果我们再考虑长一点，考虑n个词语之间的关系，这就是n-gram</p>
+<p>以上几个简化后的公式，就是著名的<strong>马尔科夫假设（Markov Assumption）：下一个词的出现仅依赖于它前面的一个或几个词</strong></p>
+<h3 id="N-gram实际应用"><a href="#N-gram实际应用" class="headerlink" title="N-gram实际应用"></a>N-gram实际应用</h3><p>N-gram方法在实际应用中有一些tricks需要注意：</p>
+<p>句子开头的词，比如本例中的“我”，<strong>因为要考虑其本身作为开头的特征，可以考虑在其前面再添加一个句子起始符号如”《S》”，这样我们就不必单独计算P(“我”|Yi)，而是替换为计算P(“我”|”《S》”,Yi)。形式上与2-gram统一。</strong> 这样统计和预测起来都比较方便。</p>
+<p>一般地，<strong>如果采用N-gram模型，可以在文本开头加入n-1个虚拟的开始符号</strong>，这样在所有情况下预测下一个词的可依赖词数都是一致的。</p>
+<p>与朴素贝叶斯方法一样，<strong>N-gram模型也会发生零概率问题，也需要平滑技术。</strong></p>
+<h5 id="1-词性标注（利用前一个词，可用于一词多词性问题）"><a href="#1-词性标注（利用前一个词，可用于一词多词性问题）" class="headerlink" title="1.词性标注（利用前一个词，可用于一词多词性问题）"></a>1.词性标注（利用前一个词，可用于一词多词性问题）</h5><h5 id="2-垃圾邮件识别（考虑到了上文，效果更好）"><a href="#2-垃圾邮件识别（考虑到了上文，效果更好）" class="headerlink" title="2.垃圾邮件识别（考虑到了上文，效果更好）"></a>2.垃圾邮件识别（考虑到了上文，效果更好）</h5><h5 id="3-中文分词（在可能出现的结果中，根据概率择优选择更好的分词方案）"><a href="#3-中文分词（在可能出现的结果中，根据概率择优选择更好的分词方案）" class="headerlink" title="3.中文分词（在可能出现的结果中，根据概率择优选择更好的分词方案）"></a>3.中文分词（在可能出现的结果中，根据概率择优选择更好的分词方案）</h5><h5 id="4-机器翻译与语音识别（在可能出现的结果中，根据概率择优选择更好的翻译方案）"><a href="#4-机器翻译与语音识别（在可能出现的结果中，根据概率择优选择更好的翻译方案）" class="headerlink" title="4.机器翻译与语音识别（在可能出现的结果中，根据概率择优选择更好的翻译方案）"></a>4.机器翻译与语音识别（在可能出现的结果中，根据概率择优选择更好的翻译方案）</h5><h3 id="PS：平滑技术"><a href="#PS：平滑技术" class="headerlink" title="PS：平滑技术"></a>PS：平滑技术</h3><p>为了解决零概率问题，需要给 <strong>“未出现的n-gram条件概率分布一个非零估计值，相应的需要降低已出现n-gram条件概率分布，且经数据平滑后一定保证概率和为1”</strong>。</p>
+<ul>
+<li><p>拉普拉斯平滑</p>
+</li>
+<li><p>古德图灵平滑</p>
+</li>
+<li><p>组合估计平滑</p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/19/n-gram/">展开全文 >></a>
         </p>
       
 
