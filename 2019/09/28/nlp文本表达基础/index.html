@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>文本表达 | 啄木鸟的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="属于one-hot的表达包含三个 -boolean-based基于位置，词语在句子中出现，设为1，未出现的词语设为0 -count-based基于词频，词语在句子中出现次数 -tfidf-based基于词的重要程度 两个向量相似度计算1.欧氏距离d=|s1-s2| 结果越小越相似 缺点：未考虑向量的方向 2.余弦相似度d=(s1.s2)/(|s1|*|s2|) .表示內积 结果越大，越相似 向量表">
+  <meta name="description" content="属于one-hot的表达句子表达包含三个 -boolean-based基于位置，词语在句子中出现，设为1，未出现的词语设为0 -count-based基于词频，词语在句子中出现次数 -tfidf-based基于词的重要程度 两个向量相似度计算1.欧氏距离d=|s1-s2| 结果越小越相似 缺点：未考虑向量的方向 2.余弦相似度d=(s1.s2)/(|s1|*|s2|) .表示內积 结果越大，越相似">
 <meta property="og:type" content="article">
 <meta property="og:title" content="文本表达">
 <meta property="og:url" content="http://yoursite.com/2019/09/28/nlp文本表达基础/index.html">
 <meta property="og:site_name" content="啄木鸟的个人博客">
-<meta property="og:description" content="属于one-hot的表达包含三个 -boolean-based基于位置，词语在句子中出现，设为1，未出现的词语设为0 -count-based基于词频，词语在句子中出现次数 -tfidf-based基于词的重要程度 两个向量相似度计算1.欧氏距离d=|s1-s2| 结果越小越相似 缺点：未考虑向量的方向 2.余弦相似度d=(s1.s2)/(|s1|*|s2|) .表示內积 结果越大，越相似 向量表">
+<meta property="og:description" content="属于one-hot的表达句子表达包含三个 -boolean-based基于位置，词语在句子中出现，设为1，未出现的词语设为0 -count-based基于词频，词语在句子中出现次数 -tfidf-based基于词的重要程度 两个向量相似度计算1.欧氏距离d=|s1-s2| 结果越小越相似 缺点：未考虑向量的方向 2.余弦相似度d=(s1.s2)/(|s1|*|s2|) .表示內积 结果越大，越相似">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-28T13:47:12.442Z">
+<meta property="og:updated_time" content="2019-09-29T12:57:44.970Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="文本表达">
-<meta name="twitter:description" content="属于one-hot的表达包含三个 -boolean-based基于位置，词语在句子中出现，设为1，未出现的词语设为0 -count-based基于词频，词语在句子中出现次数 -tfidf-based基于词的重要程度 两个向量相似度计算1.欧氏距离d=|s1-s2| 结果越小越相似 缺点：未考虑向量的方向 2.余弦相似度d=(s1.s2)/(|s1|*|s2|) .表示內积 结果越大，越相似 向量表">
+<meta name="twitter:description" content="属于one-hot的表达句子表达包含三个 -boolean-based基于位置，词语在句子中出现，设为1，未出现的词语设为0 -count-based基于词频，词语在句子中出现次数 -tfidf-based基于词的重要程度 两个向量相似度计算1.欧氏距离d=|s1-s2| 结果越小越相似 缺点：未考虑向量的方向 2.余弦相似度d=(s1.s2)/(|s1|*|s2|) .表示內积 结果越大，越相似">
   
     <link rel="alternative" href="/atom.xml" title="啄木鸟的个人博客" type="application/atom+xml">
   
@@ -174,7 +174,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="属于one-hot的表达"><a href="#属于one-hot的表达" class="headerlink" title="属于one-hot的表达"></a>属于one-hot的表达</h2><p>包含三个</p>
+        <h2 id="属于one-hot的表达"><a href="#属于one-hot的表达" class="headerlink" title="属于one-hot的表达"></a>属于one-hot的表达</h2><p>句子表达包含三个</p>
 <p>-boolean-based基于位置，词语在句子中出现，设为1，未出现的词语设为0</p>
 <p>-count-based基于词频，词语在句子中出现次数</p>
 <p>-tfidf-based基于词的重要程度</p>
@@ -188,9 +188,27 @@
 <h3 id="TF-IDF"><a href="#TF-IDF" class="headerlink" title="TF-IDF"></a>TF-IDF</h3><p><strong>tfidf(w) = tf(d,w)*idf(w)</strong></p>
 <p>tf(d,w)文档d中w的词频</p>
 <p>idf(w)=log(N/N(w)) 考虑单词的重要性，N为语料库中文档总数，N(w)表示词语w出现在多少个文档</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">缺点：1.不能表示语义相似度；2.表示比较稀疏</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">one-hot缺点：1.不能表示语义相似度；2.表示比较稀疏</span><br></pre></td></tr></table></figure>
 
-<h2 id="词向量的表达"><a href="#词向量的表达" class="headerlink" title="词向量的表达"></a>词向量的表达</h2><h5 id="分布式表示方法"><a href="#分布式表示方法" class="headerlink" title="分布式表示方法"></a>分布式表示方法</h5>
+<h2 id="词向量的表达"><a href="#词向量的表达" class="headerlink" title="词向量的表达"></a>词向量的表达</h2><h5 id="词向量是分布式表示方法的一种"><a href="#词向量是分布式表示方法的一种" class="headerlink" title="词向量是分布式表示方法的一种"></a>词向量是分布式表示方法的一种</h5><p>训练词向量的模型：</p>
+<p>Skip-gram,Glove,CBOW,RNN/LSTM,MF等</p>
+<p>一般情况向量维度不超过300维，可能为50/100/200/300</p>
+<h3 id="句子向量的表达"><a href="#句子向量的表达" class="headerlink" title="句子向量的表达"></a>句子向量的表达</h3><p>1.平均法则：把n个词向量对应位置叠加在一起，再除以n</p>
+<p>2.LSTM/RNN</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">分布式表达优点：1.解决稀疏的问题；2.表示两两单词的相似度</span><br></pre></td></tr></table></figure>
+
+<h3 id="语言模型LM"><a href="#语言模型LM" class="headerlink" title="语言模型LM"></a>语言模型LM</h3><p>判断一句话是否从语法上通顺</p>
+<p>计算一句话的概率</p>
+<p>p(s)=p(w1,w2,w3,w4,,,,,,,wn)</p>
+<p>w为单词</p>
+<h5 id="Perplexity（语言模型评估方法）"><a href="#Perplexity（语言模型评估方法）" class="headerlink" title="Perplexity（语言模型评估方法）"></a>Perplexity（语言模型评估方法）</h5><h3 id="平滑方法"><a href="#平滑方法" class="headerlink" title="平滑方法"></a>平滑方法</h3><p><strong>Add-one Smoothing拉普拉斯平滑</strong></p>
+<p>分子加1，分母加v，避免出现概率为0的情况</p>
+<p><strong>Add-K Smoothing</strong></p>
+<p>分子加k，分母加kv（k值的确定，取决于Perplexity是否最小）</p>
+<p><strong>Interpolation</strong></p>
+<p>核心思路：在计算trigram的概率同时考虑Unigram,Bigram,Trigram出现的频次。对三个加权平均</p>
+<p><strong>Good-Turning Smoothing</strong></p>
+
       
 
       

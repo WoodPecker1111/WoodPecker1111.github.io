@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="啄木鸟的个人博客">
 <meta property="og:description" content="贪心算法——当前最优结果 DP算法——全局最优算法： DP核心思想——将大问题转化为小问题，拆解 有关分词的算法：向前最大匹配，向后最大匹配，双向最大匹配（属于贪心算法）缺点：局部最优；不能考虑上下文（语义）；效率与max-len有关； 语言模型LM：生成每种可能生成的结果，每个分出来的词的概率各个相乘，判断哪种结果的可能性最大（每个词的概率取log避免概率太小产生下溢出） 优点：考虑上下文 缺点">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-28T11:52:17.101Z">
+<meta property="og:updated_time" content="2019-10-04T06:53:07.454Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="啄木鸟的个人博客">
 <meta name="twitter:description" content="贪心算法——当前最优结果 DP算法——全局最优算法： DP核心思想——将大问题转化为小问题，拆解 有关分词的算法：向前最大匹配，向后最大匹配，双向最大匹配（属于贪心算法）缺点：局部最优；不能考虑上下文（语义）；效率与max-len有关； 语言模型LM：生成每种可能生成的结果，每个分出来的词的概率各个相乘，判断哪种结果的可能性最大（每个词的概率取log避免概率太小产生下溢出） 优点：考虑上下文 缺点">
@@ -162,12 +162,23 @@
         <p><strong>贪心算法——当前最优结果</strong></p>
 <p><strong>DP算法——全局最优算法</strong>：</p>
 <p>DP核心思想——将大问题转化为小问题，拆解</p>
-<h3 id="有关分词的算法："><a href="#有关分词的算法：" class="headerlink" title="有关分词的算法："></a>有关分词的算法：</h3><h4 id="向前最大匹配，向后最大匹配，双向最大匹配（属于贪心算法）"><a href="#向前最大匹配，向后最大匹配，双向最大匹配（属于贪心算法）" class="headerlink" title="向前最大匹配，向后最大匹配，双向最大匹配（属于贪心算法）"></a>向前最大匹配，向后最大匹配，双向最大匹配（属于贪心算法）</h4><p>缺点：局部最优；不能考虑上下文（语义）；效率与max-len有关；</p>
+<h2 id="有关分词的算法："><a href="#有关分词的算法：" class="headerlink" title="有关分词的算法："></a>有关分词的算法：</h2><h4 id="向前最大匹配，向后最大匹配，双向最大匹配（属于贪心算法）"><a href="#向前最大匹配，向后最大匹配，双向最大匹配（属于贪心算法）" class="headerlink" title="向前最大匹配，向后最大匹配，双向最大匹配（属于贪心算法）"></a>向前最大匹配，向后最大匹配，双向最大匹配（属于贪心算法）</h4><p>缺点：局部最优；不能考虑上下文（语义）；效率与max-len有关；</p>
 <h4 id="语言模型LM："><a href="#语言模型LM：" class="headerlink" title="语言模型LM："></a>语言模型LM：</h4><p>生成每种可能生成的结果，每个分出来的词的概率各个相乘，判断哪种结果的可能性最大（每个词的概率取log避免概率太小产生下溢出）</p>
 <p>优点：考虑上下文</p>
 <p>缺点：算法复杂度高</p>
 <h4 id="维特比算法："><a href="#维特比算法：" class="headerlink" title="维特比算法："></a>维特比算法：</h4><p>Unigram LM</p>
-
+<h2 id="有关命名实体识别的方法："><a href="#有关命名实体识别的方法：" class="headerlink" title="有关命名实体识别的方法："></a>有关命名实体识别的方法：</h2><h4 id="1-利用规则"><a href="#1-利用规则" class="headerlink" title="1.利用规则"></a>1.利用规则</h4><h4 id="2-投票模型"><a href="#2-投票模型" class="headerlink" title="2.投票模型"></a>2.投票模型</h4><h4 id="3-利用分类模型"><a href="#3-利用分类模型" class="headerlink" title="3.利用分类模型"></a>3.利用分类模型</h4><p>​    非时序：逻辑回归，SVM</p>
+<p>​    时序模型：HMM，CRF，LSTM-CRF</p>
+<h4 id="信息抽取"><a href="#信息抽取" class="headerlink" title="信息抽取"></a>信息抽取</h4><p>信息抽取可以抽取出时间，地点，人物等信息；也可以抽取出实体和关系；抽取出的信息由当前的任务决定。</p>
+<h2 id="关系抽取方法："><a href="#关系抽取方法：" class="headerlink" title="关系抽取方法："></a>关系抽取方法：</h2><h4 id="1-基于规则"><a href="#1-基于规则" class="headerlink" title="1.基于规则"></a>1.基于规则</h4><p>优点：1.不需要任何训练数据    2.比较准确</p>
+<p>缺点：1.低召回率（人工想到的规则不全导致）    2.人力成本    3.规则本身难设计</p>
+<h4 id="2-监督学习"><a href="#2-监督学习" class="headerlink" title="2.监督学习"></a>2.监督学习</h4><p>步骤：</p>
+<p>1.定义关系模型    </p>
+<p>2.定义实体类型    </p>
+<p>3.训练数据准备（实体标注好，关系标注好）    </p>
+<p>4.特征工程（如bag of words，词性，词干，实体类别；位置相关信息：这两个实体间包含了多少个单词，这句话在本文里的位置；句法分析相关特征（语法树）：两个节点之间最短路径，P、NP、S；依存文法相关；）</p>
+<h4 id="3-半监督-amp-无监督学习"><a href="#3-半监督-amp-无监督学习" class="headerlink" title="3.半监督&amp;无监督学习"></a>3.半监督&amp;无监督学习</h4><h5 id="1-Bootstrap"><a href="#1-Bootstrap" class="headerlink" title="1.Bootstrap"></a>1.Bootstrap</h5><p>生成规则—&gt;生成tuple—&gt;生成规则（循环）</p>
+<h5 id="2-Distant-Supervision"><a href="#2-Distant-Supervision" class="headerlink" title="2.Distant Supervision"></a>2.Distant Supervision</h5><h5 id="3-无监督学习"><a href="#3-无监督学习" class="headerlink" title="3.无监督学习"></a>3.无监督学习</h5>
       
 
       
