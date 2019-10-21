@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Keras | 啄木鸟的个人博客</title>
+  <title>初入NLP领域对BERT的感想 | 啄木鸟的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="MNIST数据集分类1234567891011121314151617181920212223242526272829303132333435363738394041424344from keras.datasets import mnistfrom keras.utils import np_utilsfrom keras.models import Sequentialfrom keras.l">
+  <meta name="description" content="摘要:本文通过对比NLP领域中的各个模型及其发展轨迹，最终引出bidirectional encoder  representations from transformers，即BERT。BERT集NLP历史中所有模型优点，最终成型。 对于NLP领域来说，第一个里程碑就是词向量的分布式表示。在介绍这个分布式表示之前，有必要介绍一下曾经文字在计算机中是如何表示的。由于计算机不能识别文字，因此人们用数">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Keras">
-<meta property="og:url" content="http://yoursite.com/2019/08/20/Keras/index.html">
+<meta property="og:title" content="初入NLP领域对BERT的感想">
+<meta property="og:url" content="http://yoursite.com/2019/08/20/初入NLP领域对BERT的感想/index.html">
 <meta property="og:site_name" content="啄木鸟的个人博客">
-<meta property="og:description" content="MNIST数据集分类1234567891011121314151617181920212223242526272829303132333435363738394041424344from keras.datasets import mnistfrom keras.utils import np_utilsfrom keras.models import Sequentialfrom keras.l">
+<meta property="og:description" content="摘要:本文通过对比NLP领域中的各个模型及其发展轨迹，最终引出bidirectional encoder  representations from transformers，即BERT。BERT集NLP历史中所有模型优点，最终成型。 对于NLP领域来说，第一个里程碑就是词向量的分布式表示。在介绍这个分布式表示之前，有必要介绍一下曾经文字在计算机中是如何表示的。由于计算机不能识别文字，因此人们用数">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-20T09:28:43.362Z">
+<meta property="og:updated_time" content="2019-10-21T01:23:48.788Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Keras">
-<meta name="twitter:description" content="MNIST数据集分类1234567891011121314151617181920212223242526272829303132333435363738394041424344from keras.datasets import mnistfrom keras.utils import np_utilsfrom keras.models import Sequentialfrom keras.l">
+<meta name="twitter:title" content="初入NLP领域对BERT的感想">
+<meta name="twitter:description" content="摘要:本文通过对比NLP领域中的各个模型及其发展轨迹，最终引出bidirectional encoder  representations from transformers，即BERT。BERT集NLP历史中所有模型优点，最终成型。 对于NLP领域来说，第一个里程碑就是词向量的分布式表示。在介绍这个分布式表示之前，有必要介绍一下曾经文字在计算机中是如何表示的。由于计算机不能识别文字，因此人们用数">
   
     <link rel="alternative" href="/atom.xml" title="啄木鸟的个人博客" type="application/atom+xml">
   
@@ -154,19 +154,19 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Keras" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-初入NLP领域对BERT的感想" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Keras
+      初入NLP领域对BERT的感想
     </h1>
   
 
         
-        <a href="/2019/08/20/Keras/" class="archive-article-date">
+        <a href="/2019/08/20/初入NLP领域对BERT的感想/" class="archive-article-date">
   	<time datetime="2019-08-20T09:25:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-20</time>
 </a>
         
@@ -174,8 +174,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="MNIST数据集分类"><a href="#MNIST数据集分类" class="headerlink" title="MNIST数据集分类"></a>MNIST数据集分类</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">from keras.datasets import mnist</span><br><span class="line">from keras.utils import np_utils</span><br><span class="line">from keras.models import Sequential</span><br><span class="line">from keras.layers import Dense</span><br><span class="line">from keras.optimizers import SGD,Adam</span><br><span class="line">from keras.regularizers import l2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 载入数据</span><br><span class="line">(x_train,y_train),(x_test,y_test) = mnist.load_data()</span><br><span class="line"># (60000,28,28)</span><br><span class="line">print(&apos;x_shape:&apos;,x_train.shape)</span><br><span class="line"># (60000)</span><br><span class="line">print(&apos;y_shape:&apos;,y_train.shape)</span><br><span class="line">x_train = x_train.reshape(x_train.shape[0],-1)/255.0</span><br><span class="line">x_test = x_test.reshape(x_test.shape[0],-1)/255.0</span><br><span class="line"></span><br><span class="line"># 换one hot格式</span><br><span class="line">y_train = np_utils.to_categorical(y_train,num_classes=10)</span><br><span class="line">y_test = np_utils.to_categorical(y_test,num_classes=10)</span><br><span class="line"></span><br><span class="line"># 创建模型，输入784个神经元，输出10个神经元</span><br><span class="line">model = Sequential([</span><br><span class="line">    Dense(units=200,input_dim=784,bias_initializer=&apos;one&apos;,activation=&apos;tanh&apos;,kernel_regularizer=l2(0.0003)),</span><br><span class="line">    Dense(units=100,bias_initializer=&apos;one&apos;,activation=&apos;tanh&apos;,kernel_regularizer=l2(0.0003)),</span><br><span class="line">    Dense(units=10,bias_initializer=&apos;one&apos;,activation=&apos;softmax&apos;,kernel_regularizer=l2(0.0003))</span><br><span class="line">])</span><br><span class="line"># 定义优化器</span><br><span class="line">sgd = SGD(lr=0.2)</span><br><span class="line">adam = Adam(lr=0.001)</span><br><span class="line"></span><br><span class="line"># 定义优化器，loss function，训练过程中计算准确率</span><br><span class="line">model.compile(</span><br><span class="line">    optimizer=adam,</span><br><span class="line">    loss=&apos;categorical_crossentropy&apos;,</span><br><span class="line">    metrics=[&apos;accuracy&apos;]</span><br><span class="line">)</span><br><span class="line"># 训练模型</span><br><span class="line">model.fit(x_train,y_train,batch_size=32,epochs=10)</span><br><span class="line"></span><br><span class="line"># 评估模型</span><br><span class="line">loss,accuracy = model.evaluate(x_test,y_test)</span><br><span class="line">print(&apos;\ntest loss&apos;,loss)</span><br><span class="line">print(&apos;test accuracy&apos;,accuracy)</span><br></pre></td></tr></table></figure>
-
+        <p><strong>摘要:本文通过对比NLP领域中的各个模型及其发展轨迹，最终引出bidirectional encoder  representations from transformers，即BERT。BERT集NLP历史中所有模型优点，最终成型。</strong></p>
+<p>对于NLP领域来说，第一个里程碑就是词向量的分布式表示。在介绍这个分布式表示之前，有必要介绍一下曾经文字在计算机中是如何表示的。由于计算机不能识别文字，因此人们用数字去表示它，这就引出了词袋模型与one-hot表示。假若现在有五百个词，这五百个词各不相同，如果要表示其中一个词，先对五百个词排序，在这个词所在的位置标1，其他位置标0，形成一个五百维的词向量，这就成功的表示了其中一个词。当然这只是one-hot的一种表示方法。但是这种方法有两个问题，一是词向量很稀疏，无法包含很多信息（因为其中包含大量0）；二是词向量只能表达一个词，不能表达词意，词与词之间的关系。</p>
+<p>于是谷歌在2013年提出了word2vec，这个模型训练出的词向量，具有一个空间分布，相似的词有着相似的空间分布。如“男人”－“女人”=“国王”－“王后”（这里的等式是词向量相减），word2vec表示的是词与词之间的关系。word2vec是如何训练这些包含词意的词向量的呢？首先也是先用one-hot来表示词语，而一句话就是很多词语拼接成的矩阵。然后将这个矩阵与一个稠密矩阵相乘（这里的作用主要是得到n维的词向量，稠密矩阵是随机初始化的），取出其中一个词向量与其句子向量相乘得到含有语义的向量，将相乘所得结果送入神经网络训练，然后通过梯度下降反向传播优化这个稠密矩阵。最终得到的就是具有词意关系的词向量。这种训练词向量的方式虽然解决了词意问题，但是它不能解决词在句子中的多义词问题，因为一个词的表示只能有一个向量表示。而且它还没有完全包含语义信息。</p>
+<p>随后又有人提出LSTM模型。它是一个时序模型，是RNN的改进，它可以记住上一个或者多个神经元的状态。因此一个句子在输入多层LSTM时，它能记住这个句子中某个词之前的词的信息。这其中就包含了语义信息在其中。但是它只能记住“之前”，而无法知道“之后”，因此一个词包含的语义信息是有缺失的，随后又有人提出了双向的LSTM，弥补了它只能记住一边的缺陷。时序模型是它的优点，同时也是缺点，计算每一个神经元时，只能等上一个神经元计算完之后才能计算，这就导致LSTM特别慢。同时它也有梯度消失的问题（尽管它缓解了RNN的梯度消失问题，但不能完全解决）</p>
+<p>后起新秀Transformer上场了。它并非一个时序模型，而是一个可以分布式计算的结构。在BERT中，主要用了Transformer的Encoder部分。在Encoder中，最主要的就是self-attention，它可以忽略两个词之间的距离找到远距离之间词与词的关系，从而解决了梯度消失的问题。同时，Transformer中的self-attention也只能捕获某个词与前面词的关系，而无法预测与它的后面的词的关系，因此在BERT中用的也是双向Transformer。Transformer也有个缺点，它丢掉了时序结构，由此词语在句子中的位置信息也丢失了。</p>
+<p>BERT应用双向Transformer的模型，并且在输入的时候加入了位置信息，这就弥补了Transformer的缺点。同时它用mask标志代替输入中的百分之十五的词语，让BERT模型去预测这个词，也就是说，让模型去学习词与词之间的关系，这类似于word2vec中CBOW模型。同时，对句子也做相似的处理，在输入的句子中，前后句子对中的百分之五十是正确的，而百分之五十是错误的，这让模型学习句子与句子之间的关联，对于句子级别的任务是很有用的。最终将句子向量、词向量、位置信息向量叠加输入双向Transformer中训练，最终得到含有丰富语义信息的向量。</p>
+<p>BERT模型的标准版本有1亿的参数量，与GPT持平；BERT的大号版本有3亿多参数量，这应该是目前自然语言处理中最大的预训练模型了。我们通常没有那么大的设备去训练这样一个大的模型，因此在应用BERT时，可以直接将BERT已经训练好的语义向量输入下游任务的模型中，得到我们需要的专业领域的向量。</p>
+<p>可能读者要问，为什么一直在说要得到向量，这和NLP任务中的问答系统、文本分类、信息检索等任务有什么关系呢。在我看来，机器之所以能够做这些任务，前提是机器能够了解语法、语义，以及词之间、句子之间的关系。通俗的说也就是一句话的意思，以及一句话的上下文关联。但是机器并不能读懂文字，用向量去表达文字就是很好的形式，这些模型训练出来的向量之间是有关联的，从而机器凭着对数字的敏感找到其中的关系，就能够做相应的文本任务。</p>
+<p><strong>总结与感想</strong>：</p>
+<p>通过这次的研究，我学到了NLP领域的很多知识，为了能够让同学们听得通俗易懂，课下也做了很多功夫，尽量搞懂每一个细节并且用通俗易懂的话去讲解。就是因为这样，才让我自己学到了很多。因为只有自己懂了，说出来的话才能让别人听懂。</p>
+<p><strong>做了什么</strong>：</p>
+<p>查阅了二十余篇资料，其中包括博客，推文，论文。看了BERT的相关论文（英文的没有看很明白）。</p>
+<p>看了三个不知名博主的有关BERT视频。</p>
+<p>看了斯坦福大学NLP讲解视频。</p>
+<p>与队友讨论模型问题。</p>
+<p>做PPT。</p>
 
       
 
@@ -255,7 +269,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/20/Keras/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/20/初入NLP领域对BERT的感想/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -269,18 +283,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/08/30/会议/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/08/20/Keras/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          自然语言处理及相关领域的国际会议
+          Keras
         
       </div>
     </a>
   
   
-    <a href="/2019/08/20/初入NLP领域对BERT的感想/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">初入NLP领域对BERT的感想</div>
+    <a href="/2019/08/20/词向量/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">词向量训练</div>
       <i class="icon-circle-right"></i>
     </a>
   

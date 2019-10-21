@@ -152,6 +152,84 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-初入NLP领域对BERT的感想" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/20/初入NLP领域对BERT的感想/">初入NLP领域对BERT的感想</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/20/初入NLP领域对BERT的感想/" class="archive-article-date">
+  	<time datetime="2019-08-20T09:25:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>摘要:本文通过对比NLP领域中的各个模型及其发展轨迹，最终引出bidirectional encoder  representations from transformers，即BERT。BERT集NLP历史中所有模型优点，最终成型。</strong></p>
+<p>对于NLP领域来说，第一个里程碑就是词向量的分布式表示。在介绍这个分布式表示之前，有必要介绍一下曾经文字在计算机中是如何表示的。由于计算机不能识别文字，因此人们用数字去表示它，这就引出了词袋模型与one-hot表示。假若现在有五百个词，这五百个词各不相同，如果要表示其中一个词，先对五百个词排序，在这个词所在的位置标1，其他位置标0，形成一个五百维的词向量，这就成功的表示了其中一个词。当然这只是one-hot的一种表示方法。但是这种方法有两个问题，一是词向量很稀疏，无法包含很多信息（因为其中包含大量0）；二是词向量只能表达一个词，不能表达词意，词与词之间的关系。</p>
+<p>于是谷歌在2013年提出了word2vec，这个模型训练出的词向量，具有一个空间分布，相似的词有着相似的空间分布。如“男人”－“女人”=“国王”－“王后”（这里的等式是词向量相减），word2vec表示的是词与词之间的关系。word2vec是如何训练这些包含词意的词向量的呢？首先也是先用one-hot来表示词语，而一句话就是很多词语拼接成的矩阵。然后将这个矩阵与一个稠密矩阵相乘（这里的作用主要是得到n维的词向量，稠密矩阵是随机初始化的），取出其中一个词向量与其句子向量相乘得到含有语义的向量，将相乘所得结果送入神经网络训练，然后通过梯度下降反向传播优化这个稠密矩阵。最终得到的就是具有词意关系的词向量。这种训练词向量的方式虽然解决了词意问题，但是它不能解决词在句子中的多义词问题，因为一个词的表示只能有一个向量表示。而且它还没有完全包含语义信息。</p>
+<p>随后又有人提出LSTM模型。它是一个时序模型，是RNN的改进，它可以记住上一个或者多个神经元的状态。因此一个句子在输入多层LSTM时，它能记住这个句子中某个词之前的词的信息。这其中就包含了语义信息在其中。但是它只能记住“之前”，而无法知道“之后”，因此一个词包含的语义信息是有缺失的，随后又有人提出了双向的LSTM，弥补了它只能记住一边的缺陷。时序模型是它的优点，同时也是缺点，计算每一个神经元时，只能等上一个神经元计算完之后才能计算，这就导致LSTM特别慢。同时它也有梯度消失的问题（尽管它缓解了RNN的梯度消失问题，但不能完全解决）</p>
+<p>后起新秀Transformer上场了。它并非一个时序模型，而是一个可以分布式计算的结构。在BERT中，主要用了Transformer的Encoder部分。在Encoder中，最主要的就是self-attention，它可以忽略两个词之间的距离找到远距离之间词与词的关系，从而解决了梯度消失的问题。同时，Transformer中的self-attention也只能捕获某个词与前面词的关系，而无法预测与它的后面的词的关系，因此在BERT中用的也是双向Transformer。Transformer也有个缺点，它丢掉了时序结构，由此词语在句子中的位置信息也丢失了。</p>
+<p>BERT应用双向Transformer的模型，并且在输入的时候加入了位置信息，这就弥补了Transformer的缺点。同时它用mask标志代替输入中的百分之十五的词语，让BERT模型去预测这个词，也就是说，让模型去学习词与词之间的关系，这类似于word2vec中CBOW模型。同时，对句子也做相似的处理，在输入的句子中，前后句子对中的百分之五十是正确的，而百分之五十是错误的，这让模型学习句子与句子之间的关联，对于句子级别的任务是很有用的。最终将句子向量、词向量、位置信息向量叠加输入双向Transformer中训练，最终得到含有丰富语义信息的向量。</p>
+<p>BERT模型的标准版本有1亿的参数量，与GPT持平；BERT的大号版本有3亿多参数量，这应该是目前自然语言处理中最大的预训练模型了。我们通常没有那么大的设备去训练这样一个大的模型，因此在应用BERT时，可以直接将BERT已经训练好的语义向量输入下游任务的模型中，得到我们需要的专业领域的向量。</p>
+<p>可能读者要问，为什么一直在说要得到向量，这和NLP任务中的问答系统、文本分类、信息检索等任务有什么关系呢。在我看来，机器之所以能够做这些任务，前提是机器能够了解语法、语义，以及词之间、句子之间的关系。通俗的说也就是一句话的意思，以及一句话的上下文关联。但是机器并不能读懂文字，用向量去表达文字就是很好的形式，这些模型训练出来的向量之间是有关联的，从而机器凭着对数字的敏感找到其中的关系，就能够做相应的文本任务。</p>
+<p><strong>总结与感想</strong>：</p>
+<p>通过这次的研究，我学到了NLP领域的很多知识，为了能够让同学们听得通俗易懂，课下也做了很多功夫，尽量搞懂每一个细节并且用通俗易懂的话去讲解。就是因为这样，才让我自己学到了很多。因为只有自己懂了，说出来的话才能让别人听懂。</p>
+<p><strong>做了什么</strong>：</p>
+<p>查阅了二十余篇资料，其中包括博客，推文，论文。看了BERT的相关论文（英文的没有看很明白）。</p>
+<p>看了三个不知名博主的有关BERT视频。</p>
+<p>看了斯坦福大学NLP讲解视频。</p>
+<p>与队友讨论模型问题。</p>
+<p>做PPT。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/20/初入NLP领域对BERT的感想/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-词向量" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1034,184 +1112,9 @@
 
 
   
-    <article id="post-朴素贝叶斯" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/19/朴素贝叶斯/">朴素贝叶斯（词袋模型）</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/19/朴素贝叶斯/" class="archive-article-date">
-  	<time datetime="2019-07-18T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>贝叶斯公式 + 条件独立假设 = 朴素贝叶斯方法</p>
-</blockquote>
-<h3 id="一-贝叶斯公式"><a href="#一-贝叶斯公式" class="headerlink" title="一.贝叶斯公式"></a>一.贝叶斯公式</h3><blockquote>
-<p>P(Y|X)=P(X|Y)P(Y)／P(X)</p>
-</blockquote>
-<blockquote>
-<p>由它推导：P(Y,X)=P(Y|X)P(X)=P(X|Y)P(Y)</p>
-</blockquote>
-<p>其中P(Y)P(Y)叫做先验概率，P(Y|X)P(Y|X)叫做后验概率，P(Y,X)P(Y,X)叫做联合概率。</p>
-<p>在机器学习的视角下，把XX理解成<strong>“具有某特征”</strong>，把YY理解成<strong>“类别标签”</strong>(一般机器学习为题中都是<code>X=&gt;特征</code>, <code>Y=&gt;结果</code>对吧)。在最简单的二分类问题(<code>是</code>与<code>否</code>判定)下，将YY理解成<strong>“属于某类</strong>”的标签。于是贝叶斯公式就变形成了下面的样子:</p>
-<blockquote>
-<p>P(“属于某类”|“具有某特征”)=P(“具有某特征”|“属于某类”)P(“属于某类”)／P(“具有某特征”)</p>
-</blockquote>
-<p>简化解释一下上述公式：</p>
-<blockquote>
-<p>P(“属于某类”|“具有某特征”)= 在已知某样本“具有某特征”的条件下，该样本“属于某类”的概率。所以叫做『后验概率』。<br>P(“具有某特征”|“属于某类”)=在已知某样本“属于某类”的条件下，该样本“具有某特征”的概率。<br>P(“属于某类”)=（在未知某样本具有该“具有某特征”的条件下，）该样本“属于某类”的概率。所以叫做『先验概率』。<br>P(“具有某特征”)=(在未知某样本“属于某类”的条件下，)该样本“具有某特征”的概率。</p>
-</blockquote>
-<p><strong>贝叶斯方法的思维方式</strong></p>
-<ul>
-<li><p>逆概率问题</p>
-<blockquote>
-<p>P(Y|X)=P(X|Y)P(Y) / P(X)</p>
-</blockquote>
-<p>先不考虑先验概率P(Y)与P(X)P(Y)与P(X)，观察两个后验概率P(Y|X)与P(X|Y)P(Y|X)与P(X|Y)，,能够揭示<strong>两个相反方向的条件概率之间的转换关系</strong>。</p>
-<p>可以通过贝叶斯公式<strong>从间接地观测对象去推断不可直接观测的对象的情况</strong>。</p>
-</li>
-<li><p>多分类问题</p>
-<p>将正常邮件细分为私人邮件、工作邮件。现在有这3类邮件各1万封作为样本。需要训练出一个贝叶斯分类器。这里依次用Y1,Y2,Y3Y1,Y2,Y3表示这三类邮件，用XX表示被判断的邮件。套用贝叶斯公式有：</p>
-<blockquote>
-<p>P(Y1|X)=P(X|Y1)P(Y1) / P(X)</p>
-<p>P(Y2|X)=P(X|Y2)P(Y2) / P(X)</p>
-<p>P(Y3|X)=P(X|Y3)P(Y3) / P(X)</p>
-</blockquote>
-<p>通过比较3个概率值的大小即可得到XX所属的分类。发现三个式子的分母P(X)P(X) 一样，比较大小时可以忽略不计，于是就可以用下面这一个式子表达上面3式：</p>
-<blockquote>
-<p>P(Yi|X)∝P(X|Yi)P(Yi)；i=1,2,3</p>
-</blockquote>
-<p>其中 ∝ 表示“正比于”。而P(X|Yi) 则有个特别高逼格的名字叫做“<strong>似然函数</strong>”,直接理解成<strong>“P(Yi|X)的逆反条件概率”</strong>  </p>
-</li>
-<li><p>先验概率问题</p>
-<p>在垃圾邮件的例子中，假设先验概率都相等，P(Y1)=P(Y2)=P(Y3)=10000/30000=1/3P(Y1)=P(Y2)=P(Y3)=10000/30000=1/3，所以上面是式子又可以进一步化简：</p>
-<blockquote>
-<p>P(Yi|X)∝P(X|Yi)；i=1,2,3</p>
-</blockquote>
-<p>只需比较右边式子（也就是“似然函数”）的大小就可以了。这种方法就是传说中的<strong>最大似然法</strong>:不考虑先验概率而直接比较似然函数。</p>
-<p><strong>我们只是按1:1:1这样的方式进行了抽样而已，真正在邮箱里收到的这三类邮件的分布可能并不是这样</strong>。也就是说，<strong>在对于先验概率一无所知时，只能假设每种猜测的先验概率是均等的（其实这也是人类经验的结果），这个时候就只有用最大似然了</strong>。</p>
-<p><strong>贝叶斯学派的适用范围更广，关键要先验概率靠谱</strong></p>
-</li>
-</ul>
-<h3 id="二-条件独立假设"><a href="#二-条件独立假设" class="headerlink" title="二.条件独立假设"></a>二.条件独立假设</h3><blockquote>
-<p>P(（“我”,“司”,“可”,“办理”,“正规发票”,“保真”,“增值税”,“发票”,“点数”,“优惠”)|S）<br>=P(“我”|S）×P(“司”|S）×P(“可”|S）×P(“办理”|S）×P(“正规发票”|S） ×P(“保真”|S）×P(“增值税”|S）×P(“发票”|S）×P(“点数”|S）×P(“优惠”|S)</p>
-<p>P(“发票”|S）=垃圾邮件中所有“发票”的次数 / 垃圾邮件中所有词语的次数</p>
-</blockquote>
-<p>s代表垃圾邮件</p>
-<h3 id="add-平滑技术"><a href="#add-平滑技术" class="headerlink" title="add:平滑技术"></a>add:平滑技术</h3><p>若P(“正规发票”|S）=0P(“正规发票”|S）=0，整个概率都变成0，朴素贝叶斯方法面对一堆0，很凄惨地失效了…更残酷的是<strong>这种情况其实很常见</strong>，因为哪怕训练集再大，也可能有覆盖不到的词语。本质上还是<strong>样本数量太少，不满足大数定律，计算出来的概率失真</strong>。</p>
-<p>把概率为零默认赋值为一个很小的数</p>
-<p>对于伯努利模型，P(“正规发票”|S）的一种平滑算法是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">P(“正规发票”|S）=(出现“正规发票”的垃圾邮件的封数+1) / 每封垃圾邮件中所有词出现次数（出现了只计算一次）的总和+2</span><br></pre></td></tr></table></figure>
-
-<p>对于多项式模型，P(“正规发票”| S）的一种平滑算法是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">P(“发票”|S）=(每封垃圾邮件中出现“发票”的次数的总和+1 )/ (每封垃圾邮件中所有词出现次数（计算重复次数）的总和+被统计的词表的词语数量)</span><br></pre></td></tr></table></figure>
-
-<h2 id="朴素贝叶斯的常见应用"><a href="#朴素贝叶斯的常见应用" class="headerlink" title="朴素贝叶斯的常见应用"></a>朴素贝叶斯的常见应用</h2><h4 id="褒贬分析"><a href="#褒贬分析" class="headerlink" title="褒贬分析"></a>褒贬分析</h4><p>一个比较常见的应用场景是情感褒贬分析。比如你要<u>统计微博上人们对一个新上映电影的褒贬程度评价</u>：好片还是烂片。但是一条一条地看微博是根本看不过来，只能用自动化的方法。我们可以有一个很粗略的思路：</p>
-<ul>
-<li>首先是用爬虫将微博上提到这个电影名字的微博全都抓取下来，比如有10万条。</li>
-<li>然后用训练好的朴素贝叶斯分类器分别判断这些微博对电影是好评还是差评。</li>
-<li>最后统计出这些好评的影评占所有样本中的比例，就能形成微博网友对这个电影综合评价的大致估计。</li>
-</ul>
-<p>接下来的核心问题就是训练出一个靠谱的分类器。首先需要有打好标签的文本。这个好找，豆瓣影评上就有大量网友对之前电影的评价，并且对电影进行1星到5星的评价。我们可以认为3星以上的评论都是好评，3星以下的评论都是差评。这样就分别得到了好评差评两类的语料样本。剩下就可以用朴素贝叶斯方法进行训练了。基本思路如下：</p>
-<ul>
-<li>训练与测试样本：豆瓣影评的网友评论，用爬虫抓取下100万条。</li>
-<li>标签：3星以上的是好评，3星以下的是差评。</li>
-<li>特征：豆瓣评论分词后的词语。一个简单的方法是只选择其中的形容词，网上有大量的情绪词库可以为我们所用。</li>
-<li>然后再用常规的朴素贝叶斯方法进行训练。</li>
-</ul>
-<p>但是由于自然语言的特点，在提取特征的过程当中，有一些tricks需要注意：</p>
-<ul>
-<li><strong>对否定句进行特别的处理</strong>。比如这句话“我不是很喜欢部电影，因为它让我开心不起来。”其中两个形容词“喜欢”、“开心”都是褒义词，但是因为句子的否定句，所以整体是贬义的。有一种比较简单粗暴的处理方式，就是<strong>“对否定词（“不”、“非”、“没”等）与句尾标点之间的所有形容词都采用其否定形式”</strong> 。则这句话中提取出来的形容词就应该是“不喜欢”和“不开心”。</li>
-<li>一般说来，最相关的情感词在一些文本片段中仅仅出现一次，词频模型起得作用有限，甚至是负作用，<strong>则使用伯努利模型代替多项式模型</strong>。这种情况在微博这样的小篇幅文本中似乎不太明显，但是在博客、空间、论坛之类允许长篇幅文本出现的平台中需要注意。</li>
-<li>其实，副词对情感的评价有一定影响。“不很喜欢”与“很不喜欢”的程度就有很大差异。但如果是朴素贝叶斯方法的话比较难处理这样的情况。我们可以考虑用语言模型或者加入词性标注的信息进行综合判断。这些内容我们将在之后的文章进行探讨。</li>
-</ul>
-<p>当然经过以上的处理，情感分析还是会有一部分误判。这里涉及到许多问题，都是情感分析的难点：</p>
-<ul>
-<li><strong>情绪表达的含蓄微妙</strong>：“导演你出来，我保证不打死你。”你让机器怎么判断是褒还是贬？</li>
-<li><strong>转折性表达</strong>：“我非常喜欢这些大牌演员，非常崇拜这个导演，非常赞赏这个剧本，非常欣赏他们的预告片，我甚至为了这部影片整整期待了一年，最后进了电影院发现这是个噩梦。” 五个褒义的形容词、副词对一个不那么贬义的词。机器自然判断成褒义，但这句话是妥妥的贬义。</li>
-</ul>
-<h4 id="拼写纠错"><a href="#拼写纠错" class="headerlink" title="拼写纠错"></a>拼写纠错</h4><p>拼写纠错本质上也是一个分类问题。但按照错误类型不同，又分为两种情况：</p>
-<ul>
-<li>非词错误（Non-word Errors）：指那些拼写错误后的词本身就不合法，如将“wifi”写成“wify”；</li>
-<li>真词错误（Real-word Errors）：指那些拼写错误后的词仍然是合法的情况，如将“wifi”写成“wife”。</li>
-</ul>
-<p>真词错误复杂一些，我们将在接下来的文章中进行探讨。而对于非词错误，就可以直接采用贝叶斯方法，其基本思路如下：</p>
-<ul>
-<li>标签：通过计算错误词语的最小编辑距离（之前咱们提到过的），获取最相似的候选词，每个候选词作为一个分类。</li>
-<li>特征：拼写错误的词本身。因为它就一个特征，所以没有什么条件独立性假设、朴素贝叶斯啥的。它就是纯而又纯的贝叶斯方法。</li>
-<li>判别公式:</li>
-</ul>
-<blockquote>
-<p>P(候选词i|错误词)∝P(错误词|候选词i) P(候选词i)；i=1,2,3,…</p>
-</blockquote>
-<ul>
-<li>训练样本1：该场景下的正常用词语料库，用于计算P(候选词i)</li>
-</ul>
-<blockquote>
-<p>P(候选词i)=候选词出现的次数 / 所有词出现的次数</p>
-</blockquote>
-<ul>
-<li>训练样本2：该场景下错误词与正确词对应关系的语料库，用于计算P(错误词|候选词i)</li>
-</ul>
-<blockquote>
-<p>P(错误词|候选词i)=候选词被拼写成该“错误词”的次数 / 候选词出现的次数</p>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/19/朴素贝叶斯/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 

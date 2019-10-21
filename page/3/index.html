@@ -6,19 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Keras | 啄木鸟的个人博客</title>
+  <title>啄木鸟的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="MNIST数据集分类1234567891011121314151617181920212223242526272829303132333435363738394041424344from keras.datasets import mnistfrom keras.utils import np_utilsfrom keras.models import Sequentialfrom keras.l">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Keras">
-<meta property="og:url" content="http://yoursite.com/2019/08/20/Keras/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="啄木鸟的个人博客">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
 <meta property="og:site_name" content="啄木鸟的个人博客">
-<meta property="og:description" content="MNIST数据集分类1234567891011121314151617181920212223242526272829303132333435363738394041424344from keras.datasets import mnistfrom keras.utils import np_utilsfrom keras.models import Sequentialfrom keras.l">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-20T09:28:43.362Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Keras">
-<meta name="twitter:description" content="MNIST数据集分类1234567891011121314151617181920212223242526272829303132333435363738394041424344from keras.datasets import mnistfrom keras.utils import np_utilsfrom keras.models import Sequentialfrom keras.l">
+<meta name="twitter:title" content="啄木鸟的个人博客">
   
     <link rel="alternative" href="/atom.xml" title="啄木鸟的个人博客" type="application/atom+xml">
   
@@ -154,52 +150,144 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Keras" class="article article-type-post " itemscope itemprop="blogPost">
+            
+  
+    <article id="post-朴素贝叶斯" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      Keras
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/19/朴素贝叶斯/">朴素贝叶斯（词袋模型）</a>
     </h1>
   
 
         
-        <a href="/2019/08/20/Keras/" class="archive-article-date">
-  	<time datetime="2019-08-20T09:25:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-20</time>
+        <a href="/2019/07/19/朴素贝叶斯/" class="archive-article-date">
+  	<time datetime="2019-07-18T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="MNIST数据集分类"><a href="#MNIST数据集分类" class="headerlink" title="MNIST数据集分类"></a>MNIST数据集分类</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">from keras.datasets import mnist</span><br><span class="line">from keras.utils import np_utils</span><br><span class="line">from keras.models import Sequential</span><br><span class="line">from keras.layers import Dense</span><br><span class="line">from keras.optimizers import SGD,Adam</span><br><span class="line">from keras.regularizers import l2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 载入数据</span><br><span class="line">(x_train,y_train),(x_test,y_test) = mnist.load_data()</span><br><span class="line"># (60000,28,28)</span><br><span class="line">print(&apos;x_shape:&apos;,x_train.shape)</span><br><span class="line"># (60000)</span><br><span class="line">print(&apos;y_shape:&apos;,y_train.shape)</span><br><span class="line">x_train = x_train.reshape(x_train.shape[0],-1)/255.0</span><br><span class="line">x_test = x_test.reshape(x_test.shape[0],-1)/255.0</span><br><span class="line"></span><br><span class="line"># 换one hot格式</span><br><span class="line">y_train = np_utils.to_categorical(y_train,num_classes=10)</span><br><span class="line">y_test = np_utils.to_categorical(y_test,num_classes=10)</span><br><span class="line"></span><br><span class="line"># 创建模型，输入784个神经元，输出10个神经元</span><br><span class="line">model = Sequential([</span><br><span class="line">    Dense(units=200,input_dim=784,bias_initializer=&apos;one&apos;,activation=&apos;tanh&apos;,kernel_regularizer=l2(0.0003)),</span><br><span class="line">    Dense(units=100,bias_initializer=&apos;one&apos;,activation=&apos;tanh&apos;,kernel_regularizer=l2(0.0003)),</span><br><span class="line">    Dense(units=10,bias_initializer=&apos;one&apos;,activation=&apos;softmax&apos;,kernel_regularizer=l2(0.0003))</span><br><span class="line">])</span><br><span class="line"># 定义优化器</span><br><span class="line">sgd = SGD(lr=0.2)</span><br><span class="line">adam = Adam(lr=0.001)</span><br><span class="line"></span><br><span class="line"># 定义优化器，loss function，训练过程中计算准确率</span><br><span class="line">model.compile(</span><br><span class="line">    optimizer=adam,</span><br><span class="line">    loss=&apos;categorical_crossentropy&apos;,</span><br><span class="line">    metrics=[&apos;accuracy&apos;]</span><br><span class="line">)</span><br><span class="line"># 训练模型</span><br><span class="line">model.fit(x_train,y_train,batch_size=32,epochs=10)</span><br><span class="line"></span><br><span class="line"># 评估模型</span><br><span class="line">loss,accuracy = model.evaluate(x_test,y_test)</span><br><span class="line">print(&apos;\ntest loss&apos;,loss)</span><br><span class="line">print(&apos;test accuracy&apos;,accuracy)</span><br></pre></td></tr></table></figure>
+        <blockquote>
+<p>贝叶斯公式 + 条件独立假设 = 朴素贝叶斯方法</p>
+</blockquote>
+<h3 id="一-贝叶斯公式"><a href="#一-贝叶斯公式" class="headerlink" title="一.贝叶斯公式"></a>一.贝叶斯公式</h3><blockquote>
+<p>P(Y|X)=P(X|Y)P(Y)／P(X)</p>
+</blockquote>
+<blockquote>
+<p>由它推导：P(Y,X)=P(Y|X)P(X)=P(X|Y)P(Y)</p>
+</blockquote>
+<p>其中P(Y)P(Y)叫做先验概率，P(Y|X)P(Y|X)叫做后验概率，P(Y,X)P(Y,X)叫做联合概率。</p>
+<p>在机器学习的视角下，把XX理解成<strong>“具有某特征”</strong>，把YY理解成<strong>“类别标签”</strong>(一般机器学习为题中都是<code>X=&gt;特征</code>, <code>Y=&gt;结果</code>对吧)。在最简单的二分类问题(<code>是</code>与<code>否</code>判定)下，将YY理解成<strong>“属于某类</strong>”的标签。于是贝叶斯公式就变形成了下面的样子:</p>
+<blockquote>
+<p>P(“属于某类”|“具有某特征”)=P(“具有某特征”|“属于某类”)P(“属于某类”)／P(“具有某特征”)</p>
+</blockquote>
+<p>简化解释一下上述公式：</p>
+<blockquote>
+<p>P(“属于某类”|“具有某特征”)= 在已知某样本“具有某特征”的条件下，该样本“属于某类”的概率。所以叫做『后验概率』。<br>P(“具有某特征”|“属于某类”)=在已知某样本“属于某类”的条件下，该样本“具有某特征”的概率。<br>P(“属于某类”)=（在未知某样本具有该“具有某特征”的条件下，）该样本“属于某类”的概率。所以叫做『先验概率』。<br>P(“具有某特征”)=(在未知某样本“属于某类”的条件下，)该样本“具有某特征”的概率。</p>
+</blockquote>
+<p><strong>贝叶斯方法的思维方式</strong></p>
+<ul>
+<li><p>逆概率问题</p>
+<blockquote>
+<p>P(Y|X)=P(X|Y)P(Y) / P(X)</p>
+</blockquote>
+<p>先不考虑先验概率P(Y)与P(X)P(Y)与P(X)，观察两个后验概率P(Y|X)与P(X|Y)P(Y|X)与P(X|Y)，,能够揭示<strong>两个相反方向的条件概率之间的转换关系</strong>。</p>
+<p>可以通过贝叶斯公式<strong>从间接地观测对象去推断不可直接观测的对象的情况</strong>。</p>
+</li>
+<li><p>多分类问题</p>
+<p>将正常邮件细分为私人邮件、工作邮件。现在有这3类邮件各1万封作为样本。需要训练出一个贝叶斯分类器。这里依次用Y1,Y2,Y3Y1,Y2,Y3表示这三类邮件，用XX表示被判断的邮件。套用贝叶斯公式有：</p>
+<blockquote>
+<p>P(Y1|X)=P(X|Y1)P(Y1) / P(X)</p>
+<p>P(Y2|X)=P(X|Y2)P(Y2) / P(X)</p>
+<p>P(Y3|X)=P(X|Y3)P(Y3) / P(X)</p>
+</blockquote>
+<p>通过比较3个概率值的大小即可得到XX所属的分类。发现三个式子的分母P(X)P(X) 一样，比较大小时可以忽略不计，于是就可以用下面这一个式子表达上面3式：</p>
+<blockquote>
+<p>P(Yi|X)∝P(X|Yi)P(Yi)；i=1,2,3</p>
+</blockquote>
+<p>其中 ∝ 表示“正比于”。而P(X|Yi) 则有个特别高逼格的名字叫做“<strong>似然函数</strong>”,直接理解成<strong>“P(Yi|X)的逆反条件概率”</strong>  </p>
+</li>
+<li><p>先验概率问题</p>
+<p>在垃圾邮件的例子中，假设先验概率都相等，P(Y1)=P(Y2)=P(Y3)=10000/30000=1/3P(Y1)=P(Y2)=P(Y3)=10000/30000=1/3，所以上面是式子又可以进一步化简：</p>
+<blockquote>
+<p>P(Yi|X)∝P(X|Yi)；i=1,2,3</p>
+</blockquote>
+<p>只需比较右边式子（也就是“似然函数”）的大小就可以了。这种方法就是传说中的<strong>最大似然法</strong>:不考虑先验概率而直接比较似然函数。</p>
+<p><strong>我们只是按1:1:1这样的方式进行了抽样而已，真正在邮箱里收到的这三类邮件的分布可能并不是这样</strong>。也就是说，<strong>在对于先验概率一无所知时，只能假设每种猜测的先验概率是均等的（其实这也是人类经验的结果），这个时候就只有用最大似然了</strong>。</p>
+<p><strong>贝叶斯学派的适用范围更广，关键要先验概率靠谱</strong></p>
+</li>
+</ul>
+<h3 id="二-条件独立假设"><a href="#二-条件独立假设" class="headerlink" title="二.条件独立假设"></a>二.条件独立假设</h3><blockquote>
+<p>P(（“我”,“司”,“可”,“办理”,“正规发票”,“保真”,“增值税”,“发票”,“点数”,“优惠”)|S）<br>=P(“我”|S）×P(“司”|S）×P(“可”|S）×P(“办理”|S）×P(“正规发票”|S） ×P(“保真”|S）×P(“增值税”|S）×P(“发票”|S）×P(“点数”|S）×P(“优惠”|S)</p>
+<p>P(“发票”|S）=垃圾邮件中所有“发票”的次数 / 垃圾邮件中所有词语的次数</p>
+</blockquote>
+<p>s代表垃圾邮件</p>
+<h3 id="add-平滑技术"><a href="#add-平滑技术" class="headerlink" title="add:平滑技术"></a>add:平滑技术</h3><p>若P(“正规发票”|S）=0P(“正规发票”|S）=0，整个概率都变成0，朴素贝叶斯方法面对一堆0，很凄惨地失效了…更残酷的是<strong>这种情况其实很常见</strong>，因为哪怕训练集再大，也可能有覆盖不到的词语。本质上还是<strong>样本数量太少，不满足大数定律，计算出来的概率失真</strong>。</p>
+<p>把概率为零默认赋值为一个很小的数</p>
+<p>对于伯努利模型，P(“正规发票”|S）的一种平滑算法是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">P(“正规发票”|S）=(出现“正规发票”的垃圾邮件的封数+1) / 每封垃圾邮件中所有词出现次数（出现了只计算一次）的总和+2</span><br></pre></td></tr></table></figure>
 
+<p>对于多项式模型，P(“正规发票”| S）的一种平滑算法是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">P(“发票”|S）=(每封垃圾邮件中出现“发票”的次数的总和+1 )/ (每封垃圾邮件中所有词出现次数（计算重复次数）的总和+被统计的词表的词语数量)</span><br></pre></td></tr></table></figure>
+
+<h2 id="朴素贝叶斯的常见应用"><a href="#朴素贝叶斯的常见应用" class="headerlink" title="朴素贝叶斯的常见应用"></a>朴素贝叶斯的常见应用</h2><h4 id="褒贬分析"><a href="#褒贬分析" class="headerlink" title="褒贬分析"></a>褒贬分析</h4><p>一个比较常见的应用场景是情感褒贬分析。比如你要<u>统计微博上人们对一个新上映电影的褒贬程度评价</u>：好片还是烂片。但是一条一条地看微博是根本看不过来，只能用自动化的方法。我们可以有一个很粗略的思路：</p>
+<ul>
+<li>首先是用爬虫将微博上提到这个电影名字的微博全都抓取下来，比如有10万条。</li>
+<li>然后用训练好的朴素贝叶斯分类器分别判断这些微博对电影是好评还是差评。</li>
+<li>最后统计出这些好评的影评占所有样本中的比例，就能形成微博网友对这个电影综合评价的大致估计。</li>
+</ul>
+<p>接下来的核心问题就是训练出一个靠谱的分类器。首先需要有打好标签的文本。这个好找，豆瓣影评上就有大量网友对之前电影的评价，并且对电影进行1星到5星的评价。我们可以认为3星以上的评论都是好评，3星以下的评论都是差评。这样就分别得到了好评差评两类的语料样本。剩下就可以用朴素贝叶斯方法进行训练了。基本思路如下：</p>
+<ul>
+<li>训练与测试样本：豆瓣影评的网友评论，用爬虫抓取下100万条。</li>
+<li>标签：3星以上的是好评，3星以下的是差评。</li>
+<li>特征：豆瓣评论分词后的词语。一个简单的方法是只选择其中的形容词，网上有大量的情绪词库可以为我们所用。</li>
+<li>然后再用常规的朴素贝叶斯方法进行训练。</li>
+</ul>
+<p>但是由于自然语言的特点，在提取特征的过程当中，有一些tricks需要注意：</p>
+<ul>
+<li><strong>对否定句进行特别的处理</strong>。比如这句话“我不是很喜欢部电影，因为它让我开心不起来。”其中两个形容词“喜欢”、“开心”都是褒义词，但是因为句子的否定句，所以整体是贬义的。有一种比较简单粗暴的处理方式，就是<strong>“对否定词（“不”、“非”、“没”等）与句尾标点之间的所有形容词都采用其否定形式”</strong> 。则这句话中提取出来的形容词就应该是“不喜欢”和“不开心”。</li>
+<li>一般说来，最相关的情感词在一些文本片段中仅仅出现一次，词频模型起得作用有限，甚至是负作用，<strong>则使用伯努利模型代替多项式模型</strong>。这种情况在微博这样的小篇幅文本中似乎不太明显，但是在博客、空间、论坛之类允许长篇幅文本出现的平台中需要注意。</li>
+<li>其实，副词对情感的评价有一定影响。“不很喜欢”与“很不喜欢”的程度就有很大差异。但如果是朴素贝叶斯方法的话比较难处理这样的情况。我们可以考虑用语言模型或者加入词性标注的信息进行综合判断。这些内容我们将在之后的文章进行探讨。</li>
+</ul>
+<p>当然经过以上的处理，情感分析还是会有一部分误判。这里涉及到许多问题，都是情感分析的难点：</p>
+<ul>
+<li><strong>情绪表达的含蓄微妙</strong>：“导演你出来，我保证不打死你。”你让机器怎么判断是褒还是贬？</li>
+<li><strong>转折性表达</strong>：“我非常喜欢这些大牌演员，非常崇拜这个导演，非常赞赏这个剧本，非常欣赏他们的预告片，我甚至为了这部影片整整期待了一年，最后进了电影院发现这是个噩梦。” 五个褒义的形容词、副词对一个不那么贬义的词。机器自然判断成褒义，但这句话是妥妥的贬义。</li>
+</ul>
+<h4 id="拼写纠错"><a href="#拼写纠错" class="headerlink" title="拼写纠错"></a>拼写纠错</h4><p>拼写纠错本质上也是一个分类问题。但按照错误类型不同，又分为两种情况：</p>
+<ul>
+<li>非词错误（Non-word Errors）：指那些拼写错误后的词本身就不合法，如将“wifi”写成“wify”；</li>
+<li>真词错误（Real-word Errors）：指那些拼写错误后的词仍然是合法的情况，如将“wifi”写成“wife”。</li>
+</ul>
+<p>真词错误复杂一些，我们将在接下来的文章中进行探讨。而对于非词错误，就可以直接采用贝叶斯方法，其基本思路如下：</p>
+<ul>
+<li>标签：通过计算错误词语的最小编辑距离（之前咱们提到过的），获取最相似的候选词，每个候选词作为一个分类。</li>
+<li>特征：拼写错误的词本身。因为它就一个特征，所以没有什么条件独立性假设、朴素贝叶斯啥的。它就是纯而又纯的贝叶斯方法。</li>
+<li>判别公式:</li>
+</ul>
+<blockquote>
+<p>P(候选词i|错误词)∝P(错误词|候选词i) P(候选词i)；i=1,2,3,…</p>
+</blockquote>
+<ul>
+<li>训练样本1：该场景下的正常用词语料库，用于计算P(候选词i)</li>
+</ul>
+<blockquote>
+<p>P(候选词i)=候选词出现的次数 / 所有词出现的次数</p>
+</blockquote>
+<ul>
+<li>训练样本2：该场景下错误词与正确词对应关系的语料库，用于计算P(错误词|候选词i)</li>
+</ul>
+<blockquote>
+<p>P(错误词|候选词i)=候选词被拼写成该“错误词”的次数 / 候选词出现的次数</p>
+</blockquote>
 
       
 
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -208,84 +296,16 @@
       
 
       
-
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/19/朴素贝叶斯/">展开全文 >></a>
+        </p>
       
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
 
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/20/Keras/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2019/08/30/会议/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          自然语言处理及相关领域的国际会议
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2019/08/20/初入NLP领域对BERT的感想/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">初入NLP领域对BERT的感想</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -305,14 +325,12 @@
 
 
 
-  
-  
-  
 
   
-
   
-
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    </nav>
   
 
 
@@ -335,8 +353,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: false,
-		isPost: true,
+		isHome: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
